@@ -1,0 +1,215 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>辅助命令 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../b_static/jquery.js"></script>
+    <script type="text/javascript" src="../b_static/underscore.js"></script>
+    <script type="text/javascript" src="../b_static/doctools.js"></script>
+    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
+    <link rel="next" title="其他命令" href="othercmds.html" />
+    <link rel="prev" title="命令使用总结" href="cmds.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="othercmds.html" title="其他命令"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cmds.html" title="命令使用总结"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="id1">
+<h1>辅助命令<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="date">
+<h2>date<a class="headerlink" href="#date" title="Permalink to this headline">¶</a></h2>
+<p><strong>格式化时间用</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">date</span> <span class="o">+%</span><span class="n">Y</span><span class="o">%</span><span class="n">m</span><span class="o">%</span><span class="n">d</span><span class="o">-%</span><span class="n">H</span><span class="p">:</span><span class="o">%</span><span class="n">M</span><span class="p">:</span><span class="o">%</span><span class="n">S</span>
+<span class="go">20120319-14:22:09</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">touch</span> <span class="n">backup_</span><span class="sb">`date +%Y%m%d-%H:%M:%S`</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="cut">
+<h2>cut<a class="headerlink" href="#cut" title="Permalink to this headline">¶</a></h2>
+<p><strong>截取文字</strong></p>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-c</span></kbd></td>
+<td>select only these characters</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-d</span></kbd></td>
+<td>use DELIM instead of TAB for field delimiter</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-f</span></kbd></td>
+<td>select only these fields</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-s</span></kbd></td>
+<td>do not print lines not containing delimiters</td></tr>
+</tbody>
+</table>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">echo</span> <span class="mi">1</span><span class="n">a2345a678</span> <span class="o">|</span> <span class="n">cut</span>  <span class="o">-</span><span class="n">c</span> <span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">8</span><span class="o">-</span>
+<span class="go">12345678</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">echo</span> <span class="o">-</span><span class="n">e</span> <span class="s">&quot;a</span><span class="se">\t</span><span class="s">bc&quot;</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">f</span> <span class="mi">2</span>
+<span class="go">bc</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">echo</span> <span class="mi">1</span><span class="n">a2345a678</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">da</span>  <span class="o">-</span><span class="n">f</span> <span class="mi">2</span>
+<span class="go">2345</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sort">
+<h2>sort<a class="headerlink" href="#sort" title="Permalink to this headline">¶</a></h2>
+<p><strong>结果排序</strong></p>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-t <var>SEP</var></span></kbd></td>
+<td>使用SEP来替代空格的转换non-.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-n</span></kbd></td>
+<td>按照字符串的数值顺序比较</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-k</span></kbd></td>
+<td>从关键字POS1开始,*到*POS2结束.字段数和字符偏移量都从1开始计数</td></tr>
+</tbody>
+</table>
+<p>按文件的数值大小的后两位排序（以空格区分，第六列的三到四位）</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ll</span> <span class="o">-</span><span class="n">s</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">-</span><span class="n">t</span>\  <span class="o">-</span><span class="n">nk</span> <span class="mf">6.3</span><span class="p">,</span><span class="mf">6.4</span>
+<span class="go">0 -rw------- 1 matt matt    0  3月 11 16:38 nohup.out</span>
+<span class="go">总用量 36</span>
+<span class="go">8 -rw-rw-r-- 1 matt matt 5115  2月 24 22:23 make.bat</span>
+<span class="go">4 -rw-rw-r-- 1 matt matt 3339  2月 24 22:15 setting.txt</span>
+<span class="go">8 -rw-rw-r-- 1 matt matt 5593  2月 24 22:23 Makefile</span>
+<span class="go">4 drwxrwxr-x 4 matt matt 4096  2月 25 07:40 build/</span>
+<span class="go">4 drwxrwxr-x 4 matt matt 4096  3月 11 16:38 ./</span>
+<span class="go">4 drwxrwxr-x 4 matt matt 4096  3月  5 18:19 source/</span>
+<span class="go">4 drwxrwxr-x 5 matt matt 4096  3月  6 21:59 ../</span>
+</pre></div>
+</div>
+<p>按文件的数值大小的后两位排序（第六列的三到四位）</p>
+<blockquote>
+<div><strong>不指定区分，列似乎包含了空格</strong></div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ll</span> <span class="o">-</span><span class="n">s</span> <span class="o">|</span> <span class="n">sort</span>  <span class="o">-</span><span class="n">nk</span> <span class="mf">6.4</span><span class="p">,</span><span class="mf">6.5</span>
+<span class="go">0 -rw------- 1 matt matt    0  3月 11 16:38 nohup.out</span>
+<span class="go">总用量 36</span>
+<span class="go">8 -rw-rw-r-- 1 matt matt 5115  2月 24 22:23 make.bat</span>
+<span class="go">4 -rw-rw-r-- 1 matt matt 3339  2月 24 22:15 setting.txt</span>
+<span class="go">8 -rw-rw-r-- 1 matt matt 5593  2月 24 22:23 Makefile</span>
+<span class="go">4 drwxrwxr-x 4 matt matt 4096  2月 25 07:40 build/</span>
+<span class="go">4 drwxrwxr-x 4 matt matt 4096  3月 11 16:38 ./</span>
+<span class="go">4 drwxrwxr-x 4 matt matt 4096  3月  5 18:19 source/</span>
+<span class="go">4 drwxrwxr-x 5 matt matt 4096  3月  6 21:59 ../</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">辅助命令</a><ul>
+<li><a class="reference internal" href="#date">date</a></li>
+<li><a class="reference internal" href="#cut">cut</a></li>
+<li><a class="reference internal" href="#sort">sort</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="cmds.html"
+                        title="previous chapter">命令使用总结</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="othercmds.html"
+                        title="next chapter">其他命令</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../b_sources/ubuntu/utility.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="othercmds.html" title="其他命令"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cmds.html" title="命令使用总结"
+             >previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, riptide711.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

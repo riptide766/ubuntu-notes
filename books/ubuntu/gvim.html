@@ -1,0 +1,198 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>文本编辑 GVIM 使用总结 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../b_static/jquery.js"></script>
+    <script type="text/javascript" src="../b_static/underscore.js"></script>
+    <script type="text/javascript" src="../b_static/doctools.js"></script>
+    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
+    <link rel="next" title="文档制作 RST和Sphinx的试验场" href="sphinx.html" />
+    <link rel="prev" title="版本控制 GIT学习笔记" href="git.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="sphinx.html" title="文档制作 RST和Sphinx的试验场"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="git.html" title="版本控制 GIT学习笔记"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="gvim">
+<h1>文本编辑 GVIM 使用总结<a class="headerlink" href="#gvim" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>插入当前时间<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>输入xdate, 替换成当前日期</p>
+<div class="highlight-python"><pre>iab xdate &lt;c-r&gt;=strftime("20%y%m%d %H:%M:")&lt;C-I&gt;</pre>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>用不同的标签打开多个文件<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gvim</span> <span class="o">-</span><span class="n">p</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>删除、复制单词<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>[cdy]iw</li>
+<li>[cdy]aw</li>
+</ul>
+<p><strong>i</strong> 内含单词
+<strong>a</strong> 一个单词(含空格之类的</p>
+</div>
+<div class="section" id="id4">
+<h2>删除、复制标点配对内容<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>ci&#8217;、ci&#8221;、ci(、ci[、ci{、ci&lt;</p>
+<p>di&#8217;、di&#8221;、di(、di[、di{、di&lt;</p>
+<p>yi&#8217;、yi&#8221;、yi(、yi[、yi{、yi&lt;</p>
+<p><strong>i</strong> 换成 <strong>a</strong> 连同标点一起操作</p>
+</div>
+<div class="section" id="id5">
+<h2>中文帮助<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>下载 <a class="reference external" href="http://vimcdoc.sourceforge.net/">中文帮助</a></p>
+<div class="highlight-python"><pre>tar zxvf vimcdoc-1.8.0.tar.gz
+cd vimcdoc-1.8.0
+./vimcdoc.sh -i</pre>
+</div>
+<p>使用英文帮助</p>
+<blockquote>
+<div><div class="highlight-python"><pre>:h help@en</pre>
+</div>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="javascript-ctag-taglist">
+<h2>javascript / ctag / taglist<a class="headerlink" href="#javascript-ctag-taglist" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>安装ctags</p>
+<blockquote>
+<div><div class="highlight-python"><pre>sudo apt-get install exuberant-ctags</pre>
+</div>
+</div></blockquote>
+<p>下载安装 <a class="reference external" href="http://www.vim.org/scripts/script.php?script_id=273">taglist</a></p>
+<p>添加配置文件 ~/.ctags</p>
+<blockquote>
+<div><div class="highlight-python"><pre>--regex-JavaScript=/([A-Za-z0-9._$]+)[ \t]*[:=][ \t]*new[ \t]+Object\(/\1/o,object/
+--regex-JavaScript=/([A-Za-z0-9._$]+)[ \t]*[:=][ \t]*\{/\1/o,object/
+--regex-JavaScript=/([A-Za-z0-9._$()]+)[ \t]*[:=][ \t]*function[ \t]*\(/\1/f,function/
+--regex-JavaScript=/function[ \t]+([A-Za-z0-9._$]+)[ \t]*\([^\]\)]*\)/\1/f,function/
+--regex-JavaScript=/([A-Za-z0-9._$]+)[ \t]*[:=][ \t]*new[ \t]+Array\(/\1/a,array/
+--regex-JavaScript=/([A-Za-z0-9._$]+)[ \t]*[:=][ \t]*\[/\1/a,array/
+--regex-JavaScript=/([^= ]+)[ \t]*=[ \t]*[^""]'[^'']*/\1/s,string/
+--regex-JavaScript=/([^= ]+)[ \t]*=[ \t]*[^'']"[^""]*/\1/s,string/</pre>
+</div>
+</div></blockquote>
+<p>修改配置 ～/.vimrc</p>
+<blockquote>
+<div><div class="highlight-python"><pre>nnoremap &lt;silent&gt; &lt;F9&gt; :TlistToggle&lt;CR&gt;
+let g:tlist_javascript_settings = 'javascript;s:string;a:array;o:object;f:function'</pre>
+</div>
+</div></blockquote>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">文本编辑 GVIM 使用总结</a><ul>
+<li><a class="reference internal" href="#id1">插入当前时间</a></li>
+<li><a class="reference internal" href="#id2">用不同的标签打开多个文件</a></li>
+<li><a class="reference internal" href="#id3">删除、复制单词</a></li>
+<li><a class="reference internal" href="#id4">删除、复制标点配对内容</a></li>
+<li><a class="reference internal" href="#id5">中文帮助</a></li>
+<li><a class="reference internal" href="#javascript-ctag-taglist">javascript / ctag / taglist</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="git.html"
+                        title="previous chapter">版本控制 GIT学习笔记</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="sphinx.html"
+                        title="next chapter">文档制作 RST和Sphinx的试验场</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../b_sources/ubuntu/gvim.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="sphinx.html" title="文档制作 RST和Sphinx的试验场"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="git.html" title="版本控制 GIT学习笔记"
+             >previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, riptide711.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
