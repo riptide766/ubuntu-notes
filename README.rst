@@ -8,8 +8,11 @@ Ubuntu学习笔记
 * IT术语表
 * LFS 笔记
 
+编写工具
+---------
 
-** 本笔记采用reStructedText标记语言编写，配合sphinx生成html **
+**本笔记采用reStructedText标记语言编写，配合sphinx生成html**
+
 
 如何生成网页和查阅
 -----------------
