@@ -1,0 +1,245 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>权限管理 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../b_static/jquery.js"></script>
+    <script type="text/javascript" src="../b_static/underscore.js"></script>
+    <script type="text/javascript" src="../b_static/doctools.js"></script>
+    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
+    <link rel="next" title="疑难解决" href="ubuntu_solved.html" />
+    <link rel="prev" title="其他命令" href="othercmds.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ubuntu_solved.html" title="疑难解决"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="othercmds.html" title="其他命令"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="id1">
+<h1>权限管理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><strong>和权限粘点边,用过的都记录到这里来...</strong></p>
+<p>install  chown umask mknod</p>
+<p>useradd usermod userdel  passwd whoami id users</p>
+<p>groupadd chgrp</p>
+<p>visudo su sudo</p>
+<div class="section" id="umask">
+<h2>umask<a class="headerlink" href="#umask" title="Permalink to this headline">¶</a></h2>
+<p>目录默认权限是777, 文件默认的权限是666 。 umask的值是实际要扣去的权限</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">umask</span>
+<span class="go">0002</span>
+</pre></div>
+</div>
+<p>所以实际上目录的权限是775, 文件的权限是664</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ll</span> <span class="o">-</span><span class="n">d</span> <span class="n">d</span> <span class="n">f</span>
+<span class="go">drwxrwxr-x 2 test test 4096  4月 15 13:13 d/</span>
+<span class="go">-rw-rw-r-- 1 test test    0  4月 15 13:13 f</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="etc-passwd">
+<span id="config-passwd"></span><h2>/etc/passwd文件<a class="headerlink" href="#etc-passwd" title="Permalink to this headline">¶</a></h2>
+<p>格式</p>
+<blockquote>
+<div><div class="highlight-python"><pre>name:password:uid:gid:comment:home:shell</pre>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="etc-group">
+<span id="config-group"></span><h2>/etc/group文件<a class="headerlink" href="#etc-group" title="Permalink to this headline">¶</a></h2>
+<p>格式</p>
+<blockquote>
+<div><div class="highlight-python"><pre>group_name:passwd:GID:user_list</pre>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id2">
+<h2>伪用户<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>有的地方也叫管理用户。用户id是 <strong>1-499</strong> . root 是 0.</p>
+<p>伪用户的说法可能是突出它不能登录</p>
+<p>管理用户的说法可能是突然程序对文件用户属性的要求。不知道具体是什么逻辑。存疑吧</p>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2>粘位符<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>777就不解释了，前面的1就是粘位符。</p>
+<p>用1777设置目录的话，在这个目录下不能修改和删除其他用户的文件。</p>
+<p>下面这句命令来自LFS，意思是用 <strong>1777</strong> 创建/tmp， /var/tmp目录。</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">install</span> <span class="o">-</span><span class="n">dv</span> <span class="o">-</span><span class="n">m</span> <span class="mi">1777</span> <span class="o">/</span><span class="n">tmp</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">tmp</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sudo">
+<h2>sudo<a class="headerlink" href="#sudo" title="Permalink to this headline">¶</a></h2>
+<p>让用户可以使用sudo命令</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">adduser</span> <span class="n">test</span> <span class="n">admin</span>
+<span class="go">正在添加用户&quot;test&quot;到&quot;admin&quot;组...</span>
+<span class="go">正在将用户“test”加入到“admin”组中</span>
+<span class="go">完成。</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="visudo">
+<h2>visudo<a class="headerlink" href="#visudo" title="Permalink to this headline">¶</a></h2>
+<p>编辑/etc/sudoers文件.</p>
+<p>比打开文件强点。保证只有一个人在编辑</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">visudo</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">如何控制sudo认证有效时间？</p>
+<p>添加一个定义</p>
+<div class="highlight-python"><pre>Defaults    timestamp_timeout=-1</pre>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="id">
+<h2>id<a class="headerlink" href="#id" title="Permalink to this headline">¶</a></h2>
+<p>查看用户和组</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span>
+<span class="go">uid=1001(test) gid=1001(test) 组=1001(test),118(admin),1000(xxx)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ubunturoot">
+<h2>Ubuntu使用root用户<a class="headerlink" href="#ubunturoot" title="Permalink to this headline">¶</a></h2>
+<p>需要设置密码</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">passwd</span> <span class="n">root</span>
+</pre></div>
+</div>
+<p>或者</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">su</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>建立一个用户<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>之前学过，不过有更方便的图形界面，所以一直有为赋新诗强说愁的感觉。</p>
+<p>下面倒是一个挺实际的应用。</p>
+<p>LFS里建立工具链之前的准备工作:建立一个用户，用于防止误操作。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">su - lfs 切入到lfs用户，并进入lfs的主目录</p>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">groupadd</span> <span class="n">lfs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">useradd</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span> <span class="o">-</span><span class="n">g</span> <span class="n">lfs</span> <span class="o">-</span><span class="n">m</span> <span class="o">-</span><span class="n">k</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span> <span class="n">lfs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">passwd</span> <span class="n">lfs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chown</span> <span class="o">-</span><span class="n">v</span> <span class="n">lfs</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">lfs</span><span class="o">/</span><span class="n">tools</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chown</span> <span class="o">-</span><span class="n">v</span> <span class="n">lfs</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">lfs</span><span class="o">/</span><span class="n">sources</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">su</span> <span class="o">-</span> <span class="n">lfs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="n">root</span><span class="p">:</span><span class="n">root</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">lfs</span><span class="o">/</span><span class="n">tools</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">权限管理</a><ul>
+<li><a class="reference internal" href="#umask">umask</a></li>
+<li><a class="reference internal" href="#etc-passwd">/etc/passwd文件</a></li>
+<li><a class="reference internal" href="#etc-group">/etc/group文件</a></li>
+<li><a class="reference internal" href="#id2">伪用户</a></li>
+<li><a class="reference internal" href="#id3">粘位符</a></li>
+<li><a class="reference internal" href="#sudo">sudo</a></li>
+<li><a class="reference internal" href="#visudo">visudo</a></li>
+<li><a class="reference internal" href="#id">id</a></li>
+<li><a class="reference internal" href="#ubunturoot">Ubuntu使用root用户</a></li>
+<li><a class="reference internal" href="#id4">建立一个用户</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="othercmds.html"
+                        title="previous chapter">其他命令</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ubuntu_solved.html"
+                        title="next chapter">疑难解决</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../b_sources/ubuntu/permission.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="ubuntu_solved.html" title="疑难解决"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="othercmds.html" title="其他命令"
+             >previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, riptide711.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

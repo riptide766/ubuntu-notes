@@ -1,0 +1,214 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>准备工作 - 工具和目录 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../b_static/jquery.js"></script>
+    <script type="text/javascript" src="../b_static/underscore.js"></script>
+    <script type="text/javascript" src="../b_static/doctools.js"></script>
+    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
+    <link rel="next" title="准备工作 - 创建系统结构" href="lfs_mksysdir.html" />
+    <link rel="prev" title="疑难解决" href="ubuntu_solved.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lfs_mksysdir.html" title="准备工作 - 创建系统结构"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ubuntu_solved.html" title="疑难解决"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="id1">
+<h1>准备工作 - 工具和目录<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>构建linux的准备工作。主要目的是准备好磁盘设备，然后告诉我们编译一个linux系统，需要哪些工具。</p>
+<div class="section" id="id2">
+<h2>目录<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>从零开始其实是从光盘开始。光盘指的是一个 <a class="reference internal" href="glossary.html#term-live-cd"><em class="xref std std-term">Live CD</em></a></p>
+<p>从光盘启动后分区，挂上swap，挂上未来的根目录。 <strong>(省略很多细节的命令)</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">cfdisk</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hda</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mkswap</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hda1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mkfs</span><span class="o">.</span><span class="n">xfs</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hda2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">swapon</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hda1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">hda2</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">lfs</span>
+</pre></div>
+</div>
+<p>sources目录是编译软件的地方，这些软件会被安装到tools目录。</p>
+<p>而$LFS就是将来的根目录所在</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mkdir</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">lfs</span><span class="o">/</span><span class="n">sources</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mkdir</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">lfs</span><span class="o">/</span><span class="n">tools</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>工具链<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>工具链，编译源代码，需要四样东西。汇编器、连接器、编译器、库。</p>
+<div class="section" id="id4">
+<h3>构建工具链<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference internal" href="glossary.html#term-binutils"><em class="xref std std-term">Binutils</em></a></li>
+<li><a class="reference internal" href="glossary.html#term-gcc"><em class="xref std std-term">GCC</em></a></li>
+<li><a class="reference internal" href="glossary.html#term-glibc"><em class="xref std std-term">Glibc</em></a></li>
+<li>Linux-header</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3>构建测试套件<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Tcl</li>
+<li>Expect</li>
+<li>DejaGnu</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>实用工具<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div>gawk, sed, grep, bzip2, gzip, diffutils, finduitls,  coreutils, make, patch, tar, gettext,  ncurses, texinfo, bash, util-linux</div></blockquote>
+<p><strong>部分工具说明</strong></p>
+<p><a class="reference internal" href="glossary.html#term-coreutils"><em class="xref std std-term">Coreutils</em></a> 一些基础工具</p>
+<blockquote>
+<div><div class="highlight-python"><pre>basename, cat, chgrp, chmod, chown, chroot, cksum, comm, cp, csplit, cut, date, dd, df, dir, dircolors, dirname, du, echo, env, exp和, expr, factor, false, fmt, fold, groups, head, hostid, hostname, id, install, join, kill, link, ln, logname, ls, md5sum, mkdir, mkfifo, mknod, mv, nice, nl, nohup, od, paste, pathchk, pinky, pr, printenv, printf, ptx, pwd, readlink, rm, rmdir, seq, sha1sum, shred, sleep, sort, split, stat, stty, su, sum, sync, tac, tail, tee, test, touch, tr, true, tsort, tty, uname, unexp和, uniq, unlink, uptime, users, vdir, wc, who, whoami 和 yes</pre>
+</div>
+</div></blockquote>
+<p><a class="reference internal" href="glossary.html#term-diffutils"><em class="xref std std-term">Diffutils</em></a></p>
+<blockquote>
+<div><div class="highlight-python"><pre>cmp, diff, diff3 和 sdiff</pre>
+</div>
+</div></blockquote>
+<p><a class="reference internal" href="glossary.html#term-findutils"><em class="xref std std-term">Findutils</em></a></p>
+<blockquote>
+<div><div class="highlight-python"><pre>bigram, code, find, frcode, locate, updatedb 和 xargs</pre>
+</div>
+</div></blockquote>
+<p><a class="reference internal" href="glossary.html#term-gettext"><em class="xref std std-term">Gettext</em></a>  本地化工具</p>
+<blockquote>
+<div><div class="highlight-python"><pre>autopoint, config.charset, config.rpath, gettext, gettextize, hostname, msgattrib, msgcat, msgcmp, msgcomm, msgconv, msgen, msgexec, msgfilter, msgfmt, msggrep, msginit, msgmerge, msgunfmt, msguniq, ngettext, project-id, team-address, trigger, urlget, user-email 和 xgettext</pre>
+</div>
+</div></blockquote>
+<p><a class="reference internal" href="glossary.html#term-ncurses"><em class="xref std std-term">Ncurses</em></a> 文字界面接口</p>
+<blockquote>
+<div><div class="highlight-python"><pre>captoinfo , clear, infocmp, infotocap, reset, tack, tic, toe, tput 和 tset</pre>
+</div>
+</div></blockquote>
+<p><a class="reference internal" href="glossary.html#term-texinfo"><em class="xref std std-term">Texinfo</em></a> 文档工具</p>
+<blockquote>
+<div><div class="highlight-python"><pre>info, infokey, install-info, makeinfo, texi2dvi 和 texindex</pre>
+</div>
+</div></blockquote>
+<p>Bash</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span class="n">bash</span><span class="p">,</span> <span class="n">sh</span><span class="p">,</span> <span class="n">bashbug</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><a class="reference internal" href="glossary.html#term-util-linux"><em class="xref std std-term">Util-linux</em></a> 系统管理、维护工具</p>
+<blockquote>
+<div><div class="highlight-python"><pre>agetty, arch, blockdev, cal, cfdisk, chkdupexe, col, colcrt, colrm, column, ctrlaltdel, cytune, ddate, dmesg, elvtune, fdformat, fdisk, fsck.cramfs, fsck.minix, getopt, hexdump, hwclock, ipcrm, ipcs, isosize, kill, line, logger, look, losetup, mcookie, mkfs, mkfs.bfs, mkfs.cramfs, mkfs.minix, mkswap, more, mount, namei, parse.bash, parse.tcsh, pg, pivot_root, ramsize (link to rdev), raw, rdev, readprofile, rename, renice, rev, rootflags (link to rdev), script, setfdprm, setsid, setterm, sfdisk, swapoff (link to swapon), swapon, test.bash, test.tcsh, tunelp, ul, umount, vidmode (link to rdev), whereis 和 write</pre>
+</div>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">准备工作 - 工具和目录</a><ul>
+<li><a class="reference internal" href="#id2">目录</a></li>
+<li><a class="reference internal" href="#id3">工具链</a><ul>
+<li><a class="reference internal" href="#id4">构建工具链</a></li>
+<li><a class="reference internal" href="#id5">构建测试套件</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6">实用工具</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ubuntu_solved.html"
+                        title="previous chapter">疑难解决</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lfs_mksysdir.html"
+                        title="next chapter">准备工作 - 创建系统结构</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../b_sources/ubuntu/lfs_toolchain.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lfs_mksysdir.html" title="准备工作 - 创建系统结构"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ubuntu_solved.html" title="疑难解决"
+             >previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, riptide711.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

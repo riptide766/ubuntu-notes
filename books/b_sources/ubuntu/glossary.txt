@@ -1,6 +1,6 @@
-*******************
-名词解释
-*******************
+*******************************
+名词解释  
+*******************************
 
 .. sphinx markup
 
@@ -9,9 +9,70 @@
     RPM 
         Redhat Package Manager
 
+    Toolchain
+        工具链，用来编译原始程式码。
+        
+        一套完整的toolchain应包含下列四种工具：
+
+        * cross assembler
+        * cross compile
+        * cross library
+        * cross link
+        
+    Filesystem Hierarchy Standard (FHS)
+        The filesystem standard has been designed to be used by Unix distribution developers, package developers, and system implementors. However, it is primarily intended to be a reference and is not a tutorial on how to manage a Unix filesystem or directory hierarchy. `FHS <http://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard>`_
+
+    Tmpfs
+        tmpfs在类Unix操作系统上是一个常见的名称会用来做为暂时的档案储存方式，在更多的情况下，它会用虚拟的内存而不是一个永久保存的媒体来做为在档案系统上的使用。
+
+    Sysfs
+        Sysfs 是 Linux 2.6 所提供的一种虚拟档案系统。这个档案系统不仅可以把装置（devices）和驱动程式(drivers) 的资讯从内核输出到 用户空间，也可以用来对装置和驱动程式做设定。
+
+    Binutils
+        Binutils 是一组开发工具，包括连接器，汇编器和其他用于目标文件和档案的工具。
+
+    GCC
+        GNU Compiler Collection，GNU编译器套装，是一套由GNU开发的编程语言编译器。它是一套以GPL及LGPL许可证所发行的自由软件，也是GNU计划的关键部分，亦是自由的类Unix及苹果电脑Mac OS X 操作系统的标准编译器。GCC（特别是其中的C语言编译器）也常被认为是跨平台编译器的事实标准。
+
+    Glibc
+        GNU C 函式库（GNU C Library，又称为glibc）是一种按照LGPL许可协议发布的，公开源代码的，免费的，方便从网络下载的C的编译程序。 GNU C运行期库，是一种C函式库，是程序运行时使用到的一些API集合，它们一般是已预先编译好，以二进制代码形式存 在Linux类系统中，GNU C运行期库，通常作为GNU C编译程序的一个部分发布。 它最初是自由软件基金会为其GNU操作系统所写，但目前最主要的应用是配合Linux内核，成为GNU/Linux操作系统一个重要的组成部分。
 
     Comma Separated Value (CSV)
         逗号分割型数值
+
+    Ncurses
+        ncurses (new curses) is a programming library that provides an API which allows the programmer to write text-based user interfaces in a terminal-independent manner. It is a toolkit for developing "GUI-like" application software that runs under a terminal emulator. It also optimizes screen changes, in order to reduce the latency experienced when using remote shells. `ncures <http://en.wikipedia.org/wiki/Ncurses>`_
+
+    Coreutils
+        The GNU Core Utilities or coreutils is a package of GNU software containing many of the basic tools, such as cat, ls, and rm, needed for Unix-like operating systems. It is a combination of a number of earlier packages, including textutils, shellutils, and fileutils, along with some other miscellaneous utilities. `coreutils - wiki <http://en.wikipedia.org/wiki/GNU_Core_Utilities>`_
+
+    Diffutils
+        GNU Diffutils is a package of several programs related to finding differences between files.GNU Diffutils is a package of several programs related to finding differences between files. `diffutils - GNU <http://www.gnu.org/software/diffutils/>`_
+
+    Findutils
+        The GNU Find Utilities are the basic directory searching utilities of the GNU operating system. These programs are typically used in conjunction with other programs to provide modular and powerful directory search and file locating capabilities to other commands. `findutils - GNU < http://www.gnu.org/software/findutils/>`_
+
+        The tools supplied with this package are:
+
+        * find - search for files in a directory hierarchy
+        * locate - list files in databases that match a pattern
+        * updatedb - update a file name database
+        * xargs - build and execute command lines from standard input 
+
+    Gettext
+        gettext 是GNU国际化与本地化(i18n)函数库。它常被用于编写多语言程序。
+
+    Make
+        在软件开发中，make是一个工具程式（Utility software），经由读取叫做“makefile”的文件，自动化建构软件。它是一种转化文件形式的工具，转换的目标称为“target”；与此同时，它也检查文件的依赖关系，如果需要的话，它会调用一些外部软件来完成任务。它的依赖关系检查系统非常简单，主要根据依赖文件的修改时间进行判断。大多数情况下，它被用来编译源代码，生成结果代码，然后把结果代码连接起来生成可执行文件或者库文件。它使用叫做“makefile”的文件来确定一个target文件的依赖关系，然后把生成这个target的相关命令传给shell去执行。`make - wiki <http://zh.wikipedia.org/wiki/Make>`_
+
+    Patch 
+        patch is a Unix program that updates text files according to instructions contained in a separate file, called a patch file. The patch file (also called a patch for short) is a text file that consists of a list of differences and is produced by running the related diff program with the original and updated file as arguments. Updating files with patch is often referred to as applying the patch or simply patching the files. `patch -wiki <http://en.wikipedia.org/wiki/Patch_(Unix)>`_
+
+    Util-linux
+        Util-linux 软件包包含许多工具。其中比较重要的是加载、卸载、格式化、分区和管理硬盘驱动器，打开 tty 端口和得到内核消息。
+
+    Texinfo
+        Texinfo软件包包含读取、写入和转换 Info 文档的程序，以提供系统文档。
 
     LTS
         Long-Term Support
