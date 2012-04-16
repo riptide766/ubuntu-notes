@@ -34,6 +34,7 @@ Ubuntu 笔记
     ubuntu/othercmds
     ubuntu/permission
     ubuntu/ubuntu_solved
+    ubuntu/dev_block
 
 LFS 笔记
 ==============
