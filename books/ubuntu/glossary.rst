@@ -50,7 +50,7 @@
         GNU Diffutils is a package of several programs related to finding differences between files.GNU Diffutils is a package of several programs related to finding differences between files. `diffutils - GNU <http://www.gnu.org/software/diffutils/>`_
 
     Findutils
-        The GNU Find Utilities are the basic directory searching utilities of the GNU operating system. These programs are typically used in conjunction with other programs to provide modular and powerful directory search and file locating capabilities to other commands. `findutils - GNU < http://www.gnu.org/software/findutils/>`_
+        The GNU Find Utilities are the basic directory searching utilities of the GNU operating system. These programs are typically used in conjunction with other programs to provide modular and powerful directory search and file locating capabilities to other commands. `findutils - GNU <http://www.gnu.org/software/findutils/>`_
 
         The tools supplied with this package are:
 

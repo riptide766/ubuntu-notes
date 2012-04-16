@@ -2,9 +2,11 @@
 块设备管理
 ===================
 
-和块设备有关的都记录在这里...
+和块设备有关的都记录在这里 :
 
-mkisofs losetup
+>>> whatis losetup
+losetup (8)          - set up and control loop devices
+mkisofs              - create an iso9660 filesystem
 
 >>> whatis df blkid cfdisk fdisk du
 df (1)               - report file system disk space usage
@@ -35,6 +37,8 @@ mkfs.vfat (8)        - create an MS-DOS file system under Linux
 
 制作ISO
 ===========
+
+把test目录转换成 test.iso
 
 >>> mkisofs -o test2.iso test/
 
@@ -123,6 +127,7 @@ none           tmpfs     501M  160K  501M    1% /run/shm
 /dev/sda5      fuseblk    49G   46G  3.4G   94% /media/sda5
 /dev/sda1      vfat       30G   16G   14G   53% /media/xp
 
+连同虚拟文件系统一起显示
 
 >>> df -a
 文件系统            1K-块     已用     可用 已用% 挂载点

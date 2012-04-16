@@ -11,10 +11,10 @@ rdirs=("_images" "_static" "_sources")
 
 # cleanup
 _sourcescleanup(){
-rm -rf source/ubuntu
-rm -rf source/index.rst
-cp -R ../books/ubuntu source/ubuntu
-cp -R ../books/ubuntubook.rst source/index.rst
+#rm -rf source/ubuntu
+#rm -rf source/index.rst
+#cp -R ../books/ubuntu source/ubuntu
+#cp -R ../books/ubuntubook.rst source/index.rst
 echo sources cleanup... done
 }
 
