@@ -5,8 +5,10 @@
 和块设备有关的都记录在这里 :
 
 >>> whatis losetup
+dd (1)               - convert and copy a file
 losetup (8)          - set up and control loop devices
 mkisofs              - create an iso9660 filesystem
+cfdisk (8)           - Curses/slang based disk partition table manipulator
 
 >>> whatis df blkid cfdisk fdisk du
 df (1)               - report file system disk space usage
@@ -35,14 +37,45 @@ mkfs.msdos (8)       - create an MS-DOS file system under Linux
 mkfs.ntfs (8)        - create an NTFS file system
 mkfs.vfat (8)        - create an MS-DOS file system under Linux
 
-制作ISO
-===========
+备份一个liveusb
+===================
+
+备份U盘文件，备份U盘MBr
+
+>>> tar cvjf liveusb_ext4.tar.bz /media/PENDRIVE
+>>> sudo dd if=/dev/sdb of=liveusb.mbr bs=512 count=1
+
+磁盘分区
+==================
+
+>>> cfdisk /dev/sda
+
+
+启用swap分区
+===================
+
+>>> swapon /dev/sda9
+
+file 判断文件类型
+==================
+
+>>> file cursor/
+cursor/: directory
+
+>>> file fedora.iso 
+fedora.iso: # ISO 9660 CD-ROM filesystem data 'Fedora-16-i686-Live-Desktop.iso ' (bootable)
+
+>>> file /media/mylivecd/SOURCES.img
+/media/mylivecd/SOURCES.img: Squashfs filesystem, little endian, version 4.0, 421922764 bytes, 273 inodes, blocksize: 131072 bytes, created: Thu Mar 25 04:02:55 2010
+
+mkisofs 制作ISO
+================
 
 把test目录转换成 test.iso
 
 >>> mkisofs -o test2.iso test/
 
-mount
+mount 挂载设备
 ====================
 
 加载文件系统(块设备)
@@ -71,7 +104,7 @@ mount
 >>> sudo mount LABEL=OS_XP -o iocharset=utf8 /media/xp
 
 
-\* lable
+设置标签
 ==========================
 
 文件系统设置标签
@@ -153,7 +186,7 @@ gvfs-fuse-daemon        0        0        0     - /home/matt/.gvfs
 fdisk
 ================
 
-操作磁盘分区表，一般的简单使用。
+操作磁盘分区表，一般就简单使用。
 
 >>> sudo fdisk -l
 Disk /dev/sda: 160.0 GB, 160041885696 bytes

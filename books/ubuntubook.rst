@@ -35,6 +35,10 @@ Ubuntu 笔记
     ubuntu/permission
     ubuntu/ubuntu_solved
     ubuntu/dev_block
+    ubuntu/usb_rescue
+
+..    ubuntu/startup
+
 
 LFS 笔记
 ==============

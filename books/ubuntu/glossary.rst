@@ -6,6 +6,30 @@
 
 .. glossary::
 
+    POST
+        加电自检又称为开机自我检测（英文Power-on self-test，常用简称POST），是计算机BIOS的一个功能，在开机后会执行，针对计算机硬件如CPU、主板、内存等进行检测，结果会显示在固件可以控制的输出接口，像屏幕、LED、打印机等等装置上。 `加电自检 - WIKI <http://zh.wikipedia.org/wiki/%E5%8A%A0%E7%94%B5%E8%87%AA%E6%A3%80>`_
+
+    LILO
+        LInux LOader. 一种引导加载程序
+
+    MBR
+        master boot record. 主引导记录 `MBR -WIKI <http://zh.wikipedia.org/wiki/%E4%B8%BB%E5%BC%95%E5%AF%BC%E8%AE%B0%E5%BD%95>`_
+
+    GRUB
+        GRand Unified Boot loader. 一种引导加载程序
+
+    IPL
+        initial program loader. 初始程序加载程序
+
+    CMOS
+        Complementary Metal-Oxide-Semiconductor, CMOS 互补式金属氧化物半导体。 `CMOS - WIKI <http://zh.wikipedia.org/wiki/CMOS>`_
+
+    RAM
+        随机存取存储器（英语：Random Access Memory，RAM）又称作“随机存储器”。就是内存。 `RAM -WIKI <http://zh.wikipedia.org/wiki/随机存取存储器>`_
+
+    BIOS
+        Basic Input/Output System.  `BIOS - WIKI http://zh.wikipedia.org/wiki/BIOS`_
+
     RPM 
         Redhat Package Manager
 

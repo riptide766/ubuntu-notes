@@ -99,7 +99,8 @@ html_theme = 'default'
 html_theme_options = {
 		"rightsidebar":"false",
 		"collapsiblesidebar":"true",
-		"externalrefs":"true"
+		"externalrefs":"true",
+		"stickysidebar":"true"
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
