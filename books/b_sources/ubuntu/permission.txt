@@ -3,11 +3,11 @@
 
 **和权限粘点边,用过的都记录到这里来...**
 
-install  chown umask mknod  
+install  chown umask mknod exit logout chroot 
 
 useradd usermod userdel  passwd whoami id users
 
-groupadd chgrp
+groupadd groupdel groupmod chgrp
 
 visudo su sudo 
 

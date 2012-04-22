@@ -3,16 +3,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>其他命令 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
-    
+    <title>其他命令 &mdash; Ubuntu GNU/linux 笔记 v0.1 documentation</title>
     <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
@@ -26,7 +23,7 @@
     <script type="text/javascript" src="../b_static/underscore.js"></script>
     <script type="text/javascript" src="../b_static/doctools.js"></script>
     <script type="text/javascript" src="../b_static/sidebar.js"></script>
-    <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
+    <link rel="top" title="Ubuntu GNU/linux 笔记 v0.1 documentation" href="../index.html" />
     <link rel="next" title="权限管理" href="permission.html" />
     <link rel="prev" title="辅助命令" href="utility.html" /> 
   </head>
@@ -43,7 +40,7 @@
         <li class="right" >
           <a href="utility.html" title="辅助命令"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 v0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -66,24 +63,6 @@
 <span class="go">Codename:       precise</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="losetup">
-<h2>losetup<a class="headerlink" href="#losetup" title="Permalink to this headline">¶</a></h2>
-<p>设置loop设备 , <strong>把文件虚拟成块设备</strong></p>
-<blockquote>
-<div><p>查看</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">losetup</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">loop0</span>
-</pre></div>
-</div>
-<p>建立</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">losetup</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">loop0</span> <span class="o">~/</span><span class="n">diskfile</span>
-</pre></div>
-</div>
-<p>卸载</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">losetup</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">loop0</span>
-</pre></div>
-</div>
-</div></blockquote>
 </div>
 <div class="section" id="ln">
 <h2>ln<a class="headerlink" href="#ln" title="Permalink to this headline">¶</a></h2>
@@ -115,128 +94,10 @@
 <td>显示命令过程</td></tr>
 </tbody>
 </table>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ln</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">S</span> <span class="n">_backup</span> <span class="n">source</span> <span class="n">target</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ln</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">s</span> <span class="n">_backup</span> <span class="n">source</span> <span class="n">target</span>
 </pre></div>
 </div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ln</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">V</span> <span class="n">t</span> <span class="n">source</span> <span class="n">target</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="mount">
-<h2>mount<a class="headerlink" href="#mount" title="Permalink to this headline">¶</a></h2>
-<p>加载文件系统(块设备)</p>
-<ul class="simple">
-<li>/etc/fstab 自动挂载配置文件</li>
-<li>/etc/mtab 加载设备的记录</li>
-</ul>
-<table class="docutils option-list" frame="void" rules="none">
-<col class="option" />
-<col class="description" />
-<tbody valign="top">
-<tr><td class="option-group">
-<kbd><span class="option">-a</span></kbd></td>
-<td>加载/etc/fstab</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">-L</span></kbd></td>
-<td>加载指定标签的文件系统</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">-o</span></kbd></td>
-<td>选项
-rw
-ro</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">-t</span></kbd></td>
-<td>指定文件系统类型
-iso9660
-ntfs
-auto</td></tr>
-<tr><td class="option-group">
-<kbd><span class="option">-v</span></kbd></td>
-<td>详细信息</td></tr>
-</tbody>
-</table>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">mount</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="n">t</span> <span class="n">vfat</span> <span class="o">-</span><span class="n">o</span> <span class="n">ro</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda1</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">xp</span>
-<span class="go">/dev/sda1 on /media/xp type vfat (ro)</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">mount</span> <span class="o">-</span><span class="n">L</span> <span class="n">OS_XP</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">xp</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">mount</span> <span class="n">LABEL</span><span class="o">=</span><span class="n">OS_XP</span> <span class="o">-</span><span class="n">o</span> <span class="n">iocharset</span><span class="o">=</span><span class="n">utf8</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">xp</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="lable">
-<h2>* lable<a class="headerlink" href="#lable" title="Permalink to this headline">¶</a></h2>
-<p>文件系统设置标签</p>
-<p>如: dosfslabel ntfslabel e2label</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">dosfslabel</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda1</span> <span class="n">OS_XP</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">dosfslabel</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda1</span>
-<span class="go">OS_XP</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="df">
-<h2>df<a class="headerlink" href="#df" title="Permalink to this headline">¶</a></h2>
-<p>文件系统使用情况</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
-<span class="go">文件系统          1K-块     已用     可用 已用% 挂载点</span>
-<span class="go">/dev/sda6      19465224  6035152 12453536   33% /</span>
-<span class="go">udev             505448       12   505436    1% /dev</span>
-<span class="go">tmpfs            205084      804   204280    1% /run</span>
-<span class="go">none               5120        0     5120    0% /run/lock</span>
-<span class="go">none             512700      160   512540    1% /run/shm</span>
-<span class="go">/dev/sda7      52825064 42313336  7865304   85% /home</span>
-<span class="go">/dev/sda5      51199120 47634576  3564544   94% /media/sda5</span>
-<span class="go">/dev/sda1      30709264 16087984 14621280   53% /media/xp</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">-</span><span class="n">hT</span>
-<span class="go">文件系统       类型      容量  已用  可用 已用% 挂载点</span>
-<span class="go">/dev/sda6      ext4       19G  5.8G   12G   33% /</span>
-<span class="go">udev           devtmpfs  494M   12K  494M    1% /dev</span>
-<span class="go">tmpfs          tmpfs     201M  804K  200M    1% /run</span>
-<span class="go">none           tmpfs     5.0M     0  5.0M    0% /run/lock</span>
-<span class="go">none           tmpfs     501M  160K  501M    1% /run/shm</span>
-<span class="go">/dev/sda7      ext4       51G   41G  7.6G   85% /home</span>
-<span class="go">/dev/sda5      fuseblk    49G   46G  3.4G   94% /media/sda5</span>
-<span class="go">/dev/sda1      vfat       30G   16G   14G   53% /media/xp</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="fdisk">
-<h2>fdisk<a class="headerlink" href="#fdisk" title="Permalink to this headline">¶</a></h2>
-<p>操作磁盘分区表，一般的简单使用。</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">fdisk</span> <span class="o">-</span><span class="n">l</span>
-<span class="go">Disk /dev/sda: 160.0 GB, 160041885696 bytes</span>
-<span class="go">255 heads, 63 sectors/track, 19457 cylinders, total 312581808 sectors</span>
-<span class="go">Units = sectors of 1 * 512 = 512 bytes</span>
-<span class="go">Sector size (logical/physical): 512 bytes / 512 bytes</span>
-<span class="go">I/O size (minimum/optimal): 512 bytes / 512 bytes</span>
-<span class="go">Disk identifier: 0xbf5fbf5f</span>
-<span class="go">   Device Boot      Start         End      Blocks   Id  System</span>
-<span class="go">/dev/sda1   *          63    61448624    30724281    c  W95 FAT32 (LBA)</span>
-<span class="go">/dev/sda2        61448686   312580095   125565705    f  W95 Ext&#39;d (LBA)</span>
-<span class="go">/dev/sda5        61448688   163846934    51199123+   7  HPFS/NTFS/exFAT</span>
-<span class="go">/dev/sda6       163848192   202909695    19530752   83  Linux</span>
-<span class="go">/dev/sda7       202911744   308768767    52928512   83  Linux</span>
-<span class="go">/dev/sda8       308770816   312580095     1904640   82  Linux swap / Solaris</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="blkid">
-<h2>blkid<a class="headerlink" href="#blkid" title="Permalink to this headline">¶</a></h2>
-<p>块设备属性</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">blkid</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda1</span>
-<span class="go">/dev/sda1: UUID=&quot;B07D-272A&quot; TYPE=&quot;vfat&quot; LABEL=&quot;OS_XP&quot;</span>
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">blkid</span>
-<span class="go">/dev/sda1: UUID=&quot;B07D-272A&quot; TYPE=&quot;vfat&quot; LABEL=&quot;OS_XP&quot;</span>
-<span class="go">/dev/sda5: LABEL=&quot;backup&quot; UUID=&quot;7C30CF4030CEFFDE&quot; TYPE=&quot;ntfs&quot;</span>
-<span class="go">/dev/sda6: UUID=&quot;8f2c7343-f892-488e-a4e3-1bf00a20449b&quot; TYPE=&quot;ext4&quot;</span>
-<span class="go">/dev/sda7: UUID=&quot;3bbeddd8-a55b-4204-b11f-1e96ca765fb8&quot; TYPE=&quot;ext4&quot;</span>
-<span class="go">/dev/sda8: UUID=&quot;a4aa011d-9980-41b0-af6d-82483c9d2c91&quot; TYPE=&quot;swap&quot;</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ln</span> <span class="o">-</span><span class="n">b</span> <span class="o">-</span><span class="n">v</span> <span class="n">t</span> <span class="n">source</span> <span class="n">target</span>
 </pre></div>
 </div>
 </div>
@@ -280,13 +141,7 @@ auto</td></tr>
   <ul>
 <li><a class="reference internal" href="#">其他命令</a><ul>
 <li><a class="reference internal" href="#lsb-release">lsb_release</a></li>
-<li><a class="reference internal" href="#losetup">losetup</a></li>
 <li><a class="reference internal" href="#ln">ln</a></li>
-<li><a class="reference internal" href="#mount">mount</a></li>
-<li><a class="reference internal" href="#lable">* lable</a></li>
-<li><a class="reference internal" href="#df">df</a></li>
-<li><a class="reference internal" href="#fdisk">fdisk</a></li>
-<li><a class="reference internal" href="#blkid">blkid</a></li>
 <li><a class="reference internal" href="#date">date</a></li>
 <li><a class="reference internal" href="#chmod">chmod</a></li>
 </ul>
@@ -307,7 +162,7 @@ auto</td></tr>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" size="18" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -333,12 +188,12 @@ auto</td></tr>
         <li class="right" >
           <a href="utility.html" title="辅助命令"
              >previous</a> |</li>
-        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 v0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2012, riptide711.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
     </div>
   </body>
 </html>
