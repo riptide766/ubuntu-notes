@@ -36,6 +36,7 @@ Ubuntu 笔记
     ubuntu/ubuntu_solved
     ubuntu/dev_block
     ubuntu/usb_rescue
+    ubuntu/completion
 
 ..    ubuntu/startup
 

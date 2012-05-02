@@ -6,6 +6,13 @@
 
 .. glossary::
 
+    RFC
+        征求修正意见书（英语：Request For Comments，缩写为 RFC），由互联网工程任务组(IETF)发布的一系列备忘录。文件收集了有关互联网相关资讯，以及UNIX和互联网社群的软件文件，以编号排定。目前RFC文件是由互联网协会（ISOC）赞助发行。RFC始于1969年，由斯蒂芬·克罗克用来记录有关ARPANET开发的非正式文档，最终演变为用来记录互联网规范、协议、过程等的标准文件。基本的互联网通讯协定都有在RFC文件内详细说明。RFC文件还额外加入许多的论题在标准内，例如对于互联网新开发的协定及发展中所有的记录。`RFC -WIKI <http://zh.wikipedia.org/wiki/RFC>`_
+
+
+    ROT13
+        ROT13（回转13位，rotate by 13 places）是一种简易的替换式密码。它是一种在英文网络论坛用作隐藏八卦（spoiler）、妙句、谜题解答以及某些脏话的工具，目的是逃过版主或管理员的匆匆一瞥。套用ROT13到一段文字上仅仅只需要检查字符字母顺序并取代它在13位之后的对应字母，有需要超过时则重新绕回26英文字母开头即可[2]。 A换成N、B换成O、依此类推到M换成Z，然后序列反转：N换成A、O换成B、最后Z换成M。`ROT13 <http://zh.wikipedia.org/wiki/ROT13>`_
+
     POST
         加电自检又称为开机自我检测（英文Power-on self-test，常用简称POST），是计算机BIOS的一个功能，在开机后会执行，针对计算机硬件如CPU、主板、内存等进行检测，结果会显示在固件可以控制的输出接口，像屏幕、LED、打印机等等装置上。 `加电自检 - WIKI <http://zh.wikipedia.org/wiki/%E5%8A%A0%E7%94%B5%E8%87%AA%E6%A3%80>`_
 
@@ -28,7 +35,7 @@
         随机存取存储器（英语：Random Access Memory，RAM）又称作“随机存储器”。就是内存。 `RAM -WIKI <http://zh.wikipedia.org/wiki/随机存取存储器>`_
 
     BIOS
-        Basic Input/Output System.  `BIOS - WIKI http://zh.wikipedia.org/wiki/BIOS`_
+        Basic Input/Output System.  `BIOS - WIKI <http://zh.wikipedia.org/wiki/BIOS>`_
 
     RPM 
         Redhat Package Manager
