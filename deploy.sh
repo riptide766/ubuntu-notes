@@ -1,16 +1,18 @@
 #! /bin/bash
 
+target="../ubuntubooks_pages"
+source="build/build/html"
+
 git st | grep -q "nothing to commit" 
 
 if [ $? -eq 0 ] ; then
-	rm -vrf ../ubuntubooks_pages/books
-	cp -vR build/build/html ../ubuntubooks_pages/books
-	cd ../ubuntubooks/ 
+	rm -vrf $target/books
+	cp -vR $source $target/books
+	cd $target 
 	git add .
 	git commit -a -m "例行发布"
-	git status
 	git push origin gh-pages
 else
-	echo "还不能发布"
+	git status
 fi
 
