@@ -186,7 +186,7 @@ PPA备份
 
 ::
 
- nvidia-current mc gparted tree freemind smplayer p7zip-full vim-gnome exuberant-ctags  unrar freepats wallch fcitx zim compizconfig-settings-manager chmsee shutter amule ubuntu-restricted-extras classicmenu-indicator indicator-weather pysdm ntfs-config pastie sopcast-player wine simple-lightdm-manager  unityshell-rotated virtualbox nautilus-terminal nautilus-open-terminal gconf-editor  ubuntu-restricted-extras  gnome-tweak-tool terminator clipit unetbootin
+ nvidia-current mc gparted tree freemind smplayer p7zip-full vim-gnome exuberant-ctags  unrar freepats wallch fcitx zim compizconfig-settings-manager chmsee shutter amule ubuntu-restricted-extras classicmenu-indicator indicator-weather pysdm ntfs-config pastie sopcast-player wine simple-lightdm-manager  unityshell-rotated virtualbox nautilus-terminal nautilus-open-terminal gconf-editor  ubuntu-restricted-extras  gnome-tweak-tool terminator clipit unetbootin deluge dconf-tools myunity
 
 
 
@@ -195,7 +195,7 @@ PPA备份
 
 ::
 
- python-docutils git debian-reference python-doc lighttpd qgit gitk python-sphinx rabbitvcs-core rabbitvcs-nautilus3 rabbitvcs-cli dpkg-dev debhelper dh-make python-setuptools python-distutilus-extra build-essential anjuta 2python-feedparser xbindkeys wmctrl
+ python-docutils git debian-reference python-doc lighttpd qgit gitk python-sphinx rabbitvcs-core rabbitvcs-nautilus3 rabbitvcs-cli dpkg-dev debhelper dh-make python-setuptools python-distutilus-extra build-essential anjuta python-feedparser xbindkeys wmctrl
 
  
 
@@ -246,6 +246,11 @@ PPA备份
 系统和软件配置
 ^^^^^^^^^^^^^^^
 
+* unity-2d
+
+ 自动隐藏
+ >>> dconf write /com/canonical/unity-2d/launcher/hide-mode 1
+
 * 鼠标主题
   
   ::
@@ -284,7 +289,7 @@ PPA备份
     sop://broker.sopcast.com:3912/6004  凤凰中文
     sop://broker.sopcast.com:3912/6005  凤凰资讯
 
-
+    
 
   报错   **ImportError\: No module named vlc_1_0_x**
 

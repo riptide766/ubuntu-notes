@@ -1,0 +1,204 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Bash 补全 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../b_static/jquery.js"></script>
+    <script type="text/javascript" src="../b_static/underscore.js"></script>
+    <script type="text/javascript" src="../b_static/doctools.js"></script>
+    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
+    <link rel="next" title="准备工作 - 工具和目录" href="lfs_toolchain.html" />
+    <link rel="prev" title="Live USB 制作总结" href="usb_rescue.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lfs_toolchain.html" title="准备工作 - 工具和目录"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="usb_rescue.html" title="Live USB 制作总结"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="bash">
+<h1>Bash 补全<a class="headerlink" href="#bash" title="Permalink to this headline">¶</a></h1>
+<p>Bash里可以通过 <strong>Tab</strong> 补全命令以及相关的参数。</p>
+<p>这篇总结是如何实现下面这个例子的：</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">foo</span>
+<span class="go">alpha   number</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">foo</span> <span class="n">alpha</span>
+<span class="go">a  b  c</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">foo</span> <span class="n">number</span>
+<span class="go">1  2  3</span>
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h2>代码<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre>_foo<span class="o">()</span>
+<span class="o">{</span>
+    <span class="nb">local </span>cur prev opts
+    <span class="nv">cur</span><span class="o">=</span><span class="s2">&quot;${COMP_WORDS[COMP_CWORD]}&quot;</span>
+    <span class="nv">prev</span><span class="o">=</span><span class="s2">&quot;${COMP_WORDS[COMP_CWORD-1]}&quot;</span>
+    <span class="nv">opts</span><span class="o">=</span><span class="s2">&quot;number alpha&quot;</span>
+
+    <span class="k">case</span> <span class="s2">&quot;${prev}&quot;</span> in
+        number<span class="o">)</span>
+        <span class="nv">COMPREPLY</span><span class="o">=(</span> 1 2 3<span class="o">)</span>
+            <span class="k">return </span>0
+            ;;
+        alpha<span class="o">)</span>
+        <span class="nv">COMPREPLY</span><span class="o">=(</span> a b c <span class="o">)</span>
+            <span class="k">return </span>0
+            ;;
+        <span class="se">\*</span><span class="o">)</span>
+        ;;
+    <span class="k">esac</span>
+
+<span class="k">    </span><span class="nv">COMPREPLY</span><span class="o">=(</span> <span class="k">$(</span><span class="nb">compgen</span> -W <span class="s2">&quot;${opts}&quot;</span> <span class="k">${</span><span class="nv">cur</span><span class="k">})</span> <span class="o">)</span>
+<span class="o">}</span>
+<span class="nb">complete</span> -F _foo foo
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>解释<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">实现补全不一定需要一个真实的命令。是字符串就行。</p>
+<p>下面这个话的意思是：使用 <strong>_foo函数</strong> 处理对 <strong>字符串foo</strong> 的补全</p>
+</li>
+</ol>
+<blockquote>
+<div><div class="highlight-python"><pre>complete -F _foo foo</pre>
+</div>
+</div></blockquote>
+<ol class="arabic" start="2">
+<li><p class="first">具体实现补全的是内置的compgen命令。</p>
+<p>-W 处理指定字符串，也有其他参数是针对文件、目录、函数和别名等等</p>
+<div class="highlight-python"><pre>&gt;&gt;&gt; compgen -W “11 12 21 22” 1
+11
+12</pre>
+</div>
+</li>
+<li><p class="first">COMPREPLY规定是一个数组。_foo通过它传递结果给背后的机制。</p>
+</li>
+</ol>
+<blockquote>
+<div><div class="highlight-python"><pre>COMPREPLY=( $(compgen -W "${opts}" ${cur}) )</pre>
+</div>
+</div></blockquote>
+<ol class="arabic" start="4">
+<li><p class="first">COMP_WORDS和COMP_CWORD分别是目前命令行的所有单词和当前的索引。</p>
+<p>通过判断前个单词，可以实现不同选项对应不同参数的效果</p>
+</li>
+</ol>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span class="n">cur</span><span class="o">=</span><span class="s">&quot;${COMP_WORDS[COMP_CWORD]}&quot;</span>
+<span class="n">prev</span><span class="o">=</span><span class="s">&quot;${COMP_WORDS[COMP_CWORD-1]}&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2>参考文章<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><a class="reference external" href="http://www.debian-administration.org/articles/317">An introduction to bash completion: part 2</a></div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Bash 补全</a><ul>
+<li><a class="reference internal" href="#id1">代码</a></li>
+<li><a class="reference internal" href="#id2">解释</a></li>
+<li><a class="reference internal" href="#id3">参考文章</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="usb_rescue.html"
+                        title="previous chapter">Live USB 制作总结</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lfs_toolchain.html"
+                        title="next chapter">准备工作 - 工具和目录</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../b_sources/ubuntu/completion.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lfs_toolchain.html" title="准备工作 - 工具和目录"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="usb_rescue.html" title="Live USB 制作总结"
+             >previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, riptide711.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
