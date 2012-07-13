@@ -58,6 +58,7 @@ sort
 -t SEP  使用SEP来替代空格的转换non-.
 -n      按照字符串的数值顺序比较
 -k      从关键字POS1开始,*到*POS2结束.字段数和字符偏移量都从1开始计数
+-r      倒置比较结果
 
 
 
@@ -90,3 +91,7 @@ sort
 4 drwxrwxr-x 4 matt matt 4096  3月  5 18:19 source/
 4 drwxrwxr-x 5 matt matt 4096  3月  6 21:59 ../
 
+
+第一列按升序排,第三列按降序排.
+
+>>> sort -k 1,1n -k 3,3nr 

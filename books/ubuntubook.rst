@@ -31,12 +31,14 @@ Ubuntu 笔记
     ubuntu/install
     ubuntu/cmds
     ubuntu/utility
+    ubuntu/temp
     ubuntu/othercmds
     ubuntu/permission
     ubuntu/ubuntu_solved
     ubuntu/dev_block
     ubuntu/usb_rescue
     ubuntu/completion
+
 
 ..    ubuntu/startup
 
