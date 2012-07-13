@@ -15,7 +15,7 @@ Ubuntu学习笔记
 
 
 如何生成网页和查阅
------------------
+-------------------
 
 1. 编译
 
@@ -24,6 +24,18 @@ Ubuntu学习笔记
 2. 打开index.html 添加书签
 
 >>> firefox build/build/html/index.html
+
+
+辅助批处理
+---------------
+
+- build.sh 构建脚本(编译, 清理, 修复链接)
+
+- deploy.sh 发布脚本. 将最新版本发布到gh-pages分支
+
+- makebook.sh 完整构建的快速方式
+
+- quickmake.sh 构建本地版.(不修复链接)
 
 
 在线访问

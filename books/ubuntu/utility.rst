@@ -12,6 +12,23 @@ date
 
 >>> touch backup_`date +%Y%m%d-%H:%M:%S`.txt
 
+>>> date
+2012年 03月 30日 星期五 12:34:01 CST
+
+>>> date -R
+Fri, 30 Mar 2012 12:33:25 +0800
+
+>>> date -u
+2012年 03月 30日 星期五 04:33:46 UTC
+
+
+tr
+-----------------
+
+**字符串替换**
+
+>>> cat cookies.txt | tr -d "\r" 
+
 cut
 -------------
 

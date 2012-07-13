@@ -6,6 +6,12 @@
 
 .. glossary::
 
+    CR
+        carriage-return
+
+    LF
+        line-feed    
+
     RFC
         征求修正意见书（英语：Request For Comments，缩写为 RFC），由互联网工程任务组(IETF)发布的一系列备忘录。文件收集了有关互联网相关资讯，以及UNIX和互联网社群的软件文件，以编号排定。目前RFC文件是由互联网协会（ISOC）赞助发行。RFC始于1969年，由斯蒂芬·克罗克用来记录有关ARPANET开发的非正式文档，最终演变为用来记录互联网规范、协议、过程等的标准文件。基本的互联网通讯协定都有在RFC文件内详细说明。RFC文件还额外加入许多的论题在标准内，例如对于互联网新开发的协定及发展中所有的记录。`RFC -WIKI <http://zh.wikipedia.org/wiki/RFC>`_
 
