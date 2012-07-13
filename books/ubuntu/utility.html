@@ -10,8 +10,8 @@
     
     <title>辅助命令 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
     
-    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -22,12 +22,12 @@
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="../b_static/jquery.js"></script>
-    <script type="text/javascript" src="../b_static/underscore.js"></script>
-    <script type="text/javascript" src="../b_static/doctools.js"></script>
-    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
     <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
-    <link rel="next" title="其他命令" href="othercmds.html" />
+    <link rel="next" title="临时记录" href="temp.html" />
     <link rel="prev" title="命令使用总结" href="cmds.html" /> 
   </head>
   <body>
@@ -38,7 +38,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="othercmds.html" title="其他命令"
+          <a href="temp.html" title="临时记录"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="cmds.html" title="命令使用总结"
@@ -62,6 +62,25 @@
 </pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">touch</span> <span class="n">backup_</span><span class="sb">`date +%Y%m%d-%H:%M:%S`</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">date</span>
+<span class="go">2012年 03月 30日 星期五 12:34:01 CST</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">date</span> <span class="o">-</span><span class="n">R</span>
+<span class="go">Fri, 30 Mar 2012 12:33:25 +0800</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">date</span> <span class="o">-</span><span class="n">u</span>
+<span class="go">2012年 03月 30日 星期五 04:33:46 UTC</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tr">
+<h2>tr<a class="headerlink" href="#tr" title="Permalink to this headline">¶</a></h2>
+<p><strong>字符串替换</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">cat</span> <span class="n">cookies</span><span class="o">.</span><span class="n">txt</span> <span class="o">|</span> <span class="n">tr</span> <span class="o">-</span><span class="n">d</span> <span class="s">&quot;</span><span class="se">\r</span><span class="s">&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -115,6 +134,9 @@
 <tr><td class="option-group">
 <kbd><span class="option">-k</span></kbd></td>
 <td>从关键字POS1开始,*到*POS2结束.字段数和字符偏移量都从1开始计数</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-r</span></kbd></td>
+<td>倒置比较结果</td></tr>
 </tbody>
 </table>
 <p>按文件的数值大小的后两位排序（以空格区分，第六列的三到四位）</p>
@@ -145,6 +167,10 @@
 <span class="go">4 drwxrwxr-x 5 matt matt 4096  3月  6 21:59 ../</span>
 </pre></div>
 </div>
+<p>第一列按升序排,第三列按降序排.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sort</span> <span class="o">-</span><span class="n">k</span> <span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="n">n</span> <span class="o">-</span><span class="n">k</span> <span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="n">nr</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -158,6 +184,7 @@
   <ul>
 <li><a class="reference internal" href="#">辅助命令</a><ul>
 <li><a class="reference internal" href="#date">date</a></li>
+<li><a class="reference internal" href="#tr">tr</a></li>
 <li><a class="reference internal" href="#cut">cut</a></li>
 <li><a class="reference internal" href="#sort">sort</a></li>
 </ul>
@@ -168,11 +195,11 @@
   <p class="topless"><a href="cmds.html"
                         title="previous chapter">命令使用总结</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="othercmds.html"
-                        title="next chapter">其他命令</a></p>
+  <p class="topless"><a href="temp.html"
+                        title="next chapter">临时记录</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../b_sources/ubuntu/utility.txt"
+    <li><a href="../_sources/ubuntu/utility.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -199,7 +226,7 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="othercmds.html" title="其他命令"
+          <a href="temp.html" title="临时记录"
              >next</a> |</li>
         <li class="right" >
           <a href="cmds.html" title="命令使用总结"
