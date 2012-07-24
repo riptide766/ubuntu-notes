@@ -57,7 +57,7 @@
 <div class="section" id="id1">
 <h2>插入当前时间<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>输入xdate, 替换成当前日期</p>
-<div class="highlight-python"><pre>iab xdate &lt;c-r&gt;=strftime("20%y%m%d %H:%M:")&lt;C-I&gt;</pre>
+<div class="highlight-python"><pre>iab xdate &lt;c-r&gt;=strftime(&quot;20%y%m%d %H:%M:&quot;)&lt;C-I&gt;</pre>
 </div>
 </div>
 <div class="section" id="id2">
@@ -114,14 +114,14 @@ cd vimcdoc-1.8.0
 --regex-JavaScript=/function[ \t]+([A-Za-z0-9._$]+)[ \t]*\([^\]\)]*\)/\1/f,function/
 --regex-JavaScript=/([A-Za-z0-9._$]+)[ \t]*[:=][ \t]*new[ \t]+Array\(/\1/a,array/
 --regex-JavaScript=/([A-Za-z0-9._$]+)[ \t]*[:=][ \t]*\[/\1/a,array/
---regex-JavaScript=/([^= ]+)[ \t]*=[ \t]*[^""]'[^'']*/\1/s,string/
---regex-JavaScript=/([^= ]+)[ \t]*=[ \t]*[^'']"[^""]*/\1/s,string/</pre>
+--regex-JavaScript=/([^= ]+)[ \t]*=[ \t]*[^&quot;&quot;]&#x27;[^&#x27;&#x27;]*/\1/s,string/
+--regex-JavaScript=/([^= ]+)[ \t]*=[ \t]*[^&#x27;&#x27;]&quot;[^&quot;&quot;]*/\1/s,string/</pre>
 </div>
 </div></blockquote>
 <p>修改配置 ～/.vimrc</p>
 <blockquote>
 <div><div class="highlight-python"><pre>nnoremap &lt;silent&gt; &lt;F9&gt; :TlistToggle&lt;CR&gt;
-let g:tlist_javascript_settings = 'javascript;s:string;a:array;o:object;f:function'</pre>
+let g:tlist_javascript_settings = &#x27;javascript;s:string;a:array;o:object;f:function&#x27;</pre>
 </div>
 </div></blockquote>
 </div></blockquote>

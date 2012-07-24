@@ -95,27 +95,27 @@
 <div class="highlight-python"><pre>set timeout=10
 set default=0
 
-menuentry "Run Ubuntu Live ISO" {
+menuentry &quot;Run Ubuntu Live ISO&quot; {
  search --label --set=root LIVEUSB
  loopback loop /ubuntu.iso
  linux (loop)/casper/vmlinuz boot=casper iso-scan/filename=/ubuntu.iso splash  --
  initrd (loop)/casper/initrd.lz
 }
 
-menuentry "Run Arch Live ISO" {
+menuentry &quot;Run Arch Live ISO&quot; {
  search --label --set=root LIVEUSB
  loopback loop /archlinux.iso
  linux (loop)/arch/boot/i686/vmlinuz  plash --
  initrd (loop)/arch/boot/i686/archiso.img
 }
 
-menuentry "Puppy" {
+menuentry &quot;Puppy&quot; {
     search -f --label --set=root LIVEUSB_PUPPY
     linux /puppy528/vmlinuz pmedia=usbhd nosmp
     initrd /puppy528/initrd.gz
 }
 
-menuentry "Load original grub.cfg" {
+menuentry &quot;Load original grub.cfg&quot; {
     search --label --set=root LIVEUSB_BOOT
     configfile /boot/grub/grub2.cfg
 }</pre>

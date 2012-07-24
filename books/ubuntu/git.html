@@ -58,8 +58,8 @@
 <h2>配置参数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><p>设置</p>
-<div class="highlight-python"><pre>git config --global user.name "mattmonkey"
-git config --global user.email "mattmonkey@sina.com"</pre>
+<div class="highlight-python"><pre>git config --global user.name &quot;mattmonkey&quot;
+git config --global user.email &quot;mattmonkey@sina.com&quot;</pre>
 </div>
 <p>列出</p>
 <div class="highlight-python"><pre>git config --list
@@ -78,7 +78,7 @@ git config --global color.ui auto</pre>
 git config --global alias.ci commit
 git config --global alias.co checkout
 git config --global alias.br branch
-git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit --"</pre>
+git config --global alias.lg &quot;log --color --graph --pretty=format:&#x27;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#x27; --abbrev-commit --&quot;</pre>
 </div>
 <p>其他</p>
 <div class="highlight-python"><pre>git config format.pretty oneline</pre>
@@ -107,7 +107,7 @@ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Crese
 <blockquote>
 <div><p>生成SSH Key</p>
 <div class="highlight-python"><pre>cd ~/.ssh
-ssh-keygen -t rsa -C "xxxxxx@xxx.com"</pre>
+ssh-keygen -t rsa -C &quot;xxxxxx@xxx.com&quot;</pre>
 </div>
 <p>添加Key到 <a class="reference external" href="https://github.com/settings/ssh">github ssh</a></p>
 <div class="highlight-python"><pre>cat id_rsa.pub | xsel -b</pre>

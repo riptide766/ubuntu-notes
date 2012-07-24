@@ -116,7 +116,7 @@
 <h3>Stage 2<a class="headerlink" href="#stage-2" title="Permalink to this headline">¶</a></h3>
 <p>这个阶段的GRUB能够提供文件系统的查询以及一些交互等功能。任务是加载 Linux 内核和可选的初始 RAM 磁盘。</p>
 <p>下面是/boot/grub/grub.cfg里某个菜单选项的片段。也可以直接在grub的shell里输入执行。</p>
-<div class="highlight-python"><pre>set root='(hd0,msdos8)'
+<div class="highlight-python"><pre>set root=&#x27;(hd0,msdos8)&#x27;
 search --no-floppy --fs-uuid --set=root 577f602b-deab-440b-8bd9-9995ccff351d
 linux   /boot/vmlinuz-3.2.0-23-generic root=UUID=577f602b-deab-440b-8bd9-9995ccff351d ro   quiet splash acpi=off  $vt_handoff
 initrd  /boot/initrd.img-3.2.0-23-generic</pre>
@@ -125,7 +125,7 @@ initrd  /boot/initrd.img-3.2.0-23-generic</pre>
 <ol class="arabic simple">
 <li>设置环境变量root。如果在其他表示路径却没有显式的标识设备的地方，都会把这个当作默认。</li>
 <li>查找指定的设备(by uuid)。如果存在就设置到指定的环境变量里。 （第一、二句算个双保险吧）</li>
-<li>装载一个内核映像。**vmlinuz-3.2.0-23-generic** 之后的都是内核参数。root是指定根文件系统。其他参数见: <a class="reference external" href="http://www.kernel.org/doc/Documentation/kernel-parameters.txt">Kernel Paramters</a></li>
+<li>装载一个内核映像。<strong>vmlinuz-3.2.0-23-generic</strong> 之后的都是内核参数。root是指定根文件系统。其他参数见: <a class="reference external" href="http://www.kernel.org/doc/Documentation/kernel-parameters.txt">Kernel Paramters</a></li>
 <li>装载一个initrd。</li>
 </ol>
 <p>会这四句，可保万世....</p>
