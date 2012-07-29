@@ -10,8 +10,8 @@
     
     <title>Live USB 制作总结 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
     
-    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -22,13 +22,13 @@
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="../b_static/jquery.js"></script>
-    <script type="text/javascript" src="../b_static/underscore.js"></script>
-    <script type="text/javascript" src="../b_static/doctools.js"></script>
-    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
     <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
-    <link rel="next" title="Bash 补全" href="completion.html" />
-    <link rel="prev" title="块设备管理" href="dev_block.html" /> 
+    <link rel="next" title="块设备管理" href="dev_block.html" />
+    <link rel="prev" title="权限管理" href="permission.html" /> 
   </head>
   <body>
     <div class="related">
@@ -38,10 +38,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="completion.html" title="Bash 补全"
+          <a href="dev_block.html" title="块设备管理"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="dev_block.html" title="块设备管理"
+          <a href="permission.html" title="权限管理"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
       </ul>
@@ -86,10 +86,25 @@
 </div>
 <div class="section" id="grub">
 <h2>安装GRUB<a class="headerlink" href="#grub" title="Permalink to this headline">¶</a></h2>
-<p>安装GRUB之后, 重启就可以按F12选择usb启动了。</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">grub</span><span class="o">-</span><span class="n">install</span> <span class="o">--</span><span class="n">root</span><span class="o">-</span><span class="n">directory</span><span class="o">=/</span><span class="n">mnt</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">gvim</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb1</span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">grub</span><span class="o">/</span><span class="n">grub</span><span class="o">.</span><span class="n">cfg</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">grub</span><span class="o">/</span><span class="n">grub</span><span class="o">.</span><span class="n">cfg</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">LIVEUSB_BOOT</span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">grub</span><span class="o">/</span><span class="n">grub2</span><span class="o">.</span><span class="n">cfg</span>
+<div class="section" id="ubuntu">
+<h3>ubuntu<a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">grub</span><span class="o">-</span><span class="n">install</span> <span class="o">--</span><span class="n">root</span><span class="o">-</span><span class="n">directory</span><span class="o">=/</span><span class="n">media</span><span class="o">/</span><span class="n">LIVEUSB_BOOT</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">grub</span><span class="o">/</span><span class="n">grub</span><span class="o">.</span><span class="n">cfg</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">LIVEUSB_BOOT</span><span class="o">/</span><span class="n">ubuntu_grub</span><span class="o">.</span><span class="n">cfg</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="archlinux">
+<h3>archlinux<a class="headerlink" href="#archlinux" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">grub</span><span class="o">-</span><span class="n">install</span> <span class="o">--</span><span class="n">boot</span><span class="o">-</span><span class="n">directory</span><span class="o">=/</span><span class="n">media</span><span class="o">/</span><span class="n">LIVEUSB_BOOT</span><span class="o">/</span><span class="n">boot</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">grub</span><span class="o">/</span><span class="n">grub</span><span class="o">.</span><span class="n">cfg</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">LIVEUSB_BOOT</span><span class="o">/</span><span class="n">arch_grub</span><span class="o">.</span><span class="n">cfg</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="grub-cfg">
+<h3>grub.cfg<a class="headerlink" href="#grub-cfg" title="Permalink to this headline">¶</a></h3>
+<p>不用update-grub或grub-mkconfig命令生成配置文件。</p>
+<p>手动添加如下内容:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">vi</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">LIVEUSB_BOOT</span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">grub</span><span class="o">/</span><span class="n">grub</span><span class="o">.</span><span class="n">cfg</span>
 </pre></div>
 </div>
 <div class="highlight-python"><pre>set timeout=10
@@ -102,13 +117,6 @@ menuentry &quot;Run Ubuntu Live ISO&quot; {
  initrd (loop)/casper/initrd.lz
 }
 
-menuentry &quot;Run Arch Live ISO&quot; {
- search --label --set=root LIVEUSB
- loopback loop /archlinux.iso
- linux (loop)/arch/boot/i686/vmlinuz  plash --
- initrd (loop)/arch/boot/i686/archiso.img
-}
-
 menuentry &quot;Puppy&quot; {
     search -f --label --set=root LIVEUSB_PUPPY
     linux /puppy528/vmlinuz pmedia=usbhd nosmp
@@ -116,8 +124,15 @@ menuentry &quot;Puppy&quot; {
 }
 
 menuentry &quot;Load original grub.cfg&quot; {
-    search --label --set=root LIVEUSB_BOOT
-    configfile /boot/grub/grub2.cfg
+ search --label --set=root LIVEUSB_BOOT
+ configfile (hd0,msdos1)/arch_grub.cfg
+}
+
+menuentry &quot;Arch Linux netinstall (i686)&quot; {
+ search --label --set=root LIVEUSB
+ loopback loop /archlinux.iso
+ linux (loop)/arch/boot/i686/vmlinuz archisolabel=ARCH_201207 img_dev=/dev/sdb2 img_loop=/archlinux.iso earlymodules=loop
+ initrd (loop)/arch/boot/i686/archiso.img
 }</pre>
 </div>
 <p>根据 <a class="reference external" href="http://www.gnu.org/software/grub/manual/grub.html">GRUB官方手册</a> 的说明，几个用到的命令差不多是这样的：</p>
@@ -142,12 +157,7 @@ menuentry &quot;Load original grub.cfg&quot; {
 </li>
 </ol>
 <blockquote>
-<div><div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">iso-scan这个参数的解释在文档里没用找到。</p>
-</div>
-<p>装载一个内核映像。 <strong>vmlinuz</strong> 之后的都是内核参数。参数见: <a class="reference external" href="http://www.kernel.org/doc/Documentation/kernel-parameters.txt">Kernel Paramters</a></p>
-</div></blockquote>
+<div>装载一个内核映像。 <strong>vmlinuz</strong> 之后的都是内核参数。参数见: <a class="reference external" href="http://www.kernel.org/doc/Documentation/kernel-parameters.txt">Kernel Paramters</a></div></blockquote>
 <ol class="arabic" start="5">
 <li><p class="first">initrd</p>
 <blockquote>
@@ -156,9 +166,14 @@ menuentry &quot;Load original grub.cfg&quot; {
 </li>
 </ol>
 </div>
+</div>
 <div class="section" id="id3">
 <h2>复制发行版镜像<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>就是把各种发行版本的镜像复制到U盘第二个分区。</p>
+<p>为了方便,复制时去掉iso文件名中的版本和日期信息。记录到一个README备查。</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">sh</span> <span class="o">-</span><span class="n">c</span> <span class="s">&#39;echo -e &quot;archlinux.iso --&gt; 2012.07.15</span><span class="se">\n</span><span class="s">ubuntu.iso --&gt; 12.04&quot; &gt; README&#39;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="puppy">
 <h2>安装Puppy<a class="headerlink" href="#puppy" title="Permalink to this headline">¶</a></h2>
@@ -182,7 +197,12 @@ menuentry &quot;Load original grub.cfg&quot; {
   <ul>
 <li><a class="reference internal" href="#">Live USB 制作总结</a><ul>
 <li><a class="reference internal" href="#id1">分区 格式化 打标签</a></li>
-<li><a class="reference internal" href="#grub">安装GRUB</a></li>
+<li><a class="reference internal" href="#grub">安装GRUB</a><ul>
+<li><a class="reference internal" href="#ubuntu">ubuntu</a></li>
+<li><a class="reference internal" href="#archlinux">archlinux</a></li>
+<li><a class="reference internal" href="#grub-cfg">grub.cfg</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#id3">复制发行版镜像</a></li>
 <li><a class="reference internal" href="#puppy">安装Puppy</a></li>
 </ul>
@@ -190,14 +210,14 @@ menuentry &quot;Load original grub.cfg&quot; {
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="dev_block.html"
-                        title="previous chapter">块设备管理</a></p>
+  <p class="topless"><a href="permission.html"
+                        title="previous chapter">权限管理</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="completion.html"
-                        title="next chapter">Bash 补全</a></p>
+  <p class="topless"><a href="dev_block.html"
+                        title="next chapter">块设备管理</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../b_sources/ubuntu/usb_rescue.txt"
+    <li><a href="../_sources/ubuntu/usb_rescue.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -224,10 +244,10 @@ menuentry &quot;Load original grub.cfg&quot; {
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="completion.html" title="Bash 补全"
+          <a href="dev_block.html" title="块设备管理"
              >next</a> |</li>
         <li class="right" >
-          <a href="dev_block.html" title="块设备管理"
+          <a href="permission.html" title="权限管理"
              >previous</a> |</li>
         <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
       </ul>

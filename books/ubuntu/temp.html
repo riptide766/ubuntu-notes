@@ -10,8 +10,8 @@
     
     <title>临时记录 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
     
-    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -22,13 +22,13 @@
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="../b_static/jquery.js"></script>
-    <script type="text/javascript" src="../b_static/underscore.js"></script>
-    <script type="text/javascript" src="../b_static/doctools.js"></script>
-    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
     <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
-    <link rel="next" title="其他命令" href="othercmds.html" />
-    <link rel="prev" title="辅助命令" href="utility.html" /> 
+    <link rel="next" title="Bash 补全" href="completion.html" />
+    <link rel="prev" title="块设备管理" href="dev_block.html" /> 
   </head>
   <body>
     <div class="related">
@@ -38,10 +38,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="othercmds.html" title="其他命令"
+          <a href="completion.html" title="Bash 补全"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="utility.html" title="辅助命令"
+          <a href="dev_block.html" title="块设备管理"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
       </ul>
@@ -182,6 +182,21 @@
 <p>查看当月日历</p>
 <div class="highlight-python"><pre>&gt;&gt;&gt; cal $(date +%m\ %Y)</pre>
 </div>
+<p>同步时间</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">ntpdate</span> <span class="mf">202.120</span><span class="o">.</span><span class="mf">2.101</span>
+</pre></div>
+</div>
+<p>查看运行级别</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">runlevel</span>
+</pre></div>
+</div>
+<p>echo输出不换行</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">echo</span> <span class="o">-</span><span class="n">e</span> <span class="s">&quot;test\c&quot;</span>
+</pre></div>
+</div>
+<p>判断普通用户和root用户</p>
+<div class="highlight-python"><pre>&gt;&gt;&gt; echo $UID</pre>
+</div>
 </div>
 
 
@@ -191,14 +206,14 @@
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="utility.html"
-                        title="previous chapter">辅助命令</a></p>
+  <p class="topless"><a href="dev_block.html"
+                        title="previous chapter">块设备管理</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="othercmds.html"
-                        title="next chapter">其他命令</a></p>
+  <p class="topless"><a href="completion.html"
+                        title="next chapter">Bash 补全</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../b_sources/ubuntu/temp.txt"
+    <li><a href="../_sources/ubuntu/temp.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -225,10 +240,10 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="othercmds.html" title="其他命令"
+          <a href="completion.html" title="Bash 补全"
              >next</a> |</li>
         <li class="right" >
-          <a href="utility.html" title="辅助命令"
+          <a href="dev_block.html" title="块设备管理"
              >previous</a> |</li>
         <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
       </ul>

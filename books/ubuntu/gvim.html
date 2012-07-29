@@ -10,8 +10,8 @@
     
     <title>文本编辑 GVIM 使用总结 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
     
-    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -22,10 +22,10 @@
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="../b_static/jquery.js"></script>
-    <script type="text/javascript" src="../b_static/underscore.js"></script>
-    <script type="text/javascript" src="../b_static/doctools.js"></script>
-    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
     <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
     <link rel="next" title="文档制作 RST和Sphinx的试验场" href="sphinx.html" />
     <link rel="prev" title="版本控制 GIT学习笔记" href="git.html" /> 
@@ -55,19 +55,24 @@
   <div class="section" id="gvim">
 <h1>文本编辑 GVIM 使用总结<a class="headerlink" href="#gvim" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>插入当前时间<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>使用图解<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/vi_freemind.jpg" src="../_images/vi_freemind.jpg" style="width: 900px;" />
+<img alt="../_images/vim-cheat-sheet-full.png" src="../_images/vim-cheat-sheet-full.png" style="width: 900px;" />
+</div>
+<div class="section" id="id2">
+<h2>插入当前时间<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>输入xdate, 替换成当前日期</p>
 <div class="highlight-python"><pre>iab xdate &lt;c-r&gt;=strftime(&quot;20%y%m%d %H:%M:&quot;)&lt;C-I&gt;</pre>
 </div>
 </div>
-<div class="section" id="id2">
-<h2>用不同的标签打开多个文件<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>用不同的标签打开多个文件<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gvim</span> <span class="o">-</span><span class="n">p</span> <span class="o">*</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id3">
-<h2>删除、复制单词<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h2>删除、复制单词<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>[cdy]iw</li>
 <li>[cdy]aw</li>
@@ -75,15 +80,15 @@
 <p><strong>i</strong> 内含单词
 <strong>a</strong> 一个单词(含空格之类的</p>
 </div>
-<div class="section" id="id4">
-<h2>删除、复制标点配对内容<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>删除、复制标点配对内容<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>ci&#8217;、ci&#8221;、ci(、ci[、ci{、ci&lt;</p>
 <p>di&#8217;、di&#8221;、di(、di[、di{、di&lt;</p>
 <p>yi&#8217;、yi&#8221;、yi(、yi[、yi{、yi&lt;</p>
 <p><strong>i</strong> 换成 <strong>a</strong> 连同标点一起操作</p>
 </div>
-<div class="section" id="id5">
-<h2>中文帮助<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h2>中文帮助<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><p>下载 <a class="reference external" href="http://vimcdoc.sourceforge.net/">中文帮助</a></p>
 <div class="highlight-python"><pre>tar zxvf vimcdoc-1.8.0.tar.gz
@@ -137,11 +142,12 @@ let g:tlist_javascript_settings = &#x27;javascript;s:string;a:array;o:object;f:f
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">文本编辑 GVIM 使用总结</a><ul>
-<li><a class="reference internal" href="#id1">插入当前时间</a></li>
-<li><a class="reference internal" href="#id2">用不同的标签打开多个文件</a></li>
-<li><a class="reference internal" href="#id3">删除、复制单词</a></li>
-<li><a class="reference internal" href="#id4">删除、复制标点配对内容</a></li>
-<li><a class="reference internal" href="#id5">中文帮助</a></li>
+<li><a class="reference internal" href="#id1">使用图解</a></li>
+<li><a class="reference internal" href="#id2">插入当前时间</a></li>
+<li><a class="reference internal" href="#id3">用不同的标签打开多个文件</a></li>
+<li><a class="reference internal" href="#id4">删除、复制单词</a></li>
+<li><a class="reference internal" href="#id5">删除、复制标点配对内容</a></li>
+<li><a class="reference internal" href="#id6">中文帮助</a></li>
 <li><a class="reference internal" href="#javascript-ctag-taglist">javascript / ctag / taglist</a></li>
 </ul>
 </li>
@@ -155,7 +161,7 @@ let g:tlist_javascript_settings = &#x27;javascript;s:string;a:array;o:object;f:f
                         title="next chapter">文档制作 RST和Sphinx的试验场</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../b_sources/ubuntu/gvim.txt"
+    <li><a href="../_sources/ubuntu/gvim.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">

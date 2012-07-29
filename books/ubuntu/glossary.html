@@ -10,8 +10,8 @@
     
     <title>名词解释 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
     
-    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -22,10 +22,10 @@
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="../b_static/jquery.js"></script>
-    <script type="text/javascript" src="../b_static/underscore.js"></script>
-    <script type="text/javascript" src="../b_static/doctools.js"></script>
-    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
     <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
     <link rel="next" title="字符编码" href="encode.html" />
     <link rel="prev" title="什么是linux" href="whatislinux.html" /> 
@@ -55,6 +55,18 @@
   <div class="section" id="id1">
 <h1>名词解释<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <dl class="glossary docutils">
+<dt id="term-login-shell">Login shell</dt>
+<dd>If Bash is spawned by login in a tty, by an SSH daemon, or similar means, it is considered a login shell. This mode can also be engaged using the -l or &#8211;login command line options.</dd>
+<dt id="term-interactive-shell">Interactive shell</dt>
+<dd>Bash is considered an interactive shell if it is started neither with the -c option nor any non-option arguments, and whose standard input and error are connected to terminals.</dd>
+<dt id="term-dhcp">DHCP</dt>
+<dd>Dynamic Host Configuration Protocol.动态主机设定协定.  动态主机设定协定（DHCP）是一种使网络管理员能够集中管理和自动分配IP网络地址的通信协议。在IP网络中，每个连接Internet的设备都需要分配唯一的IP地址。DHCP使网络管理员能从中心结点监控和分配IP地址。当某台计算机移到网络中的其它位置时，能自动收到新的IP地址。</dd>
+<dt id="term-xorg">Xorg</dt>
+<dd>Xorg is the public, open-source implementation of the X window system version 11.</dd>
+<dt id="term-x11">X11</dt>
+<dd>The X window system (commonly X Window System or X11, based on its current major version being 11) is a computer software system and network protocol that provides a basis for graphical user interfaces (GUIs) and rich input device capability for networked computers. It creates a hardware abstraction layer where software is written to use a generalized set of commands, allowing for device independence and reuse of programs on any computer that implements X.</dd>
+<dt id="term-abs">ABS</dt>
+<dd>The Arch Build System, ABS for short, is a ports-like system for building and packaging software from source code. While pacman is the specialized Arch tool for binary package management (including packages built with the ABS), ABS is a collection of tools for compiling source into installable .pkg.tar.gz/.pkg.tar.xz packages.</dd>
 <dt id="term-cr">CR</dt>
 <dd>carriage-return</dd>
 <dt id="term-lf">LF</dt>
@@ -204,7 +216,7 @@
                         title="next chapter">字符编码</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../b_sources/ubuntu/glossary.txt"
+    <li><a href="../_sources/ubuntu/glossary.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
