@@ -35,14 +35,33 @@ Live USB 制作总结
 安装GRUB
 ====================
 
-安装GRUB之后, 重启就可以按F12选择usb启动了。
 
-    >>> sudo grub-install --root-directory=/mnt /dev/sdb
-    >>> sudo gvim /dev/sdb1/boot/grub/grub.cfg
-    >>> sudo cp /boot/grub/grub.cfg /media/LIVEUSB_BOOT/boot/grub/grub2.cfg
+ubuntu
+--------
+
+    >>> sudo grub-install --root-directory=/media/LIVEUSB_BOOT /dev/sdb
+    >>> sudo cp /boot/grub/grub.cfg /media/LIVEUSB_BOOT/ubuntu_grub.cfg
+
+
+archlinux
+----------
+
+    >>> sudo grub-install --boot-directory=/media/LIVEUSB_BOOT/boot /dev/sdb
+    >>> sudo cp /boot/grub/grub.cfg /media/LIVEUSB_BOOT/arch_grub.cfg
+    
+
+
+grub.cfg
+-----------
+
+不用update-grub或grub-mkconfig命令生成配置文件。
+
+手动添加如下内容:
+
+>>> vi /media/LIVEUSB_BOOT/boot/grub/grub.cfg
 
 ::
- 
+
     set timeout=10
     set default=0
 
@@ -53,13 +72,6 @@ Live USB 制作总结
      initrd (loop)/casper/initrd.lz
     }
 
-    menuentry "Run Arch Live ISO" {
-     search --label --set=root LIVEUSB
-     loopback loop /archlinux.iso 
-     linux (loop)/arch/boot/i686/vmlinuz  plash --
-     initrd (loop)/arch/boot/i686/archiso.img
-    }
-
     menuentry "Puppy" {
         search -f --label --set=root LIVEUSB_PUPPY
         linux /puppy528/vmlinuz pmedia=usbhd nosmp
@@ -67,9 +79,17 @@ Live USB 制作总结
     }
 
     menuentry "Load original grub.cfg" {
-        search --label --set=root LIVEUSB_BOOT
-        configfile /boot/grub/grub2.cfg
+     search --label --set=root LIVEUSB_BOOT
+     configfile (hd0,msdos1)/arch_grub.cfg
     }
+
+    menuentry "Arch Linux netinstall (i686)" {
+     search --label --set=root LIVEUSB
+     loopback loop /archlinux.iso
+     linux (loop)/arch/boot/i686/vmlinuz archisolabel=ARCH_201207 img_dev=/dev/sdb2 img_loop=/archlinux.iso earlymodules=loop
+     initrd (loop)/arch/boot/i686/archiso.img
+    }
+
 
 根据 `GRUB官方手册 <http://www.gnu.org/software/grub/manual/grub.html>`_ 的说明，几个用到的命令差不多是这样的：
 
@@ -90,7 +110,6 @@ Live USB 制作总结
 
 4. linux 
 
- .. warning:: iso-scan这个参数的解释在文档里没用找到。 
 
  装载一个内核映像。 **vmlinuz** 之后的都是内核参数。参数见: `Kernel Paramters <http://www.kernel.org/doc/Documentation/kernel-parameters.txt>`_
 
@@ -104,6 +123,13 @@ Live USB 制作总结
 ===============
 
 就是把各种发行版本的镜像复制到U盘第二个分区。
+
+为了方便,复制时去掉iso文件名中的版本和日期信息。记录到一个README备查。
+
+
+>>> sudo sh -c 'echo -e "archlinux.iso --> 2012.07.15\nubuntu.iso --> 12.04" > README'
+
+
 
 
 安装Puppy

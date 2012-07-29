@@ -136,3 +136,20 @@ awk计算
 查看当月日历
 
 >>> cal $(date +%m\ %Y)
+
+同步时间
+
+>>> sudo ntpdate 202.120.2.101 
+
+查看运行级别
+
+>>> runlevel
+
+echo输出不换行
+
+>>> echo -e "test\c"
+
+判断普通用户和root用户
+
+>>> echo $UID
+

@@ -1,6 +1,18 @@
 文本编辑 GVIM 使用总结
 ==========================
 
+
+使用图解
+---------------
+
+
+.. image:: ./pics/vi_freemind.jpg
+    :width: 900 px
+
+.. image:: ./pics/vim-cheat-sheet-full.png
+    :width: 900 px
+
+
 插入当前时间
 --------------
 
