@@ -31,16 +31,26 @@ Ubuntu 笔记
     ubuntu/install
     ubuntu/cmds
     ubuntu/utility
-    ubuntu/temp
     ubuntu/othercmds
-    ubuntu/permission
     ubuntu/ubuntu_solved
-    ubuntu/dev_block
+    ubuntu/permission
     ubuntu/usb_rescue
-    ubuntu/completion
+    ubuntu/dev_block
 
 
 ..    ubuntu/startup
+
+
+Bash 笔记
+==================
+
+.. toctree::
+    :titlesonly:
+
+    ubuntu/temp
+    ubuntu/completion
+    ubuntu/bash
+
 
 
 LFS 笔记

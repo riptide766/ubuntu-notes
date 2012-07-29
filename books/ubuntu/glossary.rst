@@ -6,6 +6,26 @@
 
 .. glossary::
 
+    Login shell
+        If Bash is spawned by login in a tty, by an SSH daemon, or similar means, it is considered a login shell. This mode can also be engaged using the -l or --login command line options.
+
+    Interactive shell
+        Bash is considered an interactive shell if it is started neither with the -c option nor any non-option arguments, and whose standard input and error are connected to terminals.
+    
+    DHCP
+        Dynamic Host Configuration Protocol.动态主机设定协定.  动态主机设定协定（DHCP）是一种使网络管理员能够集中管理和自动分配IP网络地址的通信协议。在IP网络中，每个连接Internet的设备都需要分配唯一的IP地址。DHCP使网络管理员能从中心结点监控和分配IP地址。当某台计算机移到网络中的其它位置时，能自动收到新的IP地址。
+
+    
+    Xorg
+        Xorg is the public, open-source implementation of the X window system version 11.
+
+    X11
+        The X window system (commonly X Window System or X11, based on its current major version being 11) is a computer software system and network protocol that provides a basis for graphical user interfaces (GUIs) and rich input device capability for networked computers. It creates a hardware abstraction layer where software is written to use a generalized set of commands, allowing for device independence and reuse of programs on any computer that implements X.
+
+    ABS
+        The Arch Build System, ABS for short, is a ports-like system for building and packaging software from source code. While pacman is the specialized Arch tool for binary package management (including packages built with the ABS), ABS is a collection of tools for compiling source into installable .pkg.tar.gz/.pkg.tar.xz packages. 
+
+
     CR
         carriage-return
 

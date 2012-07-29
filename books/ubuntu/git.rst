@@ -115,8 +115,9 @@
    >>> git remote -v
    origin	git@github.com:riptide766/ubuntu-notes.git (fetch)
    origin	git@github.com:riptide766/ubuntu-notes.git (push)
-   >>> git remote origin
+   >>> git remote rm origin
    >>> git remote add origin git@github-riptide:riptide766/ubuntu-notes.git
+   >>> git pull origin master
 
 
 git重置提交者 
@@ -241,3 +242,9 @@ gh-pages分支
 
 
 
+Error
+---------
+
+fatal: Unable to look up github.com (port 9418) (Name or service not known)
+
+添加了非ssh的远程链接
