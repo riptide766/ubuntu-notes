@@ -268,6 +268,30 @@ git checkout gh-pages</pre>
 </div>
 </div></blockquote>
 </div>
+<div class="section" id="id9">
+<h2>分支管理<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<p>一共有master，develop feature release fixbug五种分支。后面三种是临时的，使用完就清理掉。</p>
+<p>用到的命令,以fixbug为例说明下.(和release比较像)</p>
+<p>创建进入fixbug分支</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">fixbug</span><span class="o">-</span><span class="mf">0.1</span> <span class="n">master</span>
+</pre></div>
+</div>
+<p>回到master，合并分支，并打上tag。&#8211;no-ff在合并时会创建一个提交</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">git</span> <span class="n">merge</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">ff</span> <span class="n">fixbug</span><span class="o">-</span><span class="mf">0.1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">git</span> <span class="n">tag</span> <span class="o">-</span><span class="n">a</span> <span class="mf">0.1</span><span class="o">.</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>合并到develop分支</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">git</span> <span class="n">checkout</span> <span class="n">develop</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">git</span> <span class="n">merge</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">ff</span> <span class="n">fixbug</span><span class="o">-</span><span class="mf">0.1</span>
+</pre></div>
+</div>
+<p>删除分支</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">d</span> <span class="n">fixbug</span><span class="o">-</span><span class="mf">0.1</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="error">
 <h2>Error<a class="headerlink" href="#error" title="Permalink to this headline">¶</a></h2>
 <p>fatal: Unable to look up github.com (port 9418) (Name or service not known)</p>
@@ -295,6 +319,7 @@ git checkout gh-pages</pre>
 <li><a class="reference internal" href="#id6">打补丁</a></li>
 <li><a class="reference internal" href="#id7">恢复文件</a></li>
 <li><a class="reference internal" href="#id8">恢复版本</a></li>
+<li><a class="reference internal" href="#id9">分支管理</a></li>
 <li><a class="reference internal" href="#error">Error</a></li>
 </ul>
 </li>

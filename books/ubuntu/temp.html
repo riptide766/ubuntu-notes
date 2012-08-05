@@ -197,6 +197,60 @@
 <p>判断普通用户和root用户</p>
 <div class="highlight-python"><pre>&gt;&gt;&gt; echo $UID</pre>
 </div>
+<p>复制目录文件(不同的)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rsync</span> <span class="o">-</span><span class="n">avu</span> <span class="n">src</span><span class="o">/</span> <span class="n">dest</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>复制目录文件(不同)，并删掉目标目录不存在的</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">rsync</span> <span class="o">-</span><span class="n">avu</span> <span class="n">src</span><span class="o">/</span> <span class="n">dest</span><span class="o">/</span> <span class="o">--</span><span class="n">delete</span>
+</pre></div>
+</div>
+<p>显示用户的组</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">groups</span> <span class="n">matt</span>
+<span class="go">matt wheel</span>
+</pre></div>
+</div>
+<p>查找文件属于的软件包</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pacman</span> <span class="o">-</span><span class="n">Qo</span> \<span class="sb">`which findmnt`</span>
+</pre></div>
+</div>
+<p>八进制的10加上十进制的1</p>
+<div class="highlight-python"><pre>&gt;&gt;&gt; echo $(( 8#10 + 1 ))
+9</pre>
+</div>
+<p>挂载一个tmpfs文件系统到~/test目录，大小是4M。</p>
+<p>因为特殊文件系统没有特别的设表，所以第二个 <strong>tmpfs</strong> 仅仅是一个区别的标注。</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mount</span> <span class="o">-</span><span class="n">t</span> <span class="n">tmpfs</span> <span class="n">tmpfs</span> <span class="o">~/</span><span class="n">test</span> <span class="o">-</span><span class="n">o</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="n">m</span>
+</pre></div>
+</div>
+<p>检索man</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">man</span> <span class="o">-</span><span class="n">k</span> <span class="n">regex</span>
+<span class="go">regex (3)            - POSIX regex functions</span>
+<span class="go">regex (7)            - POSIX.2 regular expressions</span>
+</pre></div>
+</div>
+<p>指定第7区关于regex的帮助</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">man</span> <span class="mi">7</span> <span class="n">regex</span>
+</pre></div>
+</div>
+<p>w是写；a是all也就是guo；</p>
+<p>t是贴位符，意思是，即使有多个用户对这个目录有可写权限， 只有文件所有者可以删除设置 sticky 的目录中的文件。</p>
+<div class="highlight-python"><pre>&gt;&gt;&gt; chmod -v a+wt $LFS/sources</pre>
+</div>
+<p>安装老的arch，对于找不到光碟盘的处理</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mkdir</span> <span class="o">/</span><span class="n">arch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mount</span> <span class="o">-</span><span class="n">r</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb2</span> <span class="o">/</span><span class="n">arch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">modprobe</span> <span class="n">loop</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">losetup</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">loop0</span> <span class="o">/</span><span class="n">arch</span><span class="o">/</span><span class="n">xxxx</span><span class="o">.</span><span class="n">iso</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">loop0</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">disk</span><span class="o">/</span><span class="n">by</span><span class="o">-</span><span class="n">label</span><span class="o">/</span><span class="n">ARCH_201207</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">exit</span>
+</pre></div>
+</div>
+<p>-F 知道分割符
+$2*2.5 会把第二个字段强制变成数字做算术运算</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">awk</span> <span class="o">-</span><span class="n">F</span>\<span class="s">&quot; &#39;{print $1 $2*2.5 &quot;</span><span class="n">pixes</span>\<span class="s">&quot;&quot;</span><span class="p">}</span><span class="s">&#39;</span>
+</pre></div>
+</div>
 </div>
 
 

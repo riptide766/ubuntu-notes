@@ -153,3 +153,68 @@ echo输出不换行
 
 >>> echo $UID
 
+复制目录文件(不同的)
+
+>>> rsync -avu src/ dest/
+
+复制目录文件(不同)，并删掉目标目录不存在的
+
+>>> rsync -avu src/ dest/ --delete
+
+
+显示用户的组
+
+>>> groups matt
+matt wheel
+
+
+查找文件属于的软件包
+
+>>> pacman -Qo \`which findmnt`
+
+
+
+八进制的10加上十进制的1
+
+>>> echo $(( 8#10 + 1 ))
+9
+
+
+挂载一个tmpfs文件系统到~/test目录，大小是4M。 
+
+因为特殊文件系统没有特别的设表，所以第二个 **tmpfs** 仅仅是一个区别的标注。
+
+>>> mount -t tmpfs tmpfs ~/test -o size=4m
+
+检索man
+
+>>> man -k regex
+regex (3)            - POSIX regex functions
+regex (7)            - POSIX.2 regular expressions
+
+指定第7区关于regex的帮助
+
+>>> man 7 regex
+
+
+w是写；a是all也就是guo；
+
+t是贴位符，意思是，即使有多个用户对这个目录有可写权限， 只有文件所有者可以删除设置 sticky 的目录中的文件。
+
+>>> chmod -v a+wt $LFS/sources
+
+安装老的arch，对于找不到光碟盘的处理
+
+>>> mkdir /arch
+>>> mount -r /dev/sdb2 /arch
+>>> modprobe loop
+>>> losetup /dev/loop0 /arch/xxxx.iso
+>>> ln -s /dev/loop0 /dev/disk/by-label/ARCH_201207
+>>> exit
+
+
+-F 知道分割符 
+$2*2.5 会把第二个字段强制变成数字做算术运算
+
+>>> awk -F\" '{print $1 $2*2.5 "pixes\""}'
+
