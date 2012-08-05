@@ -241,6 +241,36 @@ gh-pages分支
     >>> git checkout master
 
 
+分支管理
+-----------
+
+一共有master，develop feature release fixbug五种分支。后面三种是临时的，使用完就清理掉。
+
+
+
+用到的命令,以fixbug为例说明下.(和release比较像)
+
+
+创建进入fixbug分支
+
+>>> git checkout -b fixbug-0.1 master
+
+
+回到master，合并分支，并打上tag。--no-ff在合并时会创建一个提交
+
+>>> git checkout master
+>>> git merge --no-ff fixbug-0.1
+>>> git tag -a 0.1.1
+
+合并到develop分支
+
+>>> git checkout develop
+>>> git merge --no-ff fixbug-0.1
+
+删除分支
+
+>>> git branch -d fixbug-0.1
+
 
 Error
 ---------
@@ -248,3 +278,5 @@ Error
 fatal: Unable to look up github.com (port 9418) (Name or service not known)
 
 添加了非ssh的远程链接
+
+

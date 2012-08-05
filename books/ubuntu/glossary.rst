@@ -6,6 +6,29 @@
 
 .. glossary::
 
+    GMP
+        GMP is a free library for arbitrary precision arithmetic, operating on signed integers, rational numbers, and floating point numbers. `gmplib.org <http://gmplib.org/>`_
+
+
+    MPFR
+        The MPFR library is a C library for multiple-precision floating-point computations with correct rounding. MPFR is based on the GMP multiple-precision library. `The GNU MPFR Library <http://www.mpfr.org/>`_
+
+
+    e2fsprogs
+        e2fsprogs（又称为e2fs programs）是用以维护ext2，ext3和ext4档案系统的工具程序集。由于ext2/3/4是绝大多数Linux发行版默认的文件系统，所以这套工具集也包含在众多Linux发行版内。
+
+        e2fsprogs包含以下独立的程式：
+
+        - e2fsck, ext2/3/4文件系统的fsck程序，用于检查文件系统的完整性。
+        - mke2fs, 用于创建ext2/3/4档案系统。
+        - resize2fs, 调整已建立的ext2/3/4档案系统的大小。
+        - tune2fs, 修改ext2/3/4档案系统的相关参数。
+        - dumpe2fs, 显示ext2/3/4档案系统的相关资讯。
+        - debugfs, 用于调试ext2/3/4文件系统，可以查看与更改文件系统的状态。
+
+    2's complement
+        补码（2'scomplement）是一种用二进制表示有号数的方法，也是一种将数字的正负号变号的方式，常在计算机科学中使用。
+
     Login shell
         If Bash is spawned by login in a tty, by an SSH daemon, or similar means, it is considered a login shell. This mode can also be engaged using the -l or --login command line options.
 
