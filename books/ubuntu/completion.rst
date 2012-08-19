@@ -82,6 +82,15 @@ a  b  c
     prev="${COMP_WORDS[COMP_CWORD-1]}"
 
 
+补充
+^^^^^^^
+
+-o 是设置一些补齐选项。 default和bashdefault的意思是如果没有补齐内容产生，就使用默认的其他补齐。
+
+>>> complete -o default -o bashdefault -F _autojump_files cp mv meld diff kdiff3
+
+
+
 参考文章
 ^^^^^^^^^^
 

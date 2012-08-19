@@ -6,6 +6,9 @@
 
 .. glossary::
 
+    devpts
+         The devpts file system provides an interface to pseudo terminal (pty) devices. It is typically mounted at /dev/pts. A new pty device file is dynamically created when the /dev/ptmx pty master multiplex device is opened.
+
     GMP
         GMP is a free library for arbitrary precision arithmetic, operating on signed integers, rational numbers, and floating point numbers. `gmplib.org <http://gmplib.org/>`_
 
