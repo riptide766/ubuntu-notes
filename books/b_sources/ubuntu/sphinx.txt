@@ -39,3 +39,8 @@
 
 :kbd:`C-x C-f`
 
+.. code-block:: bash
+
+    mount -v --bind /dev $LFS/dev
+    mount -vt proc proc $LFS/proc
+    mount -vt sysfs sysfs $LFS/sys

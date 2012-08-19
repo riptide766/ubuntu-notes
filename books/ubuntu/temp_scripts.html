@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>文档制作 RST和Sphinx的试验场 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
+    <title>脚本片段记录 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
     
     <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
@@ -27,7 +27,8 @@
     <script type="text/javascript" src="../b_static/doctools.js"></script>
     <script type="text/javascript" src="../b_static/sidebar.js"></script>
     <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
-    <link rel="prev" title="字符编码" href="encode.html" /> 
+    <link rel="next" title="Bash 补全" href="completion.html" />
+    <link rel="prev" title="临时命令记录" href="temp.html" /> 
   </head>
   <body>
     <div class="related">
@@ -37,7 +38,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="encode.html" title="字符编码"
+          <a href="completion.html" title="Bash 补全"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="temp.html" title="临时命令记录"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
       </ul>
@@ -48,47 +52,14 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="rstsphinx">
-<h1>文档制作 RST和Sphinx的试验场<a class="headerlink" href="#rstsphinx" title="Permalink to this headline">¶</a></h1>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">不断更新中...</p>
-</div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">不保证正确性</p>
-</div>
-<p class="centered">
-<strong>LICENSE AGREEMENT</strong></p><p class="versionadded">
-<span class="versionmodified">New in version 2.5: </span>The <em>spam</em> parameter.</p>
-<p class="deprecated">
-<span class="versionmodified">Deprecated since version 3.1: </span>Use <tt class="xref py py-func docutils literal"><span class="pre">spam()</span></tt> instead.</p>
-<div class="admonition-see-also admonition seealso">
-<p class="first admonition-title">See also</p>
-<dl class="last docutils">
-<dt>Module <tt class="xref py py-mod docutils literal"><span class="pre">zipfile</span></tt></dt>
-<dd>Documentation of the <tt class="xref py py-mod docutils literal"><span class="pre">zipfile</span></tt> standard module.</dd>
-<dt><a class="reference external" href="http://link">GNU tar manual, Basic Tar Format</a></dt>
-<dd>Documentation for tar archive files, including GNU tar extensions.</dd>
-</dl>
-</div>
-<table class="hlist"><tr><td><ul class="simple">
-<li>A list of</li>
-<li>short items</li>
-</ul>
-</td><td><ul class="simple">
-<li>that should be</li>
-<li>displayed</li>
-</ul>
-</td><td><ul class="simple">
-<li>horizontally</li>
-</ul>
-</td></tr></table>
-<p><tt class="kbd docutils literal"><span class="pre">Control-x</span> <span class="pre">Control-f</span></tt></p>
-<p><tt class="kbd docutils literal"><span class="pre">C-x</span> <span class="pre">C-f</span></tt></p>
-<div class="highlight-bash"><div class="highlight"><pre>mount -v --bind /dev <span class="nv">$LFS</span>/dev
-mount -vt proc proc <span class="nv">$LFS</span>/proc
-mount -vt sysfs sysfs <span class="nv">$LFS</span>/sys
+  <div class="section" id="id1">
+<h1>脚本片段记录<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>这段话的作用是把多行的$comps变成一个一维数组</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="k">while </span><span class="nb">read </span>i
+<span class="k">do</span>
+<span class="k">    </span><span class="nv">COMPREPLY</span><span class="o">=(</span><span class="s2">&quot;${COMPREPLY[@]}&quot;</span> <span class="s2">&quot;${i}&quot;</span><span class="o">)</span>
+<span class="k">done</span> &lt;&lt;EOF
+<span class="nv">$comps</span>
 </pre></div>
 </div>
 </div>
@@ -100,11 +71,14 @@ mount -vt sysfs sysfs <span class="nv">$LFS</span>/sys
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="encode.html"
-                        title="previous chapter">字符编码</a></p>
+  <p class="topless"><a href="temp.html"
+                        title="previous chapter">临时命令记录</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="completion.html"
+                        title="next chapter">Bash 补全</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../b_sources/ubuntu/sphinx.txt"
+    <li><a href="../b_sources/ubuntu/temp_scripts.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -131,7 +105,10 @@ mount -vt sysfs sysfs <span class="nv">$LFS</span>/sys
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="encode.html" title="字符编码"
+          <a href="completion.html" title="Bash 补全"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="temp.html" title="临时命令记录"
              >previous</a> |</li>
         <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
       </ul>

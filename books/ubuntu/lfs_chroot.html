@@ -1,0 +1,234 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>准备工作 - 进入目标系统 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../b_static/jquery.js"></script>
+    <script type="text/javascript" src="../b_static/underscore.js"></script>
+    <script type="text/javascript" src="../b_static/doctools.js"></script>
+    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
+    <link rel="next" title="准备工作 - 创建系统结构" href="lfs_mksysdir.html" />
+    <link rel="prev" title="准备工作 - 工具和目录" href="lfs_toolchain.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lfs_mksysdir.html" title="准备工作 - 创建系统结构"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lfs_toolchain.html" title="准备工作 - 工具和目录"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="id1">
+<h1>准备工作 - 进入目标系统<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>创建必要的系统目录，挂载上和内核、硬件、进程交互的虚拟文件系统后，使用chroot进入目标系统。</p>
+<p>目标系统还是个空系统，在这个空系统使用的命令都是位于/tools下面的</p>
+<div class="section" id="id2">
+<h2>挂载虚拟内核文件系统<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre>mkdir -pv <span class="nv">$LFS</span>/<span class="o">{</span>dev,proc,sys<span class="o">}</span>
+mknod -m 600 <span class="nv">$LFS</span>/dev/console c 5 1
+mknod -m 666 <span class="nv">$LFS</span>/dev/null c 1 3
+mount --bind /dev <span class="nv">$LFS</span>/dev
+mount -vt devpts devpts <span class="nv">$LFS</span>/dev/pts
+mount -vt tmpfs shm <span class="nv">$LFS</span>/dev/shm
+mount -vt proc proc <span class="nv">$LFS</span>/proc
+mount -vt sysfs sysfs <span class="nv">$LFS</span>/sys
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">目录</th>
+<th class="head">用途</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>/dev</td>
+<td>设备文件</td>
+</tr>
+<tr class="row-odd"><td>/proc</td>
+<td>进程文件系统proc的根目录</td>
+</tr>
+<tr class="row-even"><td>/sys</td>
+<td>设备配置信息的根目录</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>mknod</li>
+</ul>
+<blockquote>
+<div><p>创建特殊文件（块 b ; 字符 c ; 管道 p）</p>
+<p>最后两位数字是主设备号和次设备号。</p>
+<p>主设备号对应驱动程序。</p>
+<p>次设备号是区分。（一个驱动可能对应很多设备）</p>
+</div></blockquote>
+<ul>
+<li><p class="first">virtual file system</p>
+<p>devpts，devtmpfs， proc，sysfs 什么的都是虚拟的文件系统。</p>
+<p>挂载之后，这些目录下会出现文件。它们其实并不是真实存在于硬盘上。</p>
+<p>虚拟文件系统，隐藏硬件的具体细节，为所有设备提供一个统一的接口。可以像普通文件一样，通过读写与进程、硬件以及内核进行通讯。</p>
+</li>
+<li><p class="first">tmpfs</p>
+<p>tmpfs是一个 <strong>ramdisk</strong> 。读写速度快，关机会清空内容。</p>
+<p>现在 <strong>tmp shm run</strong> 这些常用的临时目录都挂载这种文件系统。</p>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>改变根目录<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre>chroot <span class="s2">&quot;$LFS&quot;</span> /tools/bin/env -i <span class="se">\</span>
+<span class="nv">HOME</span><span class="o">=</span>/root <span class="nv">TERM</span><span class="o">=</span><span class="s2">&quot;$TERM&quot;</span> <span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;\u:\w\$ &#39;</span> <span class="se">\</span>
+<span class="nv">PATH</span><span class="o">=</span>/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin <span class="se">\</span>
+/tools/bin/bash --login +h
+</pre></div>
+</div>
+<p>这句话含有三个命令: chroot、env、bash。</p>
+<div class="section" id="chroot">
+<h3>chroot<a class="headerlink" href="#chroot" title="Permalink to this headline">¶</a></h3>
+<p>run command or interactive shell with special root directory</p>
+<p>执行命令的例子</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">chroot</span> <span class="o">--</span><span class="n">userspec</span><span class="o">=</span><span class="n">lfs</span><span class="p">:</span><span class="n">lfs</span> <span class="o">/</span> <span class="n">whoami</span>
+<span class="go">lfs</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="env">
+<h3>env<a class="headerlink" href="#env" title="Permalink to this headline">¶</a></h3>
+<p>run a program in a modified environment</p>
+<p>显示用户变量</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span>
+</pre></div>
+</div>
+<p>忽略用户变量</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">-</span><span class="n">i</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">-</span>
+</pre></div>
+</div>
+<p>修改环境变量执行命令</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">cat</span> <span class="n">script</span>
+<span class="go">echo $PATH</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="n">PATH</span><span class="o">=</span><span class="n">test</span> <span class="o">./</span><span class="n">script</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bash">
+<h3>bash<a class="headerlink" href="#bash" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first"><strong>&#8211;login</strong> &#8211; Make bash act as if it had been invoked as a login shell</p>
+<blockquote>
+<div><p><a class="reference internal" href="bash.html#bash-startup-file"><em>登录Bash启动读取的配置文件和和非登录的有区别</em></a> ,但这里的login感觉没什么必要。理由是没什么启动文件需要读的，因为还没有呢。而需要用到的环境变量在前面的env里都指定了</p>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>+h</strong> &#8211; 关闭hash功能，每次都通过path查找命令</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">准备工作 - 进入目标系统</a><ul>
+<li><a class="reference internal" href="#id2">挂载虚拟内核文件系统</a></li>
+<li><a class="reference internal" href="#id3">改变根目录</a><ul>
+<li><a class="reference internal" href="#chroot">chroot</a></li>
+<li><a class="reference internal" href="#env">env</a></li>
+<li><a class="reference internal" href="#bash">bash</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lfs_toolchain.html"
+                        title="previous chapter">准备工作 - 工具和目录</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lfs_mksysdir.html"
+                        title="next chapter">准备工作 - 创建系统结构</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../b_sources/ubuntu/lfs_chroot.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lfs_mksysdir.html" title="准备工作 - 创建系统结构"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lfs_toolchain.html" title="准备工作 - 工具和目录"
+             >previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, riptide711.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

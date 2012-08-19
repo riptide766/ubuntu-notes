@@ -27,8 +27,8 @@
     <script type="text/javascript" src="../b_static/doctools.js"></script>
     <script type="text/javascript" src="../b_static/sidebar.js"></script>
     <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
-    <link rel="next" title="版本控制 GIT学习笔记" href="git.html" />
-    <link rel="prev" title="准备工作 - 工具和目录" href="lfs_toolchain.html" /> 
+    <link rel="next" title="周边基础 - Makefile" href="lfs_makefile.html" />
+    <link rel="prev" title="准备工作 - 进入目标系统" href="lfs_chroot.html" /> 
   </head>
   <body>
     <div class="related">
@@ -38,10 +38,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="git.html" title="版本控制 GIT学习笔记"
+          <a href="lfs_makefile.html" title="周边基础 - Makefile"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="lfs_toolchain.html" title="准备工作 - 工具和目录"
+          <a href="lfs_chroot.html" title="准备工作 - 进入目标系统"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
       </ul>
@@ -54,76 +54,8 @@
             
   <div class="section" id="id1">
 <h1>准备工作 - 创建系统结构<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p>在通过chroot <strong>改变根目录</strong> 安装系统之前，需要预先挂载 <strong>虚拟内核文件系统</strong> 。</p>
-<p>接着是创建一套 <strong>系统目录结构</strong> ，再配置 <strong>用户和组</strong> 以及一些 <strong>日志和临时文件</strong> 。</p>
-<p>这样差不多准备工作就完成了。</p>
 <div class="section" id="id2">
-<h2>挂载虚拟内核文件系统<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">第二、三句和第四句没有搞清楚. 似乎前面两句起不到作用</p>
-</div>
-<div class="highlight-bash"><div class="highlight"><pre>mkdir -pv <span class="nv">$LFS</span>/<span class="o">{</span>dev,proc,sys<span class="o">}</span>
-mknod -m 600 <span class="nv">$LFS</span>/dev/console c 5 1
-mknod -m 666 <span class="nv">$LFS</span>/dev/null c 1 3
-mount --bind /dev <span class="nv">$LFS</span>/dev
-mount -vt devpts devpts <span class="nv">$LFS</span>/dev/pts
-mount -vt tmpfs shm <span class="nv">$LFS</span>/dev/shm
-mount -vt proc proc <span class="nv">$LFS</span>/proc
-mount -vt sysfs sysfs <span class="nv">$LFS</span>/sys
-</pre></div>
-</div>
-<table border="1" class="docutils">
-<colgroup>
-<col width="25%" />
-<col width="75%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">目录</th>
-<th class="head">用途</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>/dev</td>
-<td>设备文件</td>
-</tr>
-<tr class="row-odd"><td>/proc</td>
-<td>进程文件系统proc的根目录</td>
-</tr>
-<tr class="row-even"><td>/sys</td>
-<td>设备配置信息的根目录</td>
-</tr>
-</tbody>
-</table>
-<ul class="simple">
-<li>mknod</li>
-</ul>
-<blockquote>
-<div><p>创建特殊文件（块 b ; 字符 c ; 管道 p）</p>
-<p>最后两位数字是主设备号和次设备号。</p>
-<p>主设备号对应驱动程序。</p>
-<p>次设备号是区分。（一个驱动可能对应很多设备）</p>
-</div></blockquote>
-<ul>
-<li><p class="first">dummy file system</p>
-<p>devpts， proc， tmpfs， sysfs 什么的都是虚拟的文件系统。</p>
-<p>用 <strong>du -sh</strong> 统计不出大小。</p>
-<p>用 <strong>df -a</strong> 才能看见这些。</p>
-<p>所以它们并不是真实存在于硬盘上</p>
-</li>
-</ul>
-</div>
-<div class="section" id="id3">
-<h2>改变根目录<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre>chroot <span class="s2">&quot;$LFS&quot;</span> /tools/bin/env -i <span class="se">\</span>
-<span class="nv">HOME</span><span class="o">=</span>/root <span class="nv">TERM</span><span class="o">=</span><span class="s2">&quot;$TERM&quot;</span> <span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;\u:\w\$ &#39;</span> <span class="se">\</span>
-<span class="nv">PATH</span><span class="o">=</span>/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin <span class="se">\</span>
-/tools/bin/bash --login +h
-</pre></div>
-</div>
-</div>
-<div class="section" id="id4">
-<h2>创建系统目录结构<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>创建系统目录结构<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>目录结构有个标准 <a class="reference internal" href="glossary.html#term-filesystem-hierarchy-standard-fhs"><em class="xref std std-term">Filesystem Hierarchy Standard (FHS)</em></a> ,但没有要求完全遵守。每个发行版都会有点不一样</p>
 <div class="highlight-bash"><div class="highlight"><pre>mkdir -pv /<span class="o">{</span>bin,boot,etc/opt,home,lib,mnt,opt<span class="o">}</span>
 mkdir -pv /<span class="o">{</span>media/<span class="o">{</span>floppy,cdrom<span class="o">}</span>,sbin,srv,var<span class="o">}</span>
@@ -140,8 +72,8 @@ mkdir -v /var/<span class="o">{</span>lock,log,mail,run,spool<span class="o">}</
 mkdir -pv /var/<span class="o">{</span>opt,cache,lib/<span class="o">{</span>misc,locate<span class="o">}</span>,local<span class="o">}</span>
 </pre></div>
 </div>
-<div class="section" id="id5">
-<h3>根目录<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>根目录<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">install -d -m 创建目录并设置权限; 1777的1是粘位符</p>
@@ -425,8 +357,8 @@ mkdir -pv /var/<span class="o">{</span>opt,cache,lib/<span class="o">{</span>mis
 </table>
 </div>
 </div>
-<div class="section" id="id6">
-<h2>构建必须的链接和文件<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h2>构建必须的链接和文件<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>为什么链接一些命令？ 编译的时候可能会按绝对的路径找东西。</p>
@@ -457,8 +389,8 @@ touch /var/run/utmp /var/log/<span class="o">{</span>btmp,lastlog,wtmp<span clas
 </tbody>
 </table>
 </div>
-<div class="section" id="id7">
-<h2>构建用户和组<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h2>构建用户和组<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference internal" href="permission.html#config-passwd"><em>/etc/passwd文件</em></a></p>
 <p><a class="reference internal" href="permission.html#config-group"><em>/etc/group文件</em></a></p>
 <div class="admonition note">
@@ -472,8 +404,8 @@ touch /var/run/utmp /var/log/<span class="o">{</span>btmp,lastlog,wtmp<span clas
 </pre></div>
 </div>
 </div>
-<div class="section" id="id8">
-<h2>构建日志和临时文件<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h2>构建日志和临时文件<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-bash"><div class="highlight"><pre>chgrp -v utmp /var/run/utmp /var/log/lastlog
 chmod -v 664 /var/run/utmp /var/log/lastlog
 </pre></div>
@@ -515,27 +447,25 @@ chmod -v 664 /var/run/utmp /var/log/lastlog
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">准备工作 - 创建系统结构</a><ul>
-<li><a class="reference internal" href="#id2">挂载虚拟内核文件系统</a></li>
-<li><a class="reference internal" href="#id3">改变根目录</a></li>
-<li><a class="reference internal" href="#id4">创建系统目录结构</a><ul>
-<li><a class="reference internal" href="#id5">根目录</a></li>
+<li><a class="reference internal" href="#id2">创建系统目录结构</a><ul>
+<li><a class="reference internal" href="#id3">根目录</a></li>
 <li><a class="reference internal" href="#usr">usr目录</a></li>
 <li><a class="reference internal" href="#var">var目录</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id6">构建必须的链接和文件</a></li>
-<li><a class="reference internal" href="#id7">构建用户和组</a></li>
-<li><a class="reference internal" href="#id8">构建日志和临时文件</a></li>
+<li><a class="reference internal" href="#id4">构建必须的链接和文件</a></li>
+<li><a class="reference internal" href="#id5">构建用户和组</a></li>
+<li><a class="reference internal" href="#id6">构建日志和临时文件</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="lfs_toolchain.html"
-                        title="previous chapter">准备工作 - 工具和目录</a></p>
+  <p class="topless"><a href="lfs_chroot.html"
+                        title="previous chapter">准备工作 - 进入目标系统</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="git.html"
-                        title="next chapter">版本控制 GIT学习笔记</a></p>
+  <p class="topless"><a href="lfs_makefile.html"
+                        title="next chapter">周边基础 - Makefile</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../b_sources/ubuntu/lfs_mksysdir.txt"
@@ -565,10 +495,10 @@ chmod -v 664 /var/run/utmp /var/log/lastlog
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="git.html" title="版本控制 GIT学习笔记"
+          <a href="lfs_makefile.html" title="周边基础 - Makefile"
              >next</a> |</li>
         <li class="right" >
-          <a href="lfs_toolchain.html" title="准备工作 - 工具和目录"
+          <a href="lfs_chroot.html" title="准备工作 - 进入目标系统"
              >previous</a> |</li>
         <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
       </ul>

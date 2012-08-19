@@ -1,0 +1,443 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>周边基础 - 汇编 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../b_static/jquery.js"></script>
+    <script type="text/javascript" src="../b_static/underscore.js"></script>
+    <script type="text/javascript" src="../b_static/doctools.js"></script>
+    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
+    <link rel="next" title="准备工作 - 工具和目录" href="lfs_toolchain.html" />
+    <link rel="prev" title="个人软件仓库" href="arch_custom_repo.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lfs_toolchain.html" title="准备工作 - 工具和目录"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="arch_custom_repo.html" title="个人软件仓库"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="id1">
+<h1>周边基础 - 汇编<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>汇编指示<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="section">
+<h3>.section<a class="headerlink" href="#section" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>指示把代码划分成若干个段（Section）</div></blockquote>
+</div>
+<div class="section" id="section-date">
+<h3>.section .date<a class="headerlink" href="#section-date" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>保存程序的数据</div></blockquote>
+</div>
+<div class="section" id="section-text">
+<h3>.section .text<a class="headerlink" href="#section-text" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div>保存代码</div></blockquote>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>汇编指令<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="movl">
+<h3>movl<a class="headerlink" href="#movl" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="cmpl">
+<h3>cmpl<a class="headerlink" href="#cmpl" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="je">
+<h3>je<a class="headerlink" href="#je" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="incl">
+<h3>incl<a class="headerlink" href="#incl" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="jle">
+<h3>jle<a class="headerlink" href="#jle" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="jmp">
+<h3>jmp<a class="headerlink" href="#jmp" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="int">
+<h3>int<a class="headerlink" href="#int" title="Permalink to this headline">¶</a></h3>
+<p>软中断指令</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>命令<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>汇编器将助记符变成机器指令，生成目标文件.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">as</span> <span class="n">hello</span><span class="o">.</span><span class="n">s</span> <span class="o">-</span><span class="n">o</span> <span class="n">hello</span><span class="o">.</span><span class="n">o</span>
+</pre></div>
+</div>
+<p>链接器将目标文件链接成可执行文件</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ld</span> <span class="n">hello</span><span class="o">.</span><span class="n">o</span> <span class="o">-</span><span class="n">o</span> <span class="n">hello</span>
+</pre></div>
+</div>
+<p>读取ELF文件</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">readelf</span> <span class="o">-</span><span class="n">a</span> <span class="n">hello</span><span class="o">.</span><span class="n">o</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">readelf</span> <span class="o">-</span><span class="n">a</span> <span class="n">hello</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>汇编示例<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h3>例一<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>#PURPOSE: Simple program that exits and returns a
+#     status code back to the Linux kernel
+#
+#INPUT:   none
+#
+#OUTPUT:  returns a status code. This can be viewed
+#     by typing
+#
+#     echo $?
+#
+#     after running the program
+#
+#VARIABLES:
+#     %eax holds the system call number
+#     %ebx holds the return status
+#
+ .section .data
+
+ .section .text
+ .globl _start
+_start:
+ movl $1, %eax      # this is the linux kernel command
+        # number (system call) for exiting
+        # a program
+
+ movl $4, %ebx      # this is the status number we will
+        # return to the operating system.
+        # Change this around and it will
+        # return different things to
+        # echo $?
+
+ int $0x80  # this wakes up the</pre>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>例二<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>#PURPOSE: This program finds the maximum number of a
+#     set of data items.
+#
+#VARIABLES: The registers have the following uses:
+#
+# %edi - Holds the index of the data item being examined
+# %ebx - Largest data item found
+# %eax - Current data item
+#
+# The following memory locations are used:
+#
+# data_items - contains the item data. A 0 is used
+# to terminate the data
+#
+ .section .data
+data_items:                 #These are the data items
+ .long 3,67,34,222,45,75,54,34,44,33,22,11,66,0
+
+ .section .text
+ .globl _start
+_start:
+ movl $0, %edi      # move 0 into the index register
+ movl data_items(,%edi,4), %eax # load the first byte of data
+ movl %eax, %ebx    # since this is the first item, %eax is
+            # the biggest
+
+start_loop:                 # start loop
+ cmpl $0, %eax      # check to see if we&#x27;ve hit the end
+ je loop_exit
+ incl %edi          # load next value
+ movl data_items(,%edi,4), %eax
+ cmpl %ebx, %eax    # compare values
+ jle start_loop     # jump to loop beginning if the new
+            # one isn&#x27;t bigger
+ movl %eax, %ebx    # move the value as the largest
+ jmp start_loop     # jump to loop beginning
+
+loop_exit:
+ # %ebx is the status code for the _exit system call
+ # and it already has the maximum number
+ movl $1, %eax      #1 is the _exit() syscall
+ int $0x80</pre>
+</div>
+</div>
+</div>
+<div class="section" id="elf">
+<h2>ELF文件<a class="headerlink" href="#elf" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rel">
+<h3>REL<a class="headerlink" href="#rel" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>ELF Header:
+  Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00
+  Class:                             ELF32
+  Data:                              2&#x27;s complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              REL (Relocatable file)
+  Machine:                           Intel 80386
+  Version:                           0x1
+  Entry point address:               0x0
+  Start of program headers:          0 (bytes into file)
+  Start of section headers:          200 (bytes into file)
+  Flags:                             0x0
+  Size of this header:               52 (bytes)
+  Size of program headers:           0 (bytes)
+  Number of program headers:         0
+  Size of section headers:           40 (bytes)
+  Number of section headers:         8
+  Section header string table index: 5
+
+Section Headers:
+  [Nr] Name              Type            Addr     Off    Size   ES Flg Lk Inf Al
+  [ 0]                   NULL            00000000 000000 000000 00      0   0  0
+  [ 1] .text             PROGBITS        00000000 000034 00002a 00  AX  0   0  4
+  [ 2] .rel.text         REL             00000000 0002b0 000010 08      6   1  4
+  [ 3] .data             PROGBITS        00000000 000060 000038 00  WA  0   0  4
+  [ 4] .bss              NOBITS          00000000 000098 000000 00  WA  0   0  4
+  [ 5] .shstrtab         STRTAB          00000000 000098 000030 00      0   0  1
+  [ 6] .symtab           SYMTAB          00000000 000208 000080 10      7   7  4
+  [ 7] .strtab           STRTAB          00000000 000288 000028 00      0   0  1
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings)
+  I (info), L (link order), G (group), T (TLS), E (exclude), x (unknown)
+  O (extra OS processing required) o (OS specific), p (processor specific)
+
+There are no section groups in this file.
+
+There are no program headers in this file.
+
+Relocation section &#x27;.rel.text&#x27; at offset 0x2b0 contains 2 entries:
+ Offset     Info    Type            Sym.Value  Sym. Name
+00000008  00000201 R_386_32          00000000   .data
+00000017  00000201 R_386_32          00000000   .data
+
+There are no unwind sections in this file.
+
+Symbol table &#x27;.symtab&#x27; contains 8 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND
+     1: 00000000     0 SECTION LOCAL  DEFAULT    1
+     2: 00000000     0 SECTION LOCAL  DEFAULT    3
+     3: 00000000     0 SECTION LOCAL  DEFAULT    4
+     4: 00000000     0 NOTYPE  LOCAL  DEFAULT    3 data_items
+     5: 0000000e     0 NOTYPE  LOCAL  DEFAULT    1 start_loop
+     6: 00000023     0 NOTYPE  LOCAL  DEFAULT    1 loop_exit
+     7: 00000000     0 NOTYPE  GLOBAL DEFAULT    1 _start
+
+No version information found in this file.</pre>
+</div>
+</div>
+<div class="section" id="exec">
+<h3>EXEC<a class="headerlink" href="#exec" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>ELF Header:
+  Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00
+  Class:                             ELF32
+  Data:                              2&#x27;s complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              EXEC (Executable file)
+  Machine:                           Intel 80386
+  Version:                           0x1
+  Entry point address:               0x8048074
+  Start of program headers:          52 (bytes into file)
+  Start of section headers:          256 (bytes into file)
+  Flags:                             0x0
+  Size of this header:               52 (bytes)
+  Size of program headers:           32 (bytes)
+  Number of program headers:         2
+  Size of section headers:           40 (bytes)
+  Number of section headers:         6
+  Section header string table index: 3
+
+Section Headers:
+  [Nr] Name              Type            Addr     Off    Size   ES Flg Lk Inf Al
+  [ 0]                   NULL            00000000 000000 000000 00      0   0  0
+  [ 1] .text             PROGBITS        08048074 000074 00002a 00  AX  0   0  4
+  [ 2] .data             PROGBITS        080490a0 0000a0 000038 00  WA  0   0  4
+  [ 3] .shstrtab         STRTAB          00000000 0000d8 000027 00      0   0  1
+  [ 4] .symtab           SYMTAB          00000000 0001f0 0000a0 10      5   6  4
+  [ 5] .strtab           STRTAB          00000000 000290 000040 00      0   0  1
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings)
+  I (info), L (link order), G (group), T (TLS), E (exclude), x (unknown)
+  O (extra OS processing required) o (OS specific), p (processor specific)
+
+There are no section groups in this file.
+
+Program Headers:
+  Type           Offset   VirtAddr   PhysAddr   FileSiz MemSiz  Flg Align
+  LOAD           0x000000 0x08048000 0x08048000 0x0009e 0x0009e R E 0x1000
+  LOAD           0x0000a0 0x080490a0 0x080490a0 0x00038 0x00038 RW  0x1000
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     .text
+   01     .data
+
+There is no dynamic section in this file.
+
+There are no relocations in this file.
+
+There are no unwind sections in this file.
+
+Symbol table &#x27;.symtab&#x27; contains 10 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND
+     1: 08048074     0 SECTION LOCAL  DEFAULT    1
+     2: 080490a0     0 SECTION LOCAL  DEFAULT    2
+     3: 080490a0     0 NOTYPE  LOCAL  DEFAULT    2 data_items
+     4: 08048082     0 NOTYPE  LOCAL  DEFAULT    1 start_loop
+     5: 08048097     0 NOTYPE  LOCAL  DEFAULT    1 loop_exit
+     6: 08048074     0 NOTYPE  GLOBAL DEFAULT    1 _start
+     7: 080490d8     0 NOTYPE  GLOBAL DEFAULT  ABS __bss_start
+     8: 080490d8     0 NOTYPE  GLOBAL DEFAULT  ABS _edata
+     9: 080490d8     0 NOTYPE  GLOBAL DEFAULT  ABS _end
+
+No version information found in this file.
+    ELF Header:
+      Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00
+      Class:                             ELF32
+      Data:                              2&#x27;s complement, little endian
+      Version:                           1 (current)
+      OS/ABI:                            UNIX - System V
+      ABI Version:                       0
+      Type:                              REL (Relocatable file)
+      Machine:                           Intel 80386
+      Version:                           0x1
+      Entry point address:               0x0
+      Start of program headers:          0 (bytes into file)
+      Start of section headers:          200 (bytes into file)
+      Flags:                             0x0
+      Size of this header:               52 (bytes)
+      Size of program headers:           0 (bytes)</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">周边基础 - 汇编</a><ul>
+<li><a class="reference internal" href="#id2">汇编指示</a><ul>
+<li><a class="reference internal" href="#section">.section</a></li>
+<li><a class="reference internal" href="#section-date">.section .date</a></li>
+<li><a class="reference internal" href="#section-text">.section .text</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">汇编指令</a><ul>
+<li><a class="reference internal" href="#movl">movl</a></li>
+<li><a class="reference internal" href="#cmpl">cmpl</a></li>
+<li><a class="reference internal" href="#je">je</a></li>
+<li><a class="reference internal" href="#incl">incl</a></li>
+<li><a class="reference internal" href="#jle">jle</a></li>
+<li><a class="reference internal" href="#jmp">jmp</a></li>
+<li><a class="reference internal" href="#int">int</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">命令</a></li>
+<li><a class="reference internal" href="#id5">汇编示例</a><ul>
+<li><a class="reference internal" href="#id6">例一</a></li>
+<li><a class="reference internal" href="#id7">例二</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#elf">ELF文件</a><ul>
+<li><a class="reference internal" href="#rel">REL</a></li>
+<li><a class="reference internal" href="#exec">EXEC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="arch_custom_repo.html"
+                        title="previous chapter">个人软件仓库</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lfs_toolchain.html"
+                        title="next chapter">准备工作 - 工具和目录</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../b_sources/ubuntu/lfs_assemble.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lfs_toolchain.html" title="准备工作 - 工具和目录"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="arch_custom_repo.html" title="个人软件仓库"
+             >previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, riptide711.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

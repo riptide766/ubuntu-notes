@@ -104,4 +104,25 @@ javascript / ctag / taglist
             let g:tlist_javascript_settings = 'javascript;s:string;a:array;o:object;f:function'
 
 
+替换
+--------
+
+
+注释31到105行
+
+>>> :31,105s/.*/#&/g   
+
+
+查找有str1的行，用str3替换掉str2
+
+>>> :g/str1/s/str2/str3/g
+
+
+编辑特权文件
+---------------
+
+::
+
+    command W w !sudo tee % > /dev/null
+
 

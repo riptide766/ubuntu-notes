@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>UDEV规则学习 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../b_static/jquery.js"></script>
+    <script type="text/javascript" src="../b_static/underscore.js"></script>
+    <script type="text/javascript" src="../b_static/doctools.js"></script>
+    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
+    <link rel="next" title="系统和软件安装" href="install.html" />
+    <link rel="prev" title="周边基础 - Makefile" href="lfs_makefile.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="install.html" title="系统和软件安装"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lfs_makefile.html" title="周边基础 - Makefile"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="udev">
+<h1>UDEV规则学习<a class="headerlink" href="#udev" title="Permalink to this headline">¶</a></h1>
+<p>我有个这样的需求, 调查一番发觉采用udev解决比较好玩</p>
+<blockquote>
+<div><div class="highlight-python"><pre>我一个liveusb，装有grub2. 可以选择安装ubuntu和archlinux。除此之外备份有archlinux(主系统)下的grub.cfg文件。
+
+这样可以保证在各种意外时，跳过硬盘mbr，装载这个文件，任意引导幸存的系统.
+
+但作为一个既折腾又比较懒的人来说，我不高兴有一点变化要手动更新这个文件.
+
+我希望插上U盘的时候，自动比较差别后更新文件。</pre>
+</div>
+</div></blockquote>
+<div class="section" id="udevd">
+<h2>Udevd触发流程<a class="headerlink" href="#udevd" title="Permalink to this headline">¶</a></h2>
+<img alt="../b_images/udev.png" src="../b_images/udev.png" />
+</div>
+<div class="section" id="udevadm">
+<h2>udevadm<a class="headerlink" href="#udevadm" title="Permalink to this headline">¶</a></h2>
+<p>udvadm是一个udev的管理工具。在写udev的过程中，这个命令可以辅助我们查看信息，模拟事件。</p>
+<div class="highlight-python"><pre>udevadm expects a command and command specific options.
+
+It controls the runtime behavior of udev, requests kernel events, manages the event queue, and provides simple debugging mechanisms.</pre>
+</div>
+<div class="section" id="udevadm-info">
+<h3>udevadm info<a class="headerlink" href="#udevadm-info" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>Queries the udev database for device information stored in the udev database.
+
+It can also query the properties of a device from its sysfs representation to help creating udev rules that match this device.</pre>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">udevadm</span> <span class="n">info</span> <span class="o">--</span><span class="n">query</span><span class="o">=</span><span class="n">path</span> <span class="o">--</span><span class="n">name</span><span class="o">=</span><span class="n">sda</span>
+<span class="go">devices/pci0000:00/0000:00:0f.0/ata3/host2/target2:0:0/2:0:0:0/block/sda</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">udevadm</span> <span class="n">info</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">n</span> <span class="n">sda1</span>
+<span class="go">looking at device &#39;/devices/pci0000:00/0000:00:0f.0/ata3/host2/target2:0:0/2:0:0:0/block/sda/sda1&#39;:</span>
+<span class="go">KERNEL==&quot;sda1&quot;</span>
+<span class="go">SUBSYSTEM==&quot;block&quot;</span>
+<span class="go">DRIVER==&quot;&quot;</span>
+<span class="go">ATTR{ro}==&quot;0&quot;</span>
+<span class="go">ATTR{size}==&quot;29294592&quot;</span>
+<span class="go">ATTR{stat}==&quot;   34349    15642  2330642   406010     2497     4810   124944   317680        0   186730   723653&quot;</span>
+<span class="go">ATTR{partition}==&quot;1&quot;</span>
+<span class="go">ATTR{start}==&quot;2048&quot;</span>
+<span class="go">ATTR{discard_alignment}==&quot;0&quot;</span>
+<span class="go">ATTR{alignment_offset}==&quot;0&quot;</span>
+<span class="go">ATTR{inflight}==&quot;       0        0&quot;</span>
+<span class="go">略</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="udevadm-monitor">
+<h3>udevadm monitor<a class="headerlink" href="#udevadm-monitor" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>Listens to the kernel uevents and events sent out by a udev rule andprints the devpath of the event to the console.
+
+It can be used to analyze the event timing, by comparing the timestamps of the kernel uevent and the udev event.</pre>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">udevadm</span> <span class="n">monitor</span> <span class="o">--</span><span class="n">kernel</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="udevadm-test">
+<h3>udevadm test<a class="headerlink" href="#udevadm-test" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>Simulate a udev event run for the given device, and print debugoutput.</pre>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">udevadm</span> <span class="n">test</span> <span class="o">--</span><span class="n">action</span><span class="o">=</span><span class="n">add</span> <span class="o">/</span><span class="n">class</span><span class="o">/</span><span class="n">block</span><span class="o">/</span><span class="n">sdb2</span>
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h4>规则实现<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">udev</span><span class="o">/</span><span class="n">rules</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="mi">90</span><span class="n">_updateusbgrubfile</span><span class="o">.</span><span class="n">rules</span>
+<span class="go"># KERNEL</span>
+<span class="go"># GOTO</span>
+<span class="go">KERNEL!=&quot;sd[b-z][0-9]&quot;, GOTO=&quot;auto_update_grub_file_end&quot;</span>
+<span class="go"># IMPORT{program}</span>
+<span class="go"># %N</span>
+<span class="go">IMPORT{program}=&quot;/sbin/blkid -o udev -p %N&quot;</span>
+<span class="go"># 规则</span>
+<span class="go"># ACTION</span>
+<span class="go"># ENV</span>
+<span class="go"># RUN</span>
+<span class="go">#</span>
+<span class="go">ACTION==&quot;add&quot;, ENV{ID_FS_LABEL_ENC}==&quot;LIVEUSB_BOOT&quot;,RUN+=&quot;/bin/mkdir -p /media/$env{ID_FS_LABEL_ENC}&quot;, RUN+=&quot;/bin/mount /dev/%k /media/$env{ID_FS_LABEL_ENC}&quot;,RUN+=&quot;/media/update_usb_grubconfig.sh&quot;</span>
+<span class="go">ACTION==&quot;remove&quot;, ENV{ID_FS_LABEL_ENC}==&quot;LIVEUSB_BOOT&quot;,RUN+=&quot;/bin/umount -l /dev/%k&quot;, RUN+=&quot;/bin/rmdir /media/$env{ID_FS_LABEL_ENC}&quot;</span>
+<span class="go">LABEL=&quot;auto_update_grub_file_end&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">host_config</span><span class="o">=</span><span class="s2">&quot;/boot/grub/grub.cfg&quot;</span>
+<span class="nv">usb_config</span><span class="o">=</span><span class="s2">&quot;/media/LIVEUSB_BOOT/arch_grub.cfg&quot;</span>
+/usr/bin/diff -q <span class="nv">$host_config</span> <span class="nv">$usb_config</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;no diff&quot;</span> <span class="o">||</span> <span class="o">{</span>
+    <span class="nv">usb_config_bak</span><span class="o">=</span><span class="s2">&quot;$usb_config&quot;</span>_<span class="sb">`</span>/bin/date +%Y_%m_%d_%N<span class="sb">`</span>
+    /bin/cp -v <span class="nv">$usb_config</span> <span class="nv">$usb_config_bak</span>
+    /bin/cp -v <span class="nv">$host_config</span> <span class="nv">$usb_config</span>
+    <span class="nb">echo </span><span class="k">done</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="devtmpfssysfs">
+<h2>初步理解devtmpfs、sysfs<a class="headerlink" href="#devtmpfssysfs" title="Permalink to this headline">¶</a></h2>
+<p>这番折腾，对/dev、/sys又有了些感性的理解。 综合</p>
+<p>LFS从临时系统进入目标机的时候会需要执行这几句（摘自LFS6.8文档）:</p>
+<div class="highlight-bash"><div class="highlight"><pre>mount -v --bind /dev <span class="nv">$LFS</span>/dev
+mount -vt proc proc <span class="nv">$LFS</span>/proc
+mount -vt sysfs sysfs <span class="nv">$LFS</span>/sys
+</pre></div>
+</div>
+<p>archlinux现在都是netinstall，进入真实系统需要执行这么几步进入（摘自arch-root）：</p>
+<div class="highlight-bash"><div class="highlight"><pre>mount -t proc proc <span class="s2">&quot;$1/proc&quot;</span> -o nosuid,noexec,nodev <span class="o">&amp;&amp;</span>
+mount -t sysfs sys <span class="s2">&quot;$1/sys&quot;</span> -o nosuid,noexec,nodev <span class="o">&amp;&amp;</span>
+mount -t devtmpfs udev <span class="s2">&quot;$1/dev&quot;</span> -o <span class="nv">mode</span><span class="o">=</span>0755,nosuid <span class="o">&amp;&amp;</span>
+mount -t devpts devpts <span class="s2">&quot;$1/dev/pts&quot;</span> -o <span class="nv">mode</span><span class="o">=</span>0620,gid<span class="o">=</span>5,nosuid,noexec <span class="o">&amp;&amp;</span>
+</pre></div>
+</div>
+<p>解压archlinux的内存盘initramfs,从init脚本里也可以在过渡到真实根目录前依旧有这几步：</p>
+<div class="highlight-bash"><div class="highlight"><pre>mount -t proc proc /proc -o nosuid,noexec,nodev
+mount -t sysfs sys /sys -o nosuid,noexec,nodev
+mount -t devtmpfs dev /dev -o <span class="nv">mode</span><span class="o">=</span>0755,nosuid
+</pre></div>
+</div>
+<p>从上面可以观察到 <strong>/sys /dev /proc</strong> 目录分别被mount到不同的类似的文件系统</p>
+<p>那我的问题就是这些文件系统到底是什么东西？ 这些目录起到什么作用？</p>
+</div>
+<div class="section" id="id2">
+<h2>虚拟文件系统<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="proc">
+<h2>proc<a class="headerlink" href="#proc" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">UDEV规则学习</a><ul>
+<li><a class="reference internal" href="#udevd">Udevd触发流程</a></li>
+<li><a class="reference internal" href="#udevadm">udevadm</a><ul>
+<li><a class="reference internal" href="#udevadm-info">udevadm info</a></li>
+<li><a class="reference internal" href="#udevadm-monitor">udevadm monitor</a></li>
+<li><a class="reference internal" href="#udevadm-test">udevadm test</a><ul>
+<li><a class="reference internal" href="#id1">规则实现</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#devtmpfssysfs">初步理解devtmpfs、sysfs</a></li>
+<li><a class="reference internal" href="#id2">虚拟文件系统</a></li>
+<li><a class="reference internal" href="#proc">proc</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lfs_makefile.html"
+                        title="previous chapter">周边基础 - Makefile</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="install.html"
+                        title="next chapter">系统和软件安装</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../b_sources/ubuntu/dev_vfs_udev.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="install.html" title="系统和软件安装"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lfs_makefile.html" title="周边基础 - Makefile"
+             >previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, riptide711.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

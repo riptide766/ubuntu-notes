@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 *******************************
-Ubuntu GNU/Linux 学习笔记
+GNU/Linux 学习笔记
 *******************************
 
 :Release: |version|
@@ -19,10 +19,55 @@ Ubuntu GNU/Linux 学习笔记
     
     ubuntu/whatislinux
     ubuntu/glossary
-    ubuntu/encode
 
+
+..    ubuntu/startup
+
+
+Bash 笔记
+==================
+
+.. toctree::
+    :titlesonly:
+
+    ubuntu/temp
+    ubuntu/temp_scripts.rst
+    ubuntu/completion
+    ubuntu/bash
+    ubuntu/bash_sudo_user.rst
+    ubuntu/bash_pound_bang_env.rst
+
+
+
+Archlinux
+==============
+
+.. toctree::
+    :titlesonly:
+
+    ubuntu/arch_custom_repo.rst
+
+
+
+
+LFS
+==============
+
+LFS, Linux From Scratch. 从源代码开始构建一个linux系统。
+
+这系列的笔记不是重复LFS如何做，而是学习为什么这么做以及周边的概念. 
+
+.. toctree::
+    :titlesonly:
+
+    ubuntu/lfs_assemble
+    ubuntu/lfs_toolchain
+    ubuntu/lfs_chroot
+    ubuntu/lfs_mksysdir
+    ubuntu/lfs_makefile
+    ubuntu/dev_vfs_udev.rst
       
-Ubuntu 笔记
+Ubuntu
 ================
 
 .. toctree::
@@ -38,35 +83,6 @@ Ubuntu 笔记
     ubuntu/dev_block
 
 
-..    ubuntu/startup
-
-
-Bash 笔记
-==================
-
-.. toctree::
-    :titlesonly:
-
-    ubuntu/temp
-    ubuntu/completion
-    ubuntu/bash
-
-
-
-LFS 笔记
-==============
-
-LFS, Linux From Scratch. 从源代码开始构建一个linux系统。
-
-这系列的笔记不是重复LFS如何做，而是学习为什么这么做以及周边的概念. 
-
-.. toctree::
-    :titlesonly:
-   
-    ubuntu/lfs_toolchain
-    ubuntu/lfs_mksysdir
-    
-
 
 其他
 ==============
@@ -76,6 +92,7 @@ LFS, Linux From Scratch. 从源代码开始构建一个linux系统。
 
     ubuntu/git
     ubuntu/gvim
+    ubuntu/encode
     ubuntu/sphinx
     
 

@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../b_static/doctools.js"></script>
     <script type="text/javascript" src="../b_static/sidebar.js"></script>
     <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
-    <link rel="next" title="文档制作 RST和Sphinx的试验场" href="sphinx.html" />
+    <link rel="next" title="字符编码" href="encode.html" />
     <link rel="prev" title="版本控制 GIT学习笔记" href="git.html" /> 
   </head>
   <body>
@@ -38,7 +38,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="sphinx.html" title="文档制作 RST和Sphinx的试验场"
+          <a href="encode.html" title="字符编码"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="git.html" title="版本控制 GIT学习笔记"
@@ -131,6 +131,22 @@ let g:tlist_javascript_settings = &#x27;javascript;s:string;a:array;o:object;f:f
 </div></blockquote>
 </div></blockquote>
 </div>
+<div class="section" id="id8">
+<h2>替换<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>注释31到105行</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">:</span><span class="mi">31</span><span class="p">,</span><span class="mi">105</span><span class="n">s</span><span class="o">/.*/</span><span class="c">#&amp;/g</span>
+</pre></div>
+</div>
+<p>查找有str1的行，用str3替换掉str2</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">:</span><span class="n">g</span><span class="o">/</span><span class="n">str1</span><span class="o">/</span><span class="n">s</span><span class="o">/</span><span class="n">str2</span><span class="o">/</span><span class="n">str3</span><span class="o">/</span><span class="n">g</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>编辑特权文件<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><pre>command W w !sudo tee % &gt; /dev/null</pre>
+</div>
+</div>
 </div>
 
 
@@ -149,6 +165,8 @@ let g:tlist_javascript_settings = &#x27;javascript;s:string;a:array;o:object;f:f
 <li><a class="reference internal" href="#id5">删除、复制标点配对内容</a></li>
 <li><a class="reference internal" href="#id6">中文帮助</a></li>
 <li><a class="reference internal" href="#javascript-ctag-taglist">javascript / ctag / taglist</a></li>
+<li><a class="reference internal" href="#id8">替换</a></li>
+<li><a class="reference internal" href="#id9">编辑特权文件</a></li>
 </ul>
 </li>
 </ul>
@@ -157,8 +175,8 @@ let g:tlist_javascript_settings = &#x27;javascript;s:string;a:array;o:object;f:f
   <p class="topless"><a href="git.html"
                         title="previous chapter">版本控制 GIT学习笔记</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="sphinx.html"
-                        title="next chapter">文档制作 RST和Sphinx的试验场</a></p>
+  <p class="topless"><a href="encode.html"
+                        title="next chapter">字符编码</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../b_sources/ubuntu/gvim.txt"
@@ -188,7 +206,7 @@ let g:tlist_javascript_settings = &#x27;javascript;s:string;a:array;o:object;f:f
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="sphinx.html" title="文档制作 RST和Sphinx的试验场"
+          <a href="encode.html" title="字符编码"
              >next</a> |</li>
         <li class="right" >
           <a href="git.html" title="版本控制 GIT学习笔记"

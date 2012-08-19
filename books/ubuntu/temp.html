@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>临时记录 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
+    <title>临时命令记录 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
     
     <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
@@ -27,8 +27,8 @@
     <script type="text/javascript" src="../b_static/doctools.js"></script>
     <script type="text/javascript" src="../b_static/sidebar.js"></script>
     <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
-    <link rel="next" title="Bash 补全" href="completion.html" />
-    <link rel="prev" title="块设备管理" href="dev_block.html" /> 
+    <link rel="next" title="脚本片段记录" href="temp_scripts.html" />
+    <link rel="prev" title="名词解释" href="glossary.html" /> 
   </head>
   <body>
     <div class="related">
@@ -38,10 +38,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="completion.html" title="Bash 补全"
+          <a href="temp_scripts.html" title="脚本片段记录"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="dev_block.html" title="块设备管理"
+          <a href="glossary.html" title="名词解释"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
       </ul>
@@ -53,7 +53,7 @@
           <div class="body">
             
   <div class="section" id="id1">
-<h1>临时记录<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>临时命令记录<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>统计求平均</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">awk</span><span class="s">&#39;{a[$1]+=$2; b[$1]+=1} END {for (i in a ) a[i]/b[i]}&#39;</span>
 </pre></div>
@@ -251,6 +251,60 @@ $2*2.5 会把第二个字段强制变成数字做算术运算</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">awk</span> <span class="o">-</span><span class="n">F</span>\<span class="s">&quot; &#39;{print $1 $2*2.5 &quot;</span><span class="n">pixes</span>\<span class="s">&quot;&quot;</span><span class="p">}</span><span class="s">&#39;</span>
 </pre></div>
 </div>
+<p>显示虚拟文件系统的挂载.</p>
+<p>-a 显示所有虚拟文件系统
+-T 打印文件系统名</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">-</span><span class="n">aT</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">findmnt</span>
+</pre></div>
+</div>
+<p>显示文件目录设备id。-c 指定格式</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">stat</span> <span class="o">-</span><span class="n">c</span> <span class="o">%</span><span class="n">D</span> <span class="o">/</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stat</span> <span class="o">-</span><span class="n">c</span> <span class="o">%</span><span class="n">d</span> <span class="o">/</span>
+</pre></div>
+</div>
+<p>解压initramfs</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lsinitcpio</span> <span class="o">-</span><span class="n">x</span> <span class="o">../</span><span class="n">initramfs</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">img</span>
+</pre></div>
+</div>
+<p>查看一个软件组包含的软件包</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pacman</span> <span class="o">-</span><span class="n">Qi</span> <span class="n">base</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pacman</span> <span class="o">-</span><span class="n">Si</span> <span class="n">base</span>
+</pre></div>
+</div>
+<p>目录堆栈</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pushd</span> <span class="o">/</span><span class="n">tmp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pushd</span> <span class="o">~/</span><span class="n">resources</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dirs</span>
+<span class="go">~/resources /tmp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">popd</span>
+</pre></div>
+</div>
+<p>直接编辑文件</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">cat</span> <span class="n">test</span>
+<span class="go">hello word</span>
+<span class="go">over</span>
+</pre></div>
+</div>
+<p>设置时钟。（linux，将cmos时钟认为是UTC. ntpd是时间同步). 好像有错...</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ntpd</span> <span class="o">-</span><span class="n">qg</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hwclock</span> <span class="o">-</span><span class="n">s</span>
+</pre></div>
+</div>
+<p>取用户家目录</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">getent</span> <span class="n">passwd</span> <span class="n">matt</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">d</span><span class="p">:</span> <span class="o">-</span><span class="n">f6</span>
+</pre></div>
+</div>
+<p>查看隐含规则</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">make</span> <span class="o">-</span><span class="n">p</span>
+</pre></div>
+</div>
+<p>-n 只打印不执行命令
+-C 指定执行makefile的目录
+CFLAGS=-g 临时设置变量</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">make</span> <span class="n">CFLAGS</span><span class="o">=-</span><span class="n">g</span> <span class="o">-</span><span class="n">nC</span> <span class="n">ch22</span>
+</pre></div>
+</div>
 </div>
 
 
@@ -260,11 +314,11 @@ $2*2.5 会把第二个字段强制变成数字做算术运算</p>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="dev_block.html"
-                        title="previous chapter">块设备管理</a></p>
+  <p class="topless"><a href="glossary.html"
+                        title="previous chapter">名词解释</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="completion.html"
-                        title="next chapter">Bash 补全</a></p>
+  <p class="topless"><a href="temp_scripts.html"
+                        title="next chapter">脚本片段记录</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../b_sources/ubuntu/temp.txt"
@@ -294,10 +348,10 @@ $2*2.5 会把第二个字段强制变成数字做算术运算</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="completion.html" title="Bash 补全"
+          <a href="temp_scripts.html" title="脚本片段记录"
              >next</a> |</li>
         <li class="right" >
-          <a href="dev_block.html" title="块设备管理"
+          <a href="glossary.html" title="名词解释"
              >previous</a> |</li>
         <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
       </ul>
