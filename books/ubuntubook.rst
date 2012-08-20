@@ -46,7 +46,7 @@ Archlinux
     :titlesonly:
 
     ubuntu/arch_custom_repo.rst
-
+    ubuntu/arch_custom_linux.rst
 
 
 
