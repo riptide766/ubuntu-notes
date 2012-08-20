@@ -125,4 +125,6 @@ javascript / ctag / taglist
 
     command W w !sudo tee % > /dev/null
 
+删除空行
 
+>>> g/^\s*$/d

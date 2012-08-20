@@ -1,0 +1,588 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>堆砌archlinux (一) &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../b_static/jquery.js"></script>
+    <script type="text/javascript" src="../b_static/underscore.js"></script>
+    <script type="text/javascript" src="../b_static/doctools.js"></script>
+    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
+    <link rel="next" title="周边基础 - 汇编" href="lfs_assemble.html" />
+    <link rel="prev" title="个人软件仓库" href="arch_custom_repo.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lfs_assemble.html" title="周边基础 - 汇编"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="arch_custom_repo.html" title="个人软件仓库"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="archlinux">
+<h1>堆砌archlinux (一)<a class="headerlink" href="#archlinux" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>堆砌原理和工具<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>原理<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>堆砌的原理就是没什么原理，把二进制包和配置文件复制来复制去就好了。</p>
+<p>通过两个脚本计算依赖并复制文件到 <strong>新系统</strong> 。在这个过程中，还会额外生成三个文件.</p>
+<ul class="simple">
+<li>dependlist 相关软件包的列表</li>
+<li>decfile 相关软件包的简单描述</li>
+<li>etclist 各个软件包相关的配置文件</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>上述的文件可以帮组我了解</p>
+<ul class="simple">
+<li>系统主要的软件包</li>
+<li>相关的配置文件</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>最后，引导这个新系统，验证下。</p>
+</div>
+<div class="section" id="id3">
+<h3>工具<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash"><div class="highlight"><pre><span class="c">#!/bin/bash</span>
+
+<span class="nv">cachedir</span><span class="o">=</span>/tmp/customlinux
+<span class="nv">cachelist</span><span class="o">=</span><span class="s2">&quot;$cachedir/dependlist&quot;</span>
+<span class="nv">desclist</span><span class="o">=</span><span class="s2">&quot;$cachedir/descfile&quot;</span>
+
+mkdir -p <span class="nv">$cachedir</span>
+
+<span class="k">function </span>countdepend<span class="o">(){</span>
+    <span class="nv">dependlist</span><span class="o">=</span><span class="sb">`</span>pactree -ul <span class="nv">$1</span> | cut -d<span class="s2">&quot; &quot;</span> -f1<span class="sb">`</span>
+    <span class="o">[</span>  -a <span class="nv">$cachelist</span> <span class="o">]</span> <span class="o">||</span> <span class="nb">echo</span> &gt; <span class="nv">$cachelist</span>
+    <span class="k">for </span>item in <span class="nv">$dependlist</span> ; <span class="k">do</span>
+<span class="k">        </span>grep -q -e <span class="s2">&quot;^$item$&quot;</span> <span class="s2">&quot;$cachelist&quot;</span>
+        <span class="k">if</span> <span class="o">[[</span> <span class="nv">$?</span> !<span class="o">=</span> 0  <span class="o">]]</span> ; <span class="k">then</span>
+            <span class="c"># 打印软件包名，记录到文件</span>
+            <span class="nb">echo</span> <span class="nv">$item</span> | tee -a <span class="nv">$cachelist</span>
+            <span class="c"># 以两行的形式记录软件包的名字和描述，记录到文件里</span>
+            pacman -Qi <span class="nv">$item</span> | grep Desc | sed -e <span class="s2">&quot;s/\(Description\s*\):\(.*\)/$item\n\t\2/&quot;</span> &gt;&gt; <span class="nv">$desclist</span>
+        <span class="k">fi</span>
+<span class="k">    done</span>
+<span class="o">}</span>
+
+<span class="k">for </span>pkg in <span class="nv">$@</span> ; <span class="k">do</span>
+<span class="k">    </span>countdepend <span class="nv">$pkg</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">targetdir</span><span class="o">=</span>/media/customlinux
+
+
+<span class="nv">cachedir</span><span class="o">=</span>/tmp/customlinux
+<span class="nv">cachelist</span><span class="o">=</span><span class="s2">&quot;$cachedir/dependlist&quot;</span>
+<span class="nv">desclist</span><span class="o">=</span><span class="s2">&quot;$cachedir/descfile&quot;</span>
+<span class="nv">cachelist</span><span class="o">=</span><span class="s2">&quot;$cachedir&quot;</span>/dependlist
+<span class="nv">installedlist</span><span class="o">=</span><span class="s2">&quot;$cachedir&quot;</span>/installedlist
+<span class="nv">etclist</span><span class="o">=</span><span class="s2">&quot;$cachedir&quot;</span>/etclist
+
+mkdir -p <span class="nv">$cachedir</span>
+
+<span class="k">function </span>cpkg<span class="o">(){</span>
+    grep -q -e <span class="s2">&quot;$1$&quot;</span> <span class="nv">$installedlist</span>
+    <span class="o">[</span> <span class="nv">$?</span> <span class="o">==</span> 0 <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="k">return</span>
+<span class="k">    for </span>f in <span class="sb">`</span>pacman -Ql <span class="nv">$1</span> | cut -d<span class="s2">&quot; &quot;</span> -f2    <span class="sb">`</span>; <span class="k">do</span>
+        <span class="o">[</span> -d <span class="nv">$f</span>  <span class="o">]</span> <span class="o">&amp;&amp;</span> mkdir -p <span class="s2">&quot;$targetdir&quot;</span><span class="nv">$f</span> <span class="o">||</span> cp -v <span class="nv">$f</span> <span class="s2">&quot;$targetdir&quot;</span><span class="nv">$f</span>
+        <span class="c"># 记录软件相关的配置文件</span>
+        <span class="o">[</span> <span class="k">${</span><span class="nv">f</span><span class="p">:</span><span class="nv">1</span><span class="p">:</span><span class="nv">3</span><span class="k">}</span> <span class="o">==</span> <span class="s2">&quot;etc&quot;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;$1 --- $f&quot;</span> &gt;&gt; <span class="nv">$etclist</span>
+    <span class="k">done</span>
+<span class="k">    </span><span class="nb">echo</span> <span class="nv">$1</span> &gt;&gt; <span class="nv">$installedlist</span>
+<span class="o">}</span>
+
+
+<span class="k">for </span>pkg in <span class="se">\`</span>cat <span class="nv">$cachelist</span><span class="se">\`</span> ; <span class="k">do</span>
+<span class="k">    </span>cpkg <span class="nv">$pkg</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>引导和修改系统<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>堆砌了系统，那能够用了么？不行， 还需要有东西引导它。</p>
+<p>最简单方法：直接用当前系统的grub检查下新系统就行了。</p>
+<p>原理就是它去各个挂载点找/boot目录,看见内核和内存盘就视为一个系统，然后据此生成新的grub.cfg</p>
+<p>有了系统，有了引导，还需要修改必要的配置文件，比如fstab、passwd、shells、rc.conf什么的</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">grub</span> <span class="n">grub</span><span class="o">-</span><span class="n">mkconfig</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">grub</span><span class="o">/</span><span class="n">grub</span><span class="o">.</span><span class="n">cfg</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>堆砌过程<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h3>目标<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>我的目标是一个能够运行w3m的archlinux，今后可以直接移动到liveusb当急救系统用。</p>
+</div>
+<div class="section" id="id7">
+<h3>过程<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>挂一个无用的分区，作为新系统的根目录</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mkdir</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">customlinux</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda10</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">customlinux</span>
+</pre></div>
+</div>
+<p>计算w3m依赖</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">countdependence</span><span class="o">.</span><span class="n">sh</span> <span class="n">w3m</span>
+<span class="go">w3m</span>
+<span class="go">openssl</span>
+<span class="go">perl</span>
+<span class="go">gdbm</span>
+<span class="go">glibc</span>
+<span class="go">linux-api-headers</span>
+<span class="go">tzdata</span>
+<span class="go">bash</span>
+<span class="go">readline</span>
+<span class="go">ncurses</span>
+<span class="go">db</span>
+<span class="go">gcc-libs</span>
+<span class="go">coreutils</span>
+<span class="go">pam</span>
+<span class="go">cracklib</span>
+<span class="go">zlib</span>
+<span class="go">libtirpc</span>
+<span class="go">libgssglue</span>
+<span class="go">pambase</span>
+<span class="go">acl</span>
+<span class="go">attr</span>
+<span class="go">gmp</span>
+<span class="go">libcap</span>
+<span class="go">gc</span>
+</pre></div>
+</div>
+<p>计算init程序sysvinit的依赖</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">countdependence</span><span class="o">.</span><span class="n">sh</span> <span class="n">sysvinit</span>
+<span class="go">sysvinit</span>
+<span class="go">util-linux</span>
+<span class="go">gawk</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">countdependence</span><span class="o">.</span><span class="n">sh</span> <span class="n">initscripts</span>
+<span class="go">initscripts</span>
+<span class="go">systemd-tools</span>
+<span class="go">glib2</span>
+<span class="go">pcre</span>
+<span class="go">libffi</span>
+<span class="go">libsystemd</span>
+<span class="go">xz</span>
+<span class="go">kmod</span>
+<span class="go">hwids</span>
+<span class="go">kbd</span>
+<span class="go">iproute2</span>
+<span class="go">findutils</span>
+</pre></div>
+</div>
+<p>计算ip配置工具的依赖</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">countdependence</span><span class="o">.</span><span class="n">sh</span> <span class="n">iputils</span>
+<span class="go">iputils</span>
+<span class="go">sysfsutils</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">countdependence</span><span class="o">.</span><span class="n">sh</span> <span class="n">dhcpcd</span>
+<span class="go">dhcpcd</span>
+</pre></div>
+</div>
+<p>计算linux内核的依赖</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">countdependence</span><span class="o">.</span><span class="n">sh</span> <span class="n">linux</span>
+<span class="go">linux</span>
+<span class="go">linux-firmware</span>
+<span class="go">mkinitcpio</span>
+<span class="go">mkinitcpio-busybox</span>
+<span class="go">libarchive</span>
+<span class="go">bzip2</span>
+<span class="go">expat</span>
+<span class="go">grep</span>
+<span class="go">filesystem</span>
+<span class="go">iana-etc</span>
+<span class="go">file</span>
+<span class="go">gzip</span>
+</pre></div>
+</div>
+<p>根据依赖复制文件</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">cpkg</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>复制内核和内存盘</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">cp</span> <span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">vmlinuz</span><span class="o">-</span><span class="n">linux</span> <span class="n">boot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cp</span> <span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">initramfs</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">img</span> <span class="n">boot</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>配置<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>archlinux下面的lib其实已经空掉了，为了兼容，需要软链到usr/lib</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">cd</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">customlinux</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rmdir</span> <span class="n">lib</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="n">usr</span><span class="o">/</span><span class="n">lib</span> <span class="n">lib</span>
+</pre></div>
+</div>
+<p>chroot到这个环境，看看有无问题</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">-</span><span class="n">i</span> <span class="n">PATH</span><span class="o">=/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">chroot</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">customlinux</span> <span class="n">bash</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">exit</span>
+</pre></div>
+</div>
+<p>调整挂载点</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">cd</span> <span class="n">etc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vi</span> <span class="n">fstab</span>
+</pre></div>
+</div>
+<p>当前系统默认的shell是zsh，新系统还原成bash</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">vi</span> <span class="n">sheel</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vi</span> <span class="n">passwd</span>
+</pre></div>
+</div>
+<p>清空mtab，要不然会新系统会挂错分区</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">vi</span> <span class="n">mtab</span>
+</pre></div>
+</div>
+<p>去掉不必要daemon，保留network</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">vi</span> <span class="n">rc</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3>重启<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">grub</span> <span class="n">grub</span><span class="o">-</span><span class="n">mkconfig</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">boot</span><span class="o">/</span><span class="n">grub</span><span class="o">/</span><span class="n">grub</span><span class="o">.</span><span class="n">cfg</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reboot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>结果文件<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>现在来看下</p>
+<div class="section" id="id11">
+<h3>软件包描述<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>w3m
+     Text-based Web browser, as well as pager
+openssl
+     The Open Source toolkit for Secure Sockets Layer and Transport Layer Security
+perl
+     A highly capable, feature-rich programming language
+gdbm
+     GNU database library
+glibc
+     GNU C Library
+linux-api-headers
+     Kernel headers sanitized for use in userspace
+tzdata
+     Sources for time zone and daylight saving time data
+bash
+     The GNU Bourne Again shell
+readline
+     GNU readline library
+ncurses
+     System V Release 4.0 curses emulation library
+db
+     The Berkeley DB embedded database system
+gcc-libs
+     Runtime libraries shipped by GCC
+coreutils
+     The basic file, shell and text manipulation utilities of the GNU operating system
+pam
+     PAM (Pluggable Authentication Modules) library
+cracklib
+     Password Checking Library
+zlib
+     Compression library implementing the deflate compression method found in gzip and PKZIP
+libtirpc
+     Transport Independent RPC library (SunRPC replacement)
+libgssglue
+     Exports a gssapi interface which calls other random gssapi libraries
+pambase
+     Base PAM configuration for services
+acl
+     Access control list utilities, libraries and headers
+attr
+     Extended attribute support library for ACL support
+gmp
+     A free library for arbitrary precision arithmetic
+libcap
+     POSIX 1003.1e capabilities
+gc
+     A garbage collector for C and C++
+linux
+     The Linux Kernel and modules
+linux-firmware
+     Firmware files for Linux
+kmod
+     Linux kernel module handling
+mkinitcpio
+     Modular initramfs image creation utility
+gawk
+     GNU version of awk
+mkinitcpio-busybox
+     base initramfs tools
+util-linux
+     Miscellaneous system utilities for Linux
+libarchive
+     library that can create and read several streaming archive formats
+bzip2
+     A high-quality data compression program
+xz
+     Library and command line tools for XZ and LZMA compressed files
+expat
+     An XML parser library
+findutils
+     GNU utilities to locate files
+grep
+     A string search utility
+pcre
+     A library that implements Perl 5-style regular expressions
+filesystem
+     Base filesystem
+iana-etc
+     /etc/protocols and /etc/services provided by IANA
+file
+     File type identification utility
+gzip
+     GNU compression utility
+systemd-tools
+     standalone tools from systemd
+glib2
+     Common C routines used by GTK+ and other libs
+libffi
+     A portable, high level programming interface to various calling conventions
+libsystemd
+     systemd client libraries
+hwids
+     hardware identification databases
+kbd
+     Keytable files and keyboard utilities
+iputils
+     IP Configuration Utilities (and Ping)
+sysfsutils
+     System Utilities Based on Sysfs
+sysvinit
+     Linux System V Init
+initscripts
+     System initialization/bootup scripts
+iproute2
+     IP Routing Utilities</pre>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>软件包配置文件<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>openssl --- /etc/ssl/misc/CA.pl
+openssl --- /etc/ssl/misc/CA.sh
+openssl --- /etc/ssl/misc/c_hash
+openssl --- /etc/ssl/misc/c_info
+openssl --- /etc/ssl/misc/c_issuer
+openssl --- /etc/ssl/misc/c_name
+openssl --- /etc/ssl/misc/tsget
+openssl --- /etc/ssl/openssl.cnf
+perl --- /etc/profile.d/perlbin.csh
+perl --- /etc/profile.d/perlbin.sh
+glibc --- /etc/gai.conf
+glibc --- /etc/locale.gen
+glibc --- /etc/nscd.conf
+glibc --- /etc/rc.d/nscd
+glibc --- /etc/rpc
+bash --- /etc/bash.bash_logout
+bash --- /etc/bash.bashrc
+bash --- /etc/skel/.bash_logout
+bash --- /etc/skel/.bash_profile
+bash --- /etc/skel/.bashrc
+readline --- /etc/inputrc
+coreutils --- /etc/pam.d/su
+pam --- /etc/default/passwd
+pam --- /etc/environment
+pam --- /etc/security/access.conf
+pam --- /etc/security/group.conf
+pam --- /etc/security/limits.conf
+pam --- /etc/security/namespace.conf
+pam --- /etc/security/namespace.init
+pam --- /etc/security/pam_env.conf
+pam --- /etc/security/time.conf
+libtirpc --- /etc/netconfig
+libgssglue --- /etc/gssapi_mech.conf
+pambase --- /etc/pam.d/other
+pambase --- /etc/pam.d/system-auth
+pambase --- /etc/pam.d/system-local-login
+pambase --- /etc/pam.d/system-login
+pambase --- /etc/pam.d/system-remote-login
+pambase --- /etc/pam.d/system-services
+linux --- /etc/mkinitcpio.d/linux.preset
+mkinitcpio --- /etc/mkinitcpio.conf
+mkinitcpio --- /etc/mkinitcpio.d/example.preset
+util-linux --- /etc/pam.d/chfn
+util-linux --- /etc/pam.d/chsh
+util-linux --- /etc/pam.d/login
+filesystem --- /etc/arch-release
+filesystem --- /etc/crypttab
+filesystem --- /etc/fstab
+filesystem --- /etc/group
+filesystem --- /etc/gshadow
+filesystem --- /etc/host.conf
+filesystem --- /etc/hosts
+filesystem --- /etc/issue
+filesystem --- /etc/ld.so.conf
+filesystem --- /etc/motd
+filesystem --- /etc/mtab
+filesystem --- /etc/nsswitch.conf
+filesystem --- /etc/os-release
+filesystem --- /etc/passwd
+filesystem --- /etc/profile
+filesystem --- /etc/resolv.conf
+filesystem --- /etc/securetty
+filesystem --- /etc/shadow
+filesystem --- /etc/shells
+iana-etc --- /etc/protocols
+iana-etc --- /etc/services
+systemd-tools --- /etc/udev/udev.conf
+glib2 --- /etc/profile.d/glib2.csh
+glib2 --- /etc/profile.d/glib2.sh
+iputils --- /etc/xinetd.d/tftp
+initscripts --- /etc/inittab
+initscripts --- /etc/logrotate.d/bootlog
+initscripts --- /etc/profile.d/locale.sh
+initscripts --- /etc/rc.conf
+initscripts --- /etc/rc.d/functions
+initscripts --- /etc/rc.d/hwclock
+initscripts --- /etc/rc.d/netfs
+initscripts --- /etc/rc.d/network
+initscripts --- /etc/rc.local
+initscripts --- /etc/rc.local.shutdown
+initscripts --- /etc/rc.multi
+initscripts --- /etc/rc.shutdown
+initscripts --- /etc/rc.single
+initscripts --- /etc/rc.sysinit
+iproute2 --- /etc/iproute2/ematch_map
+iproute2 --- /etc/iproute2/group
+iproute2 --- /etc/iproute2/rt_dsfield
+iproute2 --- /etc/iproute2/rt_protos
+iproute2 --- /etc/iproute2/rt_realms
+iproute2 --- /etc/iproute2/rt_scopes
+iproute2 --- /etc/iproute2/rt_tables</pre>
+</div>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>后续计划<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>linux瘦身</li>
+<li>编译小号内核</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">堆砌archlinux (一)</a><ul>
+<li><a class="reference internal" href="#id1">堆砌原理和工具</a><ul>
+<li><a class="reference internal" href="#id2">原理</a></li>
+<li><a class="reference internal" href="#id3">工具</a></li>
+<li><a class="reference internal" href="#id4">引导和修改系统</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5">堆砌过程</a><ul>
+<li><a class="reference internal" href="#id6">目标</a></li>
+<li><a class="reference internal" href="#id7">过程</a></li>
+<li><a class="reference internal" href="#id8">配置</a></li>
+<li><a class="reference internal" href="#id9">重启</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id10">结果文件</a><ul>
+<li><a class="reference internal" href="#id11">软件包描述</a></li>
+<li><a class="reference internal" href="#id12">软件包配置文件</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id13">后续计划</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="arch_custom_repo.html"
+                        title="previous chapter">个人软件仓库</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lfs_assemble.html"
+                        title="next chapter">周边基础 - 汇编</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../b_sources/ubuntu/arch_custom_linux.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lfs_assemble.html" title="周边基础 - 汇编"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="arch_custom_repo.html" title="个人软件仓库"
+             >previous</a> |</li>
+        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, riptide711.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

@@ -281,3 +281,6 @@ CFLAGS=-g 临时设置变量
 
 >>> make CFLAGS=-g -nC ch22
 
+chroot到独立环境
+
+>>> sudo env -i PATH=/bin:/usr/bin /usr/sbin/chroot /media/lfs bash

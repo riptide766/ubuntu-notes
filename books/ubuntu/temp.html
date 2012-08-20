@@ -305,6 +305,10 @@ CFLAGS=-g 临时设置变量</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">make</span> <span class="n">CFLAGS</span><span class="o">=-</span><span class="n">g</span> <span class="o">-</span><span class="n">nC</span> <span class="n">ch22</span>
 </pre></div>
 </div>
+<p>chroot到独立环境</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sudo</span> <span class="n">env</span> <span class="o">-</span><span class="n">i</span> <span class="n">PATH</span><span class="o">=/</span><span class="nb">bin</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">chroot</span> <span class="o">/</span><span class="n">media</span><span class="o">/</span><span class="n">lfs</span> <span class="n">bash</span>
+</pre></div>
+</div>
 </div>
 
 
