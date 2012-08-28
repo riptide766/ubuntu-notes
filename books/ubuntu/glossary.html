@@ -8,10 +8,10 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>名词解释 &mdash; Ubuntu GNU/linux 笔记 0.1 documentation</title>
+    <title>名词解释 &mdash; 小明牌烂笔头 0.1 documentation</title>
     
-    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -22,11 +22,12 @@
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="../b_static/jquery.js"></script>
-    <script type="text/javascript" src="../b_static/underscore.js"></script>
-    <script type="text/javascript" src="../b_static/doctools.js"></script>
-    <script type="text/javascript" src="../b_static/sidebar.js"></script>
-    <link rel="top" title="Ubuntu GNU/linux 笔记 0.1 documentation" href="../index.html" />
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <link rel="top" title="小明牌烂笔头 0.1 documentation" href="../index.html" />
+    <link rel="up" title="GNU/Linux 学习笔记" href="../ubuntubooks.html" />
     <link rel="next" title="临时命令记录" href="temp.html" />
     <link rel="prev" title="什么是linux" href="whatislinux.html" /> 
   </head>
@@ -43,7 +44,8 @@
         <li class="right" >
           <a href="whatislinux.html" title="什么是linux"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+        <li><a href="../index.html">小明牌烂笔头 0.1 documentation</a> &raquo;</li>
+          <li><a href="../ubuntubooks.html" accesskey="U">GNU/Linux 学习笔记</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -55,6 +57,44 @@
   <div class="section" id="id1">
 <h1>名词解释<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <dl class="glossary docutils">
+<dt id="term-tcp">TCP</dt>
+<dd>Transmission Control Protocal</dd>
+<dt id="term-ip">IP</dt>
+<dd><p class="first">互联网协议（英语：Internet Protocol，IP），或称互联网协议，是用于报文交换网络的一种面向数据的协议。</p>
+<p class="last">IP是在TCP/IP协议中网络层的主要协议，任务是仅仅根据源主机和目的主机的地址传送数据。为此目的，IP定义了寻址方法和数据报的封装结构 。第一个架构的主要版本，现在称为IPv4，仍然是最主要的互联网协议，尽管世界各地正在积极部署IPv6。</p>
+</dd>
+<dt id="term-osi">OSI</dt>
+<dd><p class="first">Open System Interconnect Reference Model <a class="reference external" href="http://zh.wikipedia.org/wiki/OSI模型">WIKI - OSI</a></p>
+<ol class="arabic simple" start="7">
+<li>应用层 ── Application Layer</li>
+</ol>
+<ol class="arabic simple" start="6">
+<li>表示层 ── Presentation Layer</li>
+</ol>
+<ol class="arabic simple" start="5">
+<li>会话层 ── Session Layer</li>
+</ol>
+<ol class="arabic simple" start="4">
+<li>传输层 ── Transport Layer</li>
+</ol>
+<ol class="arabic simple" start="3">
+<li>网络层 ── Network Layer</li>
+</ol>
+<ol class="arabic simple" start="2">
+<li>数据链路层 ── Data Link Layer</li>
+</ol>
+<ol class="last arabic simple">
+<li>物理层 ── Physical Layer</li>
+</ol>
+</dd>
+<dt id="term-udp">UDP</dt>
+<dd>用户数据报协议（User Datagram Protocol, UDP）是一个简单的面向数据报的传输层协议，IETF RFC 768是UDP的正式规范。</dd>
+<dt id="term-icmp">ICMP</dt>
+<dd>互联网控制消息协议（Internet Control Message Protocol 或简写 ICMP）是网路协议族的核心协议之一。它用于 TCP/IP 网络中发送控制消息，提供可能发生在通信环境中的各种问题反馈，通过这些信息，令管理者可以对所发生的问题作出诊断，然后采取适当的措施解决。 <a class="reference external" href="http://zh.wikipedia.org/wiki/ICMP">WIKI - 互联网控制消息协议</a></dd>
+<dt id="term-igmp">IGMP</dt>
+<dd>因特网组管理协议（Internet Group Management Protocol或简写IGMP)是用于管理因特网协议多播组成员的一种通信协议。IP主机和相邻的路由器利用IGMP来建立多播组的组成员。像ICMP用于单播连接一样，IGMP也是IP多播说明的一个完整部分。<a class="reference external" href="http://zh.wikipedia.org/wiki/IGMP">因特网组管理协议 - wiki</a></dd>
+<dt id="term-arp">ARP</dt>
+<dd>Address Resolution ProtocolARP协议（Address Resolution Protocol），或称地址解析协议。ARP协议的基本功能就是通过目标设备的IP地址，查询目标设备的MAC地址，以保证通信的顺利进行。他是IPv4中网络层必不可少的协议，不过在IPv6中已不再适用，并被ICMPv6所替代。 <a class="reference external" href="http://zh.wikipedia.org/wiki/地址解析协议">WIKI - 地址解析协议</a></dd>
 <dt id="term-devpts">devpts</dt>
 <dd>The devpts file system provides an interface to pseudo terminal (pty) devices. It is typically mounted at /dev/pts. A new pty device file is dynamically created when the /dev/ptmx pty master multiplex device is opened.</dd>
 <dt id="term-gmp">GMP</dt>
@@ -236,7 +276,7 @@
                         title="next chapter">临时命令记录</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../b_sources/ubuntu/glossary.txt"
+    <li><a href="../_sources/ubuntu/glossary.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -268,11 +308,12 @@
         <li class="right" >
           <a href="whatislinux.html" title="什么是linux"
              >previous</a> |</li>
-        <li><a href="../index.html">Ubuntu GNU/linux 笔记 0.1 documentation</a> &raquo;</li> 
+        <li><a href="../index.html">小明牌烂笔头 0.1 documentation</a> &raquo;</li>
+          <li><a href="../ubuntubooks.html" >GNU/Linux 学习笔记</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, riptide711.
+        &copy; Copyright 2012, riptide766.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
