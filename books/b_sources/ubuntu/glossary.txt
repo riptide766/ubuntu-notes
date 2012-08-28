@@ -5,6 +5,48 @@
 .. sphinx markup
 
 .. glossary::
+    
+    TCP
+        Transmission Control Protocal
+
+    
+    IP
+        互联网协议（英语：Internet Protocol，IP），或称互联网协议，是用于报文交换网络的一种面向数据的协议。
+
+        IP是在TCP/IP协议中网络层的主要协议，任务是仅仅根据源主机和目的主机的地址传送数据。为此目的，IP定义了寻址方法和数据报的封装结构 。第一个架构的主要版本，现在称为IPv4，仍然是最主要的互联网协议，尽管世界各地正在积极部署IPv6。
+
+
+    OSI
+        Open System Interconnect Reference Model `WIKI - OSI  <http://zh.wikipedia.org/wiki/OSI模型>`_   
+
+
+        7. 应用层 ── Application Layer
+
+        6. 表示层 ── Presentation Layer
+
+        5. 会话层 ── Session Layer
+        
+        4. 传输层 ── Transport Layer
+        
+        3. 网络层 ── Network Layer
+        
+        2. 数据链路层 ── Data Link Layer
+        
+        1. 物理层 ── Physical Layer
+
+    UDP
+        用户数据报协议（User Datagram Protocol, UDP）是一个简单的面向数据报的传输层协议，IETF RFC 768是UDP的正式规范。
+
+    ICMP
+        互联网控制消息协议（Internet Control Message Protocol 或简写 ICMP）是网路协议族的核心协议之一。它用于 TCP/IP 网络中发送控制消息，提供可能发生在通信环境中的各种问题反馈，通过这些信息，令管理者可以对所发生的问题作出诊断，然后采取适当的措施解决。 `WIKI - 互联网控制消息协议 <http://zh.wikipedia.org/wiki/ICMP>`_
+
+    IGMP
+        因特网组管理协议（Internet Group Management Protocol或简写IGMP)是用于管理因特网协议多播组成员的一种通信协议。IP主机和相邻的路由器利用IGMP来建立多播组的组成员。像ICMP用于单播连接一样，IGMP也是IP多播说明的一个完整部分。`因特网组管理协议 - wiki  <http://zh.wikipedia.org/wiki/IGMP>`_
+
+
+    ARP
+        Address Resolution ProtocolARP协议（Address Resolution Protocol），或称地址解析协议。ARP协议的基本功能就是通过目标设备的IP地址，查询目标设备的MAC地址，以保证通信的顺利进行。他是IPv4中网络层必不可少的协议，不过在IPv6中已不再适用，并被ICMPv6所替代。 `WIKI - 地址解析协议 <http://zh.wikipedia.org/wiki/地址解析协议>`_
+
 
     devpts
          The devpts file system provides an interface to pseudo terminal (pty) devices. It is typically mounted at /dev/pts. A new pty device file is dynamically created when the /dev/ptmx pty master multiplex device is opened.
@@ -234,3 +276,5 @@
     
     Live CD
         Live CD，又译为自生系统，是事先儲存於某种可移动儲存裝置上，可不特定於计算机硬件（non-hardware-specific）而启动的操作系统（通常亦包括一些其他軟件），不需安裝至计算机的本地外部存储器 - 硬盘。采用的介质包括CD-ROM（Live CD），DVD（Live DVD），闪存盘（Live USB）甚至是软盘等。退出自生系统並重新開機後，電腦就可以恢復到原本的操作系統。自生系统的運作機制，是透過「把原本放在硬碟裡的檔案，放到記憶體的虛擬磁碟中」來運作；因此系統記憶體愈大，則執行速度愈快。 `Live CD - wiki <http://zh.wikipedia.org/zh/Live_CD>`_
+
+

@@ -11,13 +11,23 @@
 ==================
 
 .. toctree::
- 
-   ./ubuntubook.rst 
+    :maxdepth: 2
+
+    ubuntubooks
+    astronomy
+    physics
+    maths
+
 
    
 
 业余项目
 ===================
 
+.. toctree::
+    :maxdepth: 2
+
+    doubanradio
+    easyscripts
 
 
