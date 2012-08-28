@@ -1,1 +1,1 @@
-../../books/ubuntubook.rst
+../../books/books.rst

@@ -40,8 +40,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Ubuntu GNU/linux 笔记'
-copyright = u'2012, riptide711'
+project = u'小明牌烂笔头'
+copyright = u'2012, riptide766'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
