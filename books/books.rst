@@ -28,6 +28,6 @@
     :maxdepth: 2
 
     doubanradio
-    easyscripts
+    easyscripts/easyscripts
 
 
