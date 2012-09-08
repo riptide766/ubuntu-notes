@@ -5,6 +5,9 @@
 .. sphinx markup
 
 .. glossary::
+
+    ELF
+        In computing, the Executable and Linkable Format (ELF, formerly called Extensible Linking Format) is a common standard file format for executables, object code, shared libraries, and core dumps. `Executable and Linkable Format - WIKI <http://en.wikipedia.org/wiki/Executable_and_Linkable_Format>`_
     
     TCP
         Transmission Control Protocal

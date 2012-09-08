@@ -8,19 +8,19 @@
 .section
 ----------
 
-  指示把代码划分成若干个段（Section）
+  指示把代码划分成若干个段（Section）,被操作系统加载执行时，每个段被加载到不同的地址
 
 
 .section .date
 ---------------
 
-  保存程序的数据
+  保存程序的数据,可读可写，相当于C程序的全局变量
 
 
 .section .text
 ----------------
 
-  保存代码
+  保存代码,是只读和可执行的
 
 
 汇编指令
@@ -29,21 +29,32 @@
 movl
 ----------
 
+传送指令
+
 cmpl
 ------------
+
+比较指令
 
 je
 -------------
 
+条件跳转指令(jump if equal).判断eflags寄存器的ZF位
+
 incl
 --------
+
+自增指令
 
 jle
 --------
 
+条件跳转指令(jump if less than or equal)
+
 jmp
 ---------------
 
+跳转指令
 
 int
 --------------
@@ -108,7 +119,11 @@ int
             # return different things to
             # echo $?
 
-     int $0x80	# this wakes up the
+     int $0x80	# this wakes up the kernel to run
+                # the exit command
+
+
+
 
 例二
 ----------------

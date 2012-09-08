@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>EasyScripts 编写指南(编辑中) &mdash; 小明牌烂笔头 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../b_static/jquery.js"></script>
+    <script type="text/javascript" src="../b_static/underscore.js"></script>
+    <script type="text/javascript" src="../b_static/doctools.js"></script>
+    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <link rel="top" title="小明牌烂笔头 0.1 documentation" href="../index.html" />
+    <link rel="up" title="EasyScripts" href="easyscripts.html" />
+    <link rel="prev" title="EasyScripts 使用指南" href="easyscripts_usage.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="easyscripts_usage.html" title="EasyScripts 使用指南"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">小明牌烂笔头 0.1 documentation</a> &raquo;</li>
+          <li><a href="easyscripts.html" accesskey="U">EasyScripts</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="easyscripts">
+<h1>EasyScripts 编写指南(编辑中)<a class="headerlink" href="#easyscripts" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>基本概念<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>即时脚本<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>脚本不会被firefox缓存。也就是说是即时生效的。</p>
+</div>
+<div class="section" id="id3">
+<h3>两级命名空间<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>脚本可以导入到两个级别的命令空间,不会污染全局空间。</p>
+<ol class="arabic simple">
+<li>匿名级别的脚本，相互间是独立隔绝的。用来实现具体功能。</li>
+<li>全局级别的脚本。可以相互访问,也可以被匿名脚本访问。用来编写公共库。</li>
+</ol>
+</div>
+<div class="section" id="id4">
+<h3>菜单界面<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>如果根据规范，easyscript可以根据描述自动生成调用菜单。</p>
+<img alt="../b_images/menu.png" src="../b_images/menu.png" />
+</div>
+<div class="section" id="id5">
+<h3>错误处理<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>在firefox控制台提供js、cofffeescript的编译时错误。方便debug。(默认不启用)</p>
+<img alt="../b_images/errormsg.png" src="../b_images/errormsg.png" />
+</div>
+<div class="section" id="coffeescript">
+<h3>兼容coffeescript<a class="headerlink" href="#coffeescript" title="Permalink to this headline">¶</a></h3>
+<p>可以自动编译coffeescripts脚本。(默认不启用)</p>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>菜单映射规范<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="custommenus">
+<h3>__customMenus<a class="headerlink" href="#custommenus" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-coffeescript"><div class="highlight"><pre><span class="nv">__customMenus =</span>
+        <span class="s">&quot;test&quot;</span><span class="o">:</span><span class="s">&quot;无限菜单演示.L2.L3.L4.test&quot;</span>
+</pre></div>
+</div>
+<p>脚本中要有一个叫 <strong>__customMenus</strong> 的局部object变量</p>
+</div>
+<div class="section" id="export">
+<h3>EXPORT<a class="headerlink" href="#export" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-coffeescript"><div class="highlight"><pre><span class="nv">EXPORT = </span><span class="p">[</span><span class="nx">__customMenus</span><span class="p">,</span> <span class="nx">test</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>还要有一个叫 <strong>EXPORT</strong> 数组。用于放置__customMenus和菜单使用的函数</p>
+</div>
+<div class="section" id="id7">
+<h3>菜单命名<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>__customMenus中元素的key是是函数或对象名，value是菜单中的显示名.</p>
+<p><strong>无限菜单演示.L2.L3.L4.test</strong> 意味着有五级菜单</p>
+<ul>
+<li><dl class="first docutils">
+<dt>无限菜单演示</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>L2</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>L3</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>L4</dt>
+<dd><p class="first last">test   &lt;&#8212;&#8212;&#8211; 执行test功能</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="this">
+<h3>this<a class="headerlink" href="#this" title="Permalink to this headline">¶</a></h3>
+<p>还有一种简单的写法，使用this:</p>
+<div class="highlight-coffeescript"><div class="highlight"><pre><span class="k">this</span><span class="p">.</span><span class="nv">__customMenus =</span>
+    <span class="s">&quot;switchRestartless&quot;</span><span class="o">:</span> <span class="s">&quot;Addons.切换RestartLess扩展开闭状态(输入序号如:1,2)&quot;</span>
+    <span class="s">&quot;getAddonsList&quot;</span><span class="o">:</span> <span class="s">&quot;Addons.复制扩展列表和简单统计&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>命名空间规范<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id9">
+<h3>脚本目录<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>默认的脚本目录位于 $home/easyscripts.</p>
+</div>
+<div class="section" id="id10">
+<h3>全局级别<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>全局级别的脚本。可以相互访问,可以被匿名脚本访问。放置于默认脚本目录下的 <strong>global</strong> 目录</p>
+<p>以下面的脚本为例： 脚本中的 <strong>easyscript_app</strong> 对象会被放置于 <strong>window.easyscript_app</strong> 。</p>
+<p>当然你也可以起其他的名字。但 <strong>easyscript_xxxx</strong> 风格的变量会有一个优化。在匿名脚本中可以直接通过xxxx访问</p>
+<div class="highlight-coffeescript"><div class="highlight"><pre><span class="nv">EXPORT = </span><span class="p">[</span><span class="nx">easyscript_app</span><span class="p">]</span>
+
+<span class="nv">easyscript_app =</span>
+
+    <span class="nv">get_os : </span><span class="o">-&gt;</span><span class="nx">Services</span><span class="p">.</span><span class="nx">appinfo</span><span class="p">.</span><span class="nx">OS</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id11">
+<h3>匿名级别<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>匿名级别的脚本，相互间是独立隔绝的。可以放置于默认脚本目录。</p>
+<p>以下面的脚本为例: 这个脚本会转化成一个对象，被放置于 <strong>window.snippet.anonym.脚本ID</strong> 。</p>
+<p>注意： app.get_os() 实质上调用的是上面的 <strong>easyscript_app</strong> 里的方法。</p>
+<div class="highlight-coffeescript"><div class="highlight"><pre><span class="nv">EXPORT = </span><span class="p">[</span><span class="nx">__customMenus</span><span class="p">,</span> <span class="nx">test</span><span class="p">]</span>
+
+<span class="nv">__customMenus =</span>
+    <span class="s">&quot;test&quot;</span><span class="o">:</span><span class="s">&quot;无限菜单演示.L2.L3.L4.test&quot;</span>
+
+<span class="nv">test = </span><span class="o">-&gt;</span><span class="nx">alert</span> <span class="nx">app</span><span class="p">.</span><span class="nx">get_os</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>相互调用<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id13">
+<h2>安装下载<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id14">
+<h3>依赖<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">coffeescript</p>
+</li>
+<li><p class="first">js解释器</p>
+<p>建议使用mozilla的spidermonkey. 理由是mozilla的js有一些非ES标准的语法。</p>
+<p>archlinux如下安装</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pacman</span> <span class="o">-</span><span class="n">S</span> <span class="n">js</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="id15">
+<h3>下载仓库<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github.com</span><span class="p">:</span><span class="n">riptide766</span><span class="o">/</span><span class="n">easyscripts</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fireofox">
+<h3>生成和安装fireofox扩展<a class="headerlink" href="#fireofox" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">cd</span> <span class="n">easyscripts</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">./</span><span class="n">packaging</span><span class="o">.</span><span class="n">py</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">firefox</span> <span class="n">xxxxx</span><span class="o">.</span><span class="n">xpi</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">EasyScripts 编写指南(编辑中)</a><ul>
+<li><a class="reference internal" href="#id1">基本概念</a><ul>
+<li><a class="reference internal" href="#id2">即时脚本</a></li>
+<li><a class="reference internal" href="#id3">两级命名空间</a></li>
+<li><a class="reference internal" href="#id4">菜单界面</a></li>
+<li><a class="reference internal" href="#id5">错误处理</a></li>
+<li><a class="reference internal" href="#coffeescript">兼容coffeescript</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6">菜单映射规范</a><ul>
+<li><a class="reference internal" href="#custommenus">__customMenus</a></li>
+<li><a class="reference internal" href="#export">EXPORT</a></li>
+<li><a class="reference internal" href="#id7">菜单命名</a></li>
+<li><a class="reference internal" href="#this">this</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id8">命名空间规范</a><ul>
+<li><a class="reference internal" href="#id9">脚本目录</a></li>
+<li><a class="reference internal" href="#id10">全局级别</a></li>
+<li><a class="reference internal" href="#id11">匿名级别</a></li>
+<li><a class="reference internal" href="#id12">相互调用</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id13">安装下载</a><ul>
+<li><a class="reference internal" href="#id14">依赖</a></li>
+<li><a class="reference internal" href="#id15">下载仓库</a></li>
+<li><a class="reference internal" href="#fireofox">生成和安装fireofox扩展</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="easyscripts_usage.html"
+                        title="previous chapter">EasyScripts 使用指南</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../b_sources/easyscripts/easyscripts_coding.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="easyscripts_usage.html" title="EasyScripts 使用指南"
+             >previous</a> |</li>
+        <li><a href="../index.html">小明牌烂笔头 0.1 documentation</a> &raquo;</li>
+          <li><a href="easyscripts.html" >EasyScripts</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, riptide766.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

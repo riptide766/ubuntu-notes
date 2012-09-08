@@ -61,38 +61,44 @@
 <div class="section" id="section">
 <h3>.section<a class="headerlink" href="#section" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div>指示把代码划分成若干个段（Section）</div></blockquote>
+<div>指示把代码划分成若干个段（Section）,被操作系统加载执行时，每个段被加载到不同的地址</div></blockquote>
 </div>
 <div class="section" id="section-date">
 <h3>.section .date<a class="headerlink" href="#section-date" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div>保存程序的数据</div></blockquote>
+<div>保存程序的数据,可读可写，相当于C程序的全局变量</div></blockquote>
 </div>
 <div class="section" id="section-text">
 <h3>.section .text<a class="headerlink" href="#section-text" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div>保存代码</div></blockquote>
+<div>保存代码,是只读和可执行的</div></blockquote>
 </div>
 </div>
 <div class="section" id="id3">
 <h2>汇编指令<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="movl">
 <h3>movl<a class="headerlink" href="#movl" title="Permalink to this headline">¶</a></h3>
+<p>传送指令</p>
 </div>
 <div class="section" id="cmpl">
 <h3>cmpl<a class="headerlink" href="#cmpl" title="Permalink to this headline">¶</a></h3>
+<p>比较指令</p>
 </div>
 <div class="section" id="je">
 <h3>je<a class="headerlink" href="#je" title="Permalink to this headline">¶</a></h3>
+<p>条件跳转指令(jump if equal).判断eflags寄存器的ZF位</p>
 </div>
 <div class="section" id="incl">
 <h3>incl<a class="headerlink" href="#incl" title="Permalink to this headline">¶</a></h3>
+<p>自增指令</p>
 </div>
 <div class="section" id="jle">
 <h3>jle<a class="headerlink" href="#jle" title="Permalink to this headline">¶</a></h3>
+<p>条件跳转指令(jump if less than or equal)</p>
 </div>
 <div class="section" id="jmp">
 <h3>jmp<a class="headerlink" href="#jmp" title="Permalink to this headline">¶</a></h3>
+<p>跳转指令</p>
 </div>
 <div class="section" id="int">
 <h3>int<a class="headerlink" href="#int" title="Permalink to this headline">¶</a></h3>
@@ -150,7 +156,8 @@ _start:
         # return different things to
         # echo $?
 
- int $0x80  # this wakes up the</pre>
+ int $0x80  # this wakes up the kernel to run
+            # the exit command</pre>
 </div>
 </div>
 <div class="section" id="id7">

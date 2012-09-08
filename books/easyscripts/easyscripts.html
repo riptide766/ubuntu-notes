@@ -1,0 +1,182 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>EasyScripts &mdash; 小明牌烂笔头 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../b_static/jquery.js"></script>
+    <script type="text/javascript" src="../b_static/underscore.js"></script>
+    <script type="text/javascript" src="../b_static/doctools.js"></script>
+    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <link rel="top" title="小明牌烂笔头 0.1 documentation" href="../index.html" />
+    <link rel="next" title="EasyScripts 使用指南" href="easyscripts_usage.html" />
+    <link rel="prev" title="小明电台" href="../doubanradio.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="easyscripts_usage.html" title="EasyScripts 使用指南"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../doubanradio.html" title="小明电台"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">小明牌烂笔头 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="easyscripts">
+<h1>EasyScripts<a class="headerlink" href="#easyscripts" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">0.2</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">September 08, 2012</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="id1">
+<h2>EasyScripts？<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><strong>在firefox浏览器里运行调用自定义的JS脚本</strong></p>
+<img alt="../b_images/menu.png" src="../b_images/menu.png" />
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="easyscripts_usage.html">EasyScripts 使用指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="easyscripts_usage.html#id1">扩展安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="easyscripts_usage.html#id2">使用方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_usage.html#id3">快捷键</a></li>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_usage.html#id4">灵活运用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="easyscripts_coding.html">EasyScripts 编写指南(编辑中)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="easyscripts_coding.html#id1">基本概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_coding.html#id2">即时脚本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_coding.html#id3">两级命名空间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_coding.html#id4">菜单界面</a></li>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_coding.html#id5">错误处理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_coding.html#coffeescript">兼容coffeescript</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="easyscripts_coding.html#id6">菜单映射规范</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_coding.html#custommenus">__customMenus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_coding.html#export">EXPORT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_coding.html#id7">菜单命名</a></li>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_coding.html#this">this</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="easyscripts_coding.html#id8">命名空间规范</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_coding.html#id9">脚本目录</a></li>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_coding.html#id10">全局级别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_coding.html#id11">匿名级别</a></li>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_coding.html#id12">相互调用</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="easyscripts_coding.html#id13">安装下载</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_coding.html#id14">依赖</a></li>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_coding.html#id15">下载仓库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="easyscripts_coding.html#fireofox">生成和安装fireofox扩展</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">EasyScripts</a><ul>
+<li><a class="reference internal" href="#id1">EasyScripts？</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../doubanradio.html"
+                        title="previous chapter">小明电台</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="easyscripts_usage.html"
+                        title="next chapter">EasyScripts 使用指南</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../b_sources/easyscripts/easyscripts.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="easyscripts_usage.html" title="EasyScripts 使用指南"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../doubanradio.html" title="小明电台"
+             >previous</a> |</li>
+        <li><a href="../index.html">小明牌烂笔头 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, riptide766.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
