@@ -147,12 +147,12 @@
 <div class="section" id="id9">
 <h3>脚本目录<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <p>默认的脚本目录位于 $home/easyscripts.</p>
+<p>位于脚本根目录下的都是匿名空间脚本。</p>
+<p>位于$home/easyscripts/global下的都是全局空间脚本</p>
 </div>
 <div class="section" id="id10">
 <h3>全局级别<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <p>全局级别的脚本。可以相互访问,可以被匿名脚本访问。放置于默认脚本目录下的 <strong>global</strong> 目录</p>
-<p>以下面的脚本为例： 脚本中的 <strong>easyscript_app</strong> 对象会被放置于 <strong>window.easyscript_app</strong> 。</p>
-<p>当然你也可以起其他的名字。但 <strong>easyscript_xxxx</strong> 风格的变量会有一个优化。在匿名脚本中可以直接通过xxxx访问</p>
 <div class="highlight-coffeescript"><div class="highlight"><pre><span class="nv">EXPORT = </span><span class="p">[</span><span class="nx">easyscript_app</span><span class="p">]</span>
 
 <span class="nv">easyscript_app =</span>
@@ -164,8 +164,6 @@
 <div class="section" id="id11">
 <h3>匿名级别<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p>匿名级别的脚本，相互间是独立隔绝的。可以放置于默认脚本目录。</p>
-<p>以下面的脚本为例: 这个脚本会转化成一个对象，被放置于 <strong>window.snippet.anonym.脚本ID</strong> 。</p>
-<p>注意： app.get_os() 实质上调用的是上面的 <strong>easyscript_app</strong> 里的方法。</p>
 <div class="highlight-coffeescript"><div class="highlight"><pre><span class="nv">EXPORT = </span><span class="p">[</span><span class="nx">__customMenus</span><span class="p">,</span> <span class="nx">test</span><span class="p">]</span>
 
 <span class="nv">__customMenus =</span>

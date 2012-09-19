@@ -105,34 +105,32 @@ this
 
 默认的脚本目录位于 $home/easyscripts.
 
+位于脚本根目录下的都是匿名空间脚本。
+
+位于$home/easyscripts/global下的都是全局空间脚本
+
 
 全局级别
 --------------
 
 全局级别的脚本。可以相互访问,可以被匿名脚本访问。放置于默认脚本目录下的 **global** 目录
 
-以下面的脚本为例： 脚本中的 **easyscript_app** 对象会被放置于 **window.easyscript_app** 。
-
-当然你也可以起其他的名字。但 **easyscript_xxxx** 风格的变量会有一个优化。在匿名脚本中可以直接通过xxxx访问
-
 
 .. code-block:: coffeescript
-    
+
     EXPORT = [easyscript_app]
 
     easyscript_app =
 
         get_os : ->Services.appinfo.OS
-        
+
 
 匿名级别
 -------------
 
 匿名级别的脚本，相互间是独立隔绝的。可以放置于默认脚本目录。
 
-以下面的脚本为例: 这个脚本会转化成一个对象，被放置于 **window.snippet.anonym.脚本ID** 。
 
-注意： app.get_os() 实质上调用的是上面的 **easyscript_app** 里的方法。
 
 .. code-block:: coffeescript
     
