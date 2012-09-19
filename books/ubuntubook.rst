@@ -16,7 +16,7 @@ GNU/Linux 学习笔记
 
 .. toctree::
     :titlesonly:
-    
+
     ubuntu/whatislinux
     ubuntu/glossary
 
@@ -24,7 +24,7 @@ GNU/Linux 学习笔记
 ..    ubuntu/startup
 
 
-Bash 笔记
+Bash / Zsh 笔记
 ==================
 
 .. toctree::
@@ -36,6 +36,7 @@ Bash 笔记
     ubuntu/bash
     ubuntu/bash_sudo_user.rst
     ubuntu/bash_pound_bang_env.rst
+    ubuntu/zsh
 
 
 
@@ -47,6 +48,7 @@ Archlinux
 
     ubuntu/arch_custom_repo.rst
     ubuntu/arch_custom_linux.rst
+    ubuntu/systemd.rst
 
 
 
