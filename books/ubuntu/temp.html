@@ -10,8 +10,8 @@
     
     <title>临时命令记录 &mdash; 小明牌烂笔头 0.1 documentation</title>
     
-    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -22,10 +22,10 @@
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="../b_static/jquery.js"></script>
-    <script type="text/javascript" src="../b_static/underscore.js"></script>
-    <script type="text/javascript" src="../b_static/doctools.js"></script>
-    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
     <link rel="top" title="小明牌烂笔头 0.1 documentation" href="../index.html" />
     <link rel="up" title="GNU/Linux 学习笔记" href="../ubuntubooks.html" />
     <link rel="next" title="脚本片段记录" href="temp_scripts.html" />
@@ -135,7 +135,7 @@
 </pre></div>
 </div>
 <p>awk设置变量</p>
-<div class="highlight-python"><pre>&gt;&gt;&gt; echo -e &#x27;xxxx\nxxxxxx&#x27; | awk -v a=$aaa &#x27;{print a}&#x27;</pre>
+<div class="highlight-python"><pre>&gt;&gt;&gt; echo -e 'xxxx\nxxxxxx' | awk -v a=$aaa '{print a}'</pre>
 </div>
 <p>第二个a起都变成b.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">echo</span> <span class="s">&quot;a=aaaa&quot;</span> <span class="o">|</span> <span class="n">sed</span> <span class="s">&#39;s/a/b/2g&#39;</span>
@@ -179,7 +179,7 @@
 </div>
 <p>awk计算</p>
 <div class="highlight-python"><pre>&gt;&gt;&gt; a=0.1
-&gt;&gt;&gt; echo &#x27;&#x27; |  awk -v a=$a &#x27;{print int(a+0.999)}&#x27;</pre>
+&gt;&gt;&gt; echo '' |  awk -v a=$a '{print int(a+0.999)}'</pre>
 </div>
 <p>查看当月日历</p>
 <div class="highlight-python"><pre>&gt;&gt;&gt; cal $(date +%m\ %Y)</pre>
@@ -327,7 +327,7 @@ CFLAGS=-g 临时设置变量</p>
                         title="next chapter">脚本片段记录</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../b_sources/ubuntu/temp.txt"
+    <li><a href="../_sources/ubuntu/temp.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">

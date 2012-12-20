@@ -1,0 +1,456 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tmux使用简要 &mdash; 小明牌烂笔头 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <link rel="top" title="小明牌烂笔头 0.1 documentation" href="../index.html" />
+    <link rel="up" title="GNU/Linux 学习笔记" href="../ubuntubooks.html" />
+    <link rel="next" title="个人软件仓库" href="arch_custom_repo.html" />
+    <link rel="prev" title="Zsh笔记" href="zsh.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="arch_custom_repo.html" title="个人软件仓库"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="zsh.html" title="Zsh笔记"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">小明牌烂笔头 0.1 documentation</a> &raquo;</li>
+          <li><a href="../ubuntubooks.html" accesskey="U">GNU/Linux 学习笔记</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tmux">
+<h1>Tmux使用简要<a class="headerlink" href="#tmux" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>前缀键<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>C-b</td>
+<td>Send the prefix key (C-b) through to the application.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id2">
+<h2>辅助<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>:</td>
+<td>Enter the tmux command prompt.</td>
+</tr>
+<tr class="row-odd"><td>?</td>
+<td>List all key bindings.</td>
+</tr>
+<tr class="row-even"><td>C-z</td>
+<td>Suspend the tmux client.</td>
+</tr>
+<tr class="row-odd"><td>d</td>
+<td>Detach the current client.</td>
+</tr>
+<tr class="row-even"><td>t</td>
+<td>Show the time.</td>
+</tr>
+<tr class="row-odd"><td>~</td>
+<td>Show previous messages from tmux, if any.</td>
+</tr>
+<tr class="row-even"><td>r</td>
+<td>Force redraw of the attached client.</td>
+</tr>
+<tr class="row-odd"><td>D</td>
+<td>Choose a client to detach.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pane">
+<h2>pane<a class="headerlink" href="#pane" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>创建pane<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>%</td>
+<td>Split the current pane into two, left and right.</td>
+</tr>
+<tr class="row-odd"><td>&#8220;</td>
+<td>Split the current pane into two, top and bottom.</td>
+</tr>
+<tr class="row-even"><td>x</td>
+<td>Kill the current pane.</td>
+</tr>
+<tr class="row-odd"><td>q</td>
+<td>Briefly display pane indexes.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id4">
+<h3>选择pane<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>o</td>
+<td>Select the next pane in the current window.</td>
+</tr>
+<tr class="row-odd"><td>Up</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Down</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Left</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>Right</td>
+<td>Change to the pane above, below, to the left, or to the right of the current pane.Move to the previously active pane.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id5">
+<h3>调整pane<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>C-Up</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>C-Down</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>C-Left</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>C-Right</td>
+<td>Resize the current pane in steps of one cell.</td>
+</tr>
+<tr class="row-even"><td>{</td>
+<td>Swap the current pane with the previous pane.</td>
+</tr>
+<tr class="row-odd"><td>}</td>
+<td>Swap the current pane with the next pane.</td>
+</tr>
+<tr class="row-even"><td>M-1  M-5</td>
+<td>Arrange panes in one of the five preset layouts: even-horizontal, even-vertical, main-horizontal, main-vertical, or tiled.</td>
+</tr>
+<tr class="row-odd"><td>M-o</td>
+<td>Rotate the panes in the current window backwards.</td>
+</tr>
+<tr class="row-even"><td>C-o</td>
+<td>Rotate the panes in the current window forwards.</td>
+</tr>
+<tr class="row-odd"><td>!</td>
+<td>Break the current pane out of the window.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="window">
+<h2>window<a class="headerlink" href="#window" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h3>选择<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0 to 9</td>
+<td>Select windows 0 to 9.</td>
+</tr>
+<tr class="row-odd"><td>w</td>
+<td>Choose the current window interactively.</td>
+</tr>
+<tr class="row-even"><td>n</td>
+<td>Change to the next window.</td>
+</tr>
+<tr class="row-odd"><td>p</td>
+<td>Change to the previous window.</td>
+</tr>
+<tr class="row-even"><td>&#8216;</td>
+<td>Prompt for a window index to select.</td>
+</tr>
+<tr class="row-odd"><td>.</td>
+<td>Prompt for an index to move the current window.</td>
+</tr>
+<tr class="row-even"><td>f</td>
+<td>Prompt to search for text in open windows.</td>
+</tr>
+<tr class="row-odd"><td>i</td>
+<td>Display some information about the current window.</td>
+</tr>
+<tr class="row-even"><td>l</td>
+<td>Move to the previously selected window.</td>
+</tr>
+<tr class="row-odd"><td>M-n</td>
+<td>Move to the next window with a bell or activity marker.</td>
+</tr>
+<tr class="row-even"><td>M-p</td>
+<td>Move to the previous window with a bell or activity marker.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id7">
+<h3>创建<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>c</td>
+<td>Create a new window.</td>
+</tr>
+<tr class="row-odd"><td>&amp;</td>
+<td>Kill the current window.</td>
+</tr>
+<tr class="row-even"><td>,</td>
+<td>Rename the current window.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="session">
+<h2>session<a class="headerlink" href="#session" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>$</td>
+<td>Rename the current session.</td>
+</tr>
+<tr class="row-odd"><td>s</td>
+<td>Select a new session for the attached client interactively.</td>
+</tr>
+<tr class="row-even"><td>L</td>
+<td>Switch the attached client back to the last session.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="copy-mode">
+<h2>copy mode<a class="headerlink" href="#copy-mode" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="86%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>#</td>
+<td>List all paste buffers.</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>Delete the most recently copied buffer of text.</td>
+</tr>
+<tr class="row-even"><td>=</td>
+<td>Choose which buffer to paste interactively from a list.</td>
+</tr>
+<tr class="row-odd"><td>[</td>
+<td>Enter copy mode to copy text or view the history.</td>
+</tr>
+<tr class="row-even"><td>]</td>
+<td>Paste the most recently copied buffer of text.</td>
+</tr>
+<tr class="row-odd"><td>Page Up</td>
+<td>Enter copy mode and scroll one page up.</td>
+</tr>
+<tr class="row-even"><td>M-Up</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>M-Down</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>M-Left</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>M-Right</td>
+<td>Resize the current pane in steps of five cells.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tmux使用简要</a><ul>
+<li><a class="reference internal" href="#id1">前缀键</a></li>
+<li><a class="reference internal" href="#id2">辅助</a></li>
+<li><a class="reference internal" href="#pane">pane</a><ul>
+<li><a class="reference internal" href="#id3">创建pane</a></li>
+<li><a class="reference internal" href="#id4">选择pane</a></li>
+<li><a class="reference internal" href="#id5">调整pane</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#window">window</a><ul>
+<li><a class="reference internal" href="#id6">选择</a></li>
+<li><a class="reference internal" href="#id7">创建</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#session">session</a></li>
+<li><a class="reference internal" href="#copy-mode">copy mode</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="zsh.html"
+                        title="previous chapter">Zsh笔记</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="arch_custom_repo.html"
+                        title="next chapter">个人软件仓库</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/ubuntu/tmux_tutorial.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="arch_custom_repo.html" title="个人软件仓库"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="zsh.html" title="Zsh笔记"
+             >previous</a> |</li>
+        <li><a href="../index.html">小明牌烂笔头 0.1 documentation</a> &raquo;</li>
+          <li><a href="../ubuntubooks.html" >GNU/Linux 学习笔记</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, riptide766.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

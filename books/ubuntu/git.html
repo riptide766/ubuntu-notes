@@ -10,8 +10,8 @@
     
     <title>版本控制 GIT学习笔记 &mdash; 小明牌烂笔头 0.1 documentation</title>
     
-    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -22,10 +22,10 @@
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="../b_static/jquery.js"></script>
-    <script type="text/javascript" src="../b_static/underscore.js"></script>
-    <script type="text/javascript" src="../b_static/doctools.js"></script>
-    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
     <link rel="top" title="小明牌烂笔头 0.1 documentation" href="../index.html" />
     <link rel="up" title="GNU/Linux 学习笔记" href="../ubuntubooks.html" />
     <link rel="next" title="文本编辑 GVIM 使用总结" href="gvim.html" />
@@ -60,8 +60,8 @@
 <h2>配置参数<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><p>设置</p>
-<div class="highlight-python"><pre>git config --global user.name &quot;mattmonkey&quot;
-git config --global user.email &quot;mattmonkey@sina.com&quot;</pre>
+<div class="highlight-python"><pre>git config --global user.name "mattmonkey"
+git config --global user.email "mattmonkey@sina.com"</pre>
 </div>
 <p>列出</p>
 <div class="highlight-python"><pre>git config --list
@@ -80,7 +80,7 @@ git config --global color.ui auto</pre>
 git config --global alias.ci commit
 git config --global alias.co checkout
 git config --global alias.br branch
-git config --global alias.lg &quot;log --color --graph --pretty=format:&#x27;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#x27; --abbrev-commit --&quot;</pre>
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit --"</pre>
 </div>
 <p>其他</p>
 <div class="highlight-python"><pre>git config format.pretty oneline</pre>
@@ -109,7 +109,7 @@ git config --global alias.lg &quot;log --color --graph --pretty=format:&#x27;%Cr
 <blockquote>
 <div><p>生成SSH Key</p>
 <div class="highlight-python"><pre>cd ~/.ssh
-ssh-keygen -t rsa -C &quot;xxxxxx@xxx.com&quot;</pre>
+ssh-keygen -t rsa -C "xxxxxx@xxx.com"</pre>
 </div>
 <p>添加Key到 <a class="reference external" href="https://github.com/settings/ssh">github ssh</a></p>
 <div class="highlight-python"><pre>cat id_rsa.pub | xsel -b</pre>
@@ -179,7 +179,7 @@ git checkout gh-pages</pre>
 </div>
 <div class="section" id="id4">
 <h2>文件周期变化<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<img alt="../b_images/git-files-status.png" src="../b_images/git-files-status.png" />
+<img alt="../_images/git-files-status.png" src="../_images/git-files-status.png" />
 </div>
 <div class="section" id="id5">
 <h2>查看和比较<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
@@ -335,7 +335,7 @@ git checkout gh-pages</pre>
                         title="next chapter">文本编辑 GVIM 使用总结</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../b_sources/ubuntu/git.txt"
+    <li><a href="../_sources/ubuntu/git.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">

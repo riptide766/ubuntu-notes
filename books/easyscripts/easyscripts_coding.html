@@ -10,8 +10,8 @@
     
     <title>EasyScripts 编写指南(编辑中) &mdash; 小明牌烂笔头 0.1 documentation</title>
     
-    <link rel="stylesheet" href="../b_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="../b_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -22,10 +22,10 @@
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="../b_static/jquery.js"></script>
-    <script type="text/javascript" src="../b_static/underscore.js"></script>
-    <script type="text/javascript" src="../b_static/doctools.js"></script>
-    <script type="text/javascript" src="../b_static/sidebar.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
     <link rel="top" title="小明牌烂笔头 0.1 documentation" href="../index.html" />
     <link rel="up" title="EasyScripts" href="easyscripts.html" />
     <link rel="prev" title="EasyScripts 使用指南" href="easyscripts_usage.html" /> 
@@ -69,12 +69,12 @@
 <div class="section" id="id4">
 <h3>菜单界面<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>如果根据规范，easyscript可以根据描述自动生成调用菜单。</p>
-<img alt="../b_images/menu.png" src="../b_images/menu.png" />
+<img alt="../_images/menu.png" src="../_images/menu.png" />
 </div>
 <div class="section" id="id5">
 <h3>错误处理<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>在firefox控制台提供js、cofffeescript的编译时错误。方便debug。(默认不启用)</p>
-<img alt="../b_images/errormsg.png" src="../b_images/errormsg.png" />
+<img alt="../_images/errormsg.png" src="../_images/errormsg.png" />
 </div>
 <div class="section" id="coffeescript">
 <h3>兼容coffeescript<a class="headerlink" href="#coffeescript" title="Permalink to this headline">¶</a></h3>
@@ -86,7 +86,7 @@
 <div class="section" id="custommenus">
 <h3>__customMenus<a class="headerlink" href="#custommenus" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-coffeescript"><div class="highlight"><pre><span class="nv">__customMenus =</span>
-        <span class="s">&quot;test&quot;</span><span class="o">:</span><span class="s">&quot;无限菜单演示.L2.L3.L4.test&quot;</span>
+        <span class="s2">&quot;test&quot;</span><span class="o">:</span><span class="s2">&quot;无限菜单演示.L2.L3.L4.test&quot;</span>
 </pre></div>
 </div>
 <p>脚本中要有一个叫 <strong>__customMenus</strong> 的局部object变量</p>
@@ -136,8 +136,8 @@
 <h3>this<a class="headerlink" href="#this" title="Permalink to this headline">¶</a></h3>
 <p>还有一种简单的写法，使用this:</p>
 <div class="highlight-coffeescript"><div class="highlight"><pre><span class="k">this</span><span class="p">.</span><span class="nv">__customMenus =</span>
-    <span class="s">&quot;switchRestartless&quot;</span><span class="o">:</span> <span class="s">&quot;Addons.切换RestartLess扩展开闭状态(输入序号如:1,2)&quot;</span>
-    <span class="s">&quot;getAddonsList&quot;</span><span class="o">:</span> <span class="s">&quot;Addons.复制扩展列表和简单统计&quot;</span>
+    <span class="s2">&quot;switchRestartless&quot;</span><span class="o">:</span> <span class="s2">&quot;Addons.切换RestartLess扩展开闭状态(输入序号如:1,2)&quot;</span>
+    <span class="s2">&quot;getAddonsList&quot;</span><span class="o">:</span> <span class="s2">&quot;Addons.复制扩展列表和简单统计&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -167,7 +167,7 @@
 <div class="highlight-coffeescript"><div class="highlight"><pre><span class="nv">EXPORT = </span><span class="p">[</span><span class="nx">__customMenus</span><span class="p">,</span> <span class="nx">test</span><span class="p">]</span>
 
 <span class="nv">__customMenus =</span>
-    <span class="s">&quot;test&quot;</span><span class="o">:</span><span class="s">&quot;无限菜单演示.L2.L3.L4.test&quot;</span>
+    <span class="s2">&quot;test&quot;</span><span class="o">:</span><span class="s2">&quot;无限菜单演示.L2.L3.L4.test&quot;</span>
 
 <span class="nv">test = </span><span class="o">-&gt;</span><span class="nx">alert</span> <span class="nx">app</span><span class="p">.</span><span class="nx">get_os</span><span class="p">()</span>
 </pre></div>
@@ -256,7 +256,7 @@
                         title="previous chapter">EasyScripts 使用指南</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../b_sources/easyscripts/easyscripts_coding.txt"
+    <li><a href="../_sources/easyscripts/easyscripts_coding.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">

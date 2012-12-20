@@ -1,0 +1,141 @@
+============================
+Tmux使用简要
+============================
+
+前缀键
+===========
+
+========= =============================================
+Key
+========= =============================================
+C-b         Send the prefix key (C-b) through to the application.
+========= =============================================
+
+辅助
+===========
+
+========= =============================================
+Key
+========= =============================================
+:           Enter the tmux command prompt.
+?           List all key bindings.
+C-z         Suspend the tmux client.
+d           Detach the current client.
+t           Show the time.
+~           Show previous messages from tmux, if any.
+r           Force redraw of the attached client.
+D           Choose a client to detach.
+========= =============================================
+
+pane
+===========
+
+创建pane
+------------------
+
+========= =============================================
+Key
+========= =============================================
+%           Split the current pane into two, left and right.
+"           Split the current pane into two, top and bottom.
+x           Kill the current pane.
+q           Briefly display pane indexes.
+========= =============================================
+
+选择pane
+-----------------
+
+============ =============================================
+Key
+============ =============================================
+o            Select the next pane in the current window.
+Up
+Down
+Left
+Right        Change to the pane above, below, to the left, or to the right of the current pane.Move to the previously active pane.
+============ =============================================
+
+调整pane
+---------------------
+
+=========== =============================================
+Key
+=========== =============================================
+C-Up
+C-Down
+C-Left
+C-Right      Resize the current pane in steps of one cell.
+{            Swap the current pane with the previous pane.
+}            Swap the current pane with the next pane.
+M-1  M-5     Arrange panes in one of the five preset layouts: even-horizontal, even-vertical, main-horizontal, main-vertical, or tiled.
+M-o          Rotate the panes in the current window backwards.
+C-o          Rotate the panes in the current window forwards.
+!            Break the current pane out of the window.
+=========== =============================================
+
+window
+=============
+
+选择
+-------------
+
+========= =============================================
+Key
+========= =============================================
+0 to 9      Select windows 0 to 9.
+w           Choose the current window interactively.
+n           Change to the next window.
+p           Change to the previous window.
+'           Prompt for a window index to select.
+.           Prompt for an index to move the current window.
+f           Prompt to search for text in open windows.
+i           Display some information about the current window.
+l           Move to the previously selected window.
+M-n         Move to the next window with a bell or activity marker.
+M-p         Move to the previous window with a bell or activity marker.
+========= =============================================
+
+创建
+--------
+
+========= =============================================
+Key
+========= =============================================
+c           Create a new window.
+&           Kill the current window.
+,           Rename the current window.
+========= =============================================
+
+
+session
+==============
+
+
+========= =============================================
+Key
+========= =============================================
+$           Rename the current session.
+s           Select a new session for the attached client interactively.
+L           Switch the attached client back to the last session.
+========= =============================================
+
+copy mode
+=================
+
+========= =============================================
+Key
+========= =============================================
+#           List all paste buffers.
+-           Delete the most recently copied buffer of text.
+=           Choose which buffer to paste interactively from a list.
+[           Enter copy mode to copy text or view the history.
+]           Paste the most recently copied buffer of text.
+Page Up     Enter copy mode and scroll one page up.
+M-Up
+M-Down
+M-Left
+M-Right		Resize the current pane in steps of five cells.
+========= =============================================
+
+
+
